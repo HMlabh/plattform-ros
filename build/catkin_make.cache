@@ -1,0 +1,2 @@
+
+-DCATKIN_DEVEL_PREFIX=/home/labh/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/labh/catkin_ws/install -G Unix Makefiles
