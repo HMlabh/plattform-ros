@@ -1,2 +1,2 @@
 - setup-file:
-    local-name: /home/labh/catkin_ws/devel/setup.sh
+    local-name: /home/labh/plattform-ros/devel/setup.sh

@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/labh/catkin_ws/src
+CMAKE_SOURCE_DIR = /home/labh/plattform-ros/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/labh/catkin_ws/build
+CMAKE_BINARY_DIR = /home/labh/plattform-ros/build
 
 # Utility rule file for doxygen.
 
@@ -67,6 +67,6 @@ CMakeFiles/doxygen.dir/clean:
 .PHONY : CMakeFiles/doxygen.dir/clean
 
 CMakeFiles/doxygen.dir/depend:
-	cd /home/labh/catkin_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/labh/catkin_ws/src /home/labh/catkin_ws/src /home/labh/catkin_ws/build /home/labh/catkin_ws/build /home/labh/catkin_ws/build/CMakeFiles/doxygen.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/labh/plattform-ros/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/labh/plattform-ros/src /home/labh/plattform-ros/src /home/labh/plattform-ros/build /home/labh/plattform-ros/build /home/labh/plattform-ros/build/CMakeFiles/doxygen.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/doxygen.dir/depend
 
