@@ -30,3 +30,6 @@
 
 # Files
 CMakeCache.txt
+
+#Folders
+build/
