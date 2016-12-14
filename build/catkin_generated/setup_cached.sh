@@ -7,6 +7,6 @@
 # new environment variables
 
 # modified environment variables
-export LD_LIBRARY_PATH="/opt/ros/kinetic/lib"
-export PWD="/home/labh/plattform-ros/build"
-export ROS_PACKAGE_PATH="/home/labh/plattform-ros/src:/opt/ros/kinetic/share"
+export LD_LIBRARY_PATH="/home/labh/test/plattform-ros/devel/lib:$LD_LIBRARY_PATH"
+export PWD="/home/labh/test/plattform-ros/build"
+export ROS_PACKAGE_PATH="/home/labh/plattform-ros/src:/home/labh/test/plattform-ros/src:/home/labh/plattform-ros/src:/opt/ros/kinetic/share"

@@ -2,4 +2,4 @@
 source_root_dir = "/home/labh/plattform-ros/src"
 whitelisted_packages = "".split(';') if "" != "" else []
 blacklisted_packages = "".split(';') if "" != "" else []
-underlay_workspaces = "/home/labh/plattform-ros/devel;/opt/ros/kinetic".split(';') if "/home/labh/plattform-ros/devel;/opt/ros/kinetic" != "" else []
+underlay_workspaces = "/home/labh/test/plattform-ros/devel;/home/labh/plattform-ros/devel;/opt/ros/kinetic".split(';') if "/home/labh/test/plattform-ros/devel;/home/labh/plattform-ros/devel;/opt/ros/kinetic" != "" else []
