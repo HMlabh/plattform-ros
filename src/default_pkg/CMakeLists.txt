@@ -50,9 +50,16 @@ find_package(catkin REQUIRED COMPONENTS
 ## Generate messages in the 'msg' folder
  add_message_files(
    FILES
+   ir_ranges.msg
+   lift_endstops.msg
+   lift_goal.msg
+   lift_pos.msg
+   lift_pressure.msg
+   lift_speeds.msg
+   mechano_speeds.msg
+   move_vector.msg
    test.msg
    ultra_ranges.msg
-   ir_ranges.msg
  )
 
 ## Generate services in the 'srv' folder
