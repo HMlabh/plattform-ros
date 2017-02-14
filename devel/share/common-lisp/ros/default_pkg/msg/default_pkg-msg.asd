@@ -24,4 +24,6 @@
     (:file "_package_test" :depends-on ("_package"))
     (:file "ultra_ranges" :depends-on ("_package_ultra_ranges"))
     (:file "_package_ultra_ranges" :depends-on ("_package"))
+    (:file "usb_ident" :depends-on ("_package_usb_ident"))
+    (:file "_package_usb_ident" :depends-on ("_package"))
   ))

@@ -21,5 +21,7 @@
    "TEST"
    "<ULTRA_RANGES>"
    "ULTRA_RANGES"
+   "<USB_IDENT>"
+   "USB_IDENT"
   ))
 

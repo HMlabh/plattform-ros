@@ -91,9 +91,9 @@ endif()
 # flag project as catkin-based to distinguish if a find_package()-ed project is a catkin project
 set(default_pkg_FOUND_CATKIN_PROJECT TRUE)
 
-if(NOT "/home/labh/plattform-ros/devel/include;/home/labh/plattform-ros/src/default_pkg/include " STREQUAL " ")
+if(NOT "/home/labh/plattform-ros/devel/include " STREQUAL " ")
   set(default_pkg_INCLUDE_DIRS "")
-  set(_include_dirs "/home/labh/plattform-ros/devel/include;/home/labh/plattform-ros/src/default_pkg/include")
+  set(_include_dirs "/home/labh/plattform-ros/devel/include")
   foreach(idir ${_include_dirs})
     if(IS_ABSOLUTE ${idir} AND IS_DIRECTORY ${idir})
       set(include ${idir})

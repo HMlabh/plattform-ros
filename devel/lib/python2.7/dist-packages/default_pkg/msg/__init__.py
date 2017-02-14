@@ -8,3 +8,4 @@ from ._mechano_speeds import *
 from ._move_vector import *
 from ._test import *
 from ._ultra_ranges import *
+from ._usb_ident import *

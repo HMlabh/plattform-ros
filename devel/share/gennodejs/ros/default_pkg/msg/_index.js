@@ -10,6 +10,7 @@ let test = require('./test.js');
 let mechano_speeds = require('./mechano_speeds.js');
 let lift_endstops = require('./lift_endstops.js');
 let lift_pressure = require('./lift_pressure.js');
+let usb_ident = require('./usb_ident.js');
 let ultra_ranges = require('./ultra_ranges.js');
 
 module.exports = {
@@ -22,5 +23,6 @@ module.exports = {
   mechano_speeds: mechano_speeds,
   lift_endstops: lift_endstops,
   lift_pressure: lift_pressure,
+  usb_ident: usb_ident,
   ultra_ranges: ultra_ranges,
 };
