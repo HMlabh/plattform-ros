@@ -51,6 +51,8 @@ find_package(catkin REQUIRED COMPONENTS
  add_message_files(
    FILES
    test.msg
+   ultra_ranges.msg
+   ir_ranges.msg
  )
 
 ## Generate services in the 'srv' folder
