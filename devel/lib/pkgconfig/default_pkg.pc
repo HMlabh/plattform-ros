@@ -1,0 +1,8 @@
+prefix=/home/labh/plattform-ros/devel
+
+Name: default_pkg
+Description: Description of default_pkg
+Version: 0.1.0
+Cflags: -I/home/labh/plattform-ros/devel/include -I/home/labh/plattform-ros/src/default_pkg/include
+Libs: -L/home/labh/plattform-ros/devel/lib -ldefault_pkg
+Requires: roscpp rospy std_msgs message_runtime
