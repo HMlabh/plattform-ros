@@ -1,3 +1,4 @@
+from ._DummyTalk import *
 from ._ir_ranges import *
 from ._lift_endstops import *
 from ._lift_goal import *

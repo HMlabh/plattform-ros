@@ -4,6 +4,8 @@
 (defsystem "default_pkg-msg"
   :depends-on (:roslisp-msg-protocol :roslisp-utils )
   :components ((:file "_package")
+    (:file "DummyTalk" :depends-on ("_package_DummyTalk"))
+    (:file "_package_DummyTalk" :depends-on ("_package"))
     (:file "ir_ranges" :depends-on ("_package_ir_ranges"))
     (:file "_package_ir_ranges" :depends-on ("_package"))
     (:file "lift_endstops" :depends-on ("_package_lift_endstops"))

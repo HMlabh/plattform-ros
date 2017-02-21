@@ -44,7 +44,7 @@ int main(int argc, char **argv)
    * than we can send them, the number here specifies how many messages to
    * buffer up before throwing some away.
    */
-  ros::Publisher chatter_pub = n.advertise<std_msgs::String>("chatter", 1000);
+  ros::Publisher chatter_pub = n.advertise<std_msgs::String>("DummyTalk", 1000);
 
   ros::Rate loop_rate(10);
 
@@ -61,11 +61,11 @@ int main(int argc, char **argv)
     std_msgs::String msg;
 
     std::stringstream ss;
-    ss << "hello world " << count;
+    ss << "hello world " /*<< random() % 1000 << "\t"*/ << count;
     msg.data = ss.str();
 
     ROS_INFO("%s", msg.data.c_str());
-    ROS_INFO("%d", 42);
+//    ROS_INFO("%d", 42);
     /**
      * The publish() function is how you send messages. The parameter
      * is the message object. The type of this object must agree with the type
@@ -73,7 +73,7 @@ int main(int argc, char **argv)
      * in the constructor above.
      */
     chatter_pub.publish(msg);
-    chatter_pub.publish(42);
+//    chatter_pub.publish(42);
     ros::spinOnce();
 
     loop_rate.sleep();

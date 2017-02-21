@@ -50,6 +50,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## Generate messages in the 'msg' folder
  add_message_files(
    FILES
+   DummyTalk.msg
    ir_ranges.msg
    lift_endstops.msg
    lift_goal.msg
@@ -215,3 +216,14 @@ add_dependencies(DummyTalker beginner_tutorials_generate_messages_cpp)
 add_executable(DummyListener src/DummyListener.cpp)
 target_link_libraries(DummyListener ${catkin_LIBRARIES})
 add_dependencies(DummyListener beginner_tutorials_generate_messages_cpp)
+
+
+add_executable(IntTalker src/DummyIntTalker.cpp)
+target_link_libraries(IntTalker ${catkin_LIBRARIES})
+add_dependencies(IntTalker beginner_tutorials_generate_messages_cpp)
+
+add_executable(IntListener src/DummyIntListener.cpp)
+target_link_libraries(IntListener ${catkin_LIBRARIES})
+add_dependencies(IntListener beginner_tutorials_generate_messages_cpp)
+
+

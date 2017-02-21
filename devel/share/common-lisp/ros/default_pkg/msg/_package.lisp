@@ -1,6 +1,8 @@
 (cl:defpackage default_pkg-msg
   (:use )
   (:export
+   "<DUMMYTALK>"
+   "DUMMYTALK"
    "<IR_RANGES>"
    "IR_RANGES"
    "<LIFT_ENDSTOPS>"
