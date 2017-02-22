@@ -226,4 +226,7 @@ add_executable(IntListener src/DummyIntListener.cpp)
 target_link_libraries(IntListener ${catkin_LIBRARIES})
 add_dependencies(IntListener beginner_tutorials_generate_messages_cpp)
 
+add_executable(sensor_ping src/sensor_ping.cpp)
+target_link_libraries(sensor_ping ${catkin_LIBRARIES})
+add_dependencies(sensor_ping beginner_tutorials_generate_messages_cpp)
 
