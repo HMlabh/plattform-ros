@@ -2,7 +2,9 @@ cmake_minimum_required(VERSION 2.8.3)
 project(default_pkg)
 
 ## Add support for C++11, supported in ROS Kinetic and newer
-# add_definitions(-std=c++11)
+#add_definitions(-std=c++11)
+add_definitions(-lserial)
+
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -12,6 +14,8 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
   message_generation
+#  SerialStream
+  serial
 )
 
 ## System dependencies are found with CMake's conventions
@@ -116,9 +120,10 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
   LIBRARIES default_pkg
-  CATKIN_DEPENDS roscpp rospy std_msgs message_runtime
+  CATKIN_DEPENDS roscpp rospy std_msgs message_runtime serial
   DEPENDS system_lib
 )
+
 
 ###########
 ## Build ##
@@ -136,10 +141,13 @@ include_directories(
 #   src/${PROJECT_NAME}/default_pkg.cpp
 # )
 
+link_directories(/usr/lib/x86_64-linux-gnu /usr/include/ )
+ 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
 ## either from message generation or dynamic reconfigure
 # add_dependencies(${PROJECT_NAME} ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
 
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
@@ -157,10 +165,9 @@ include_directories(
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-# target_link_libraries(${PROJECT_NAME}_node
+#target_link_libraries(${PROJECT_NAME}_node
 #   ${catkin_LIBRARIES}
-# )
-
+#)
 #############
 ## Install ##
 #############
@@ -211,19 +218,21 @@ include_directories(
 
 add_executable(DummyTalker src/DummyTalker.cpp)
 target_link_libraries(DummyTalker ${catkin_LIBRARIES})
-add_dependencies(DummyTalker beginner_tutorials_generate_messages_cpp)
+#add_dependencies(DummyTalker beginner_tutorials_generate_messages_cpp)
 
 add_executable(DummyListener src/DummyListener.cpp)
 target_link_libraries(DummyListener ${catkin_LIBRARIES})
-add_dependencies(DummyListener beginner_tutorials_generate_messages_cpp)
+#add_dependencies(DummyListener beginner_tutorials_generate_messages_cpp)
 
 
 add_executable(IntTalker src/DummyIntTalker.cpp)
 target_link_libraries(IntTalker ${catkin_LIBRARIES})
-add_dependencies(IntTalker beginner_tutorials_generate_messages_cpp)
+#add_dependencies(IntTalker beginner_tutorials_generate_messages_cpp)
 
 add_executable(IntListener src/DummyIntListener.cpp)
 target_link_libraries(IntListener ${catkin_LIBRARIES})
-add_dependencies(IntListener beginner_tutorials_generate_messages_cpp)
+#add_dependencies(IntListener beginner_tutorials_generate_messages_cpp)
 
-
+add_executable(sensor_ping src/sensor_ping.cpp)
+target_link_libraries(sensor_ping ${catkin_LIBRARIES} serial)
+#add_dependencies(sensor_ping beginner_tutorials_generate_messages_cpp)
