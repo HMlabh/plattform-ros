@@ -7,9 +7,6 @@
 #include <iostream>
 
 #include <serial/serial.h>
-//#include <rosserial>
-
-
 #include <SerialStream.h>
 
 using namespace LibSerial;
@@ -34,8 +31,7 @@ int main(int argc, char **argv)
 	mySerial.SetFlowControl(SerialStreamBuf::FLOW_CONTROL_HARD);
 
 
-	int out;
-
+	int out = 42;
 
 	for (int in = 32; in < 64; in++)
 	{
