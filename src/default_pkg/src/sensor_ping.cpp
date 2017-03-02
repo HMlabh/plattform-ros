@@ -14,21 +14,20 @@ using namespace LibSerial;
 int main(int argc, char **argv)
 {
 	ros::init(argc, argv, "sensor_ping");
-
 	ros::NodeHandle n;
 
-
+	//creating Publisher
 	ros::Publisher sensor_ping_pub = n.advertise<default_pkg::ultra_ranges>("sensor_ping_out", 10);
 	ros::Rate loop_rate(1);
 
-	//------
-	SerialStream mySerial;
+	//open serial connection 
+	SerialStream Arduino_Serial;
 
-	mySerial.Open("/dev/ttyACM0");
-	mySerial.SetBaudRate(SerialStreamBuf::BAUD_9600);
-	mySerial.SetCharSize(SerialStreamBuf::CHAR_SIZE_8);
-	mySerial.SetNumOfStopBits(1);
-	mySerial.SetFlowControl(SerialStreamBuf::FLOW_CONTROL_HARD);
+	Arduino_Serial.Open("/dev/ttyACM0");
+	Arduino_Serial.SetBaudRate(SerialStreamBuf::BAUD_115200);
+	Arduino_Serial.SetCharSize(SerialStreamBuf::CHAR_SIZE_8);
+	Arduino_Serial.SetNumOfStopBits(1);
+	Arduino_Serial.SetFlowControl(SerialStreamBuf::FLOW_CONTROL_HARD);
 
 
 	int out = 42;
@@ -36,12 +35,12 @@ int main(int argc, char **argv)
 	for (int in = 32; in < 64; in++)
 	{
 		std::cout << "in: " << in;
-		mySerial << in;
+		Arduino_Serial << in;
 		//mySerial >> out;
 		std::cout << "\t→ out: " << out << std::endl;
 		sleep(1);
 	}
-	mySerial.Close();
+	
 
 
 	//------
@@ -70,14 +69,15 @@ int main(int argc, char **argv)
 		ultra_r.range_su8 = 22.4;
 		//ultra_r.range_su9 = 99;
 
-		//ROS_INFO("%d", msg.data);
+		int out = 73; //"I"
+		int in =0;
 
-		/**
-		 * The publish() function is how you send messages. The parameter
-		 * is the message object. The type of this object must agree with the type
-		 * given as a template parameter to the advertise<>() call, as was done
-		 * in the constructor above.
-		 */
+		Arduino_Serial >> out;
+
+		Arduino_Serial << in;
+
+		ROS_INFO("%d", in);
+
 		sensor_ping_pub.publish(ultra_r);
 		ros::spinOnce();
 
