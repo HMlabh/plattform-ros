@@ -1,0 +1,8 @@
+<launch>
+
+<node pkg="default_pkg" name="senping" type="sensor_ping"/>
+<node pkg="default_pkg" name="senflash" type="sensor_flash"/>
+<node pkg="default_pkg" name="usbdetect" type="usb_detect.py"/>
+
+
+</launch>

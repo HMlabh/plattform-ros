@@ -5,8 +5,6 @@
 
 #include <unistd.h>
 #include <iostream>
-
-//#include <serial/serial.h>
 #include <SerialStream.h>
 
 using namespace LibSerial;
@@ -88,4 +86,5 @@ int main(int argc, char **argv)
 
 
 	return 0;
+
 }
