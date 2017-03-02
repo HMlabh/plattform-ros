@@ -3,6 +3,8 @@ project(default_pkg)
 
 ## Add support for C++11, supported in ROS Kinetic and newer
 # add_definitions(-std=c++11)
+add_definitions(-lserial)
+
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -12,6 +14,8 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
   message_generation
+#  SerialStream
+  serial
 )
 
 ## System dependencies are found with CMake's conventions
@@ -116,7 +120,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
   LIBRARIES default_pkg
-  CATKIN_DEPENDS roscpp rospy std_msgs message_runtime
+  CATKIN_DEPENDS roscpp rospy std_msgs message_runtime serial
   DEPENDS system_lib
 )
 
@@ -226,4 +230,6 @@ add_executable(IntListener src/DummyIntListener.cpp)
 target_link_libraries(IntListener ${catkin_LIBRARIES})
 add_dependencies(IntListener beginner_tutorials_generate_messages_cpp)
 
-
+add_executable(sensor_ping src/sensor_ping.cpp)
+target_link_libraries(sensor_ping ${catkin_LIBRARIES} serial)
+add_dependencies(sensor_ping beginner_tutorials_generate_messages_cpp)

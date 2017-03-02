@@ -5,4 +5,4 @@ Description: Description of default_pkg
 Version: 0.1.0
 Cflags: -I/home/labh/plattform-ros/devel/include
 Libs: -L/home/labh/plattform-ros/devel/lib -ldefault_pkg
-Requires: roscpp rospy std_msgs message_runtime
+Requires: roscpp rospy std_msgs message_runtime serial
