@@ -12,13 +12,14 @@
 
 using namespace LibSerial;
 
+//Initialisation
 char ask_ident = 'i'; //"i"
 char got_ident;
 char call = 'c';
 char ask = 'a';
 char askram[32];
+int16_t askdelay = 10000;
 
-char trash;
 int8_t testchartoint;
 
 int main(int argc, char **argv)
@@ -29,58 +30,50 @@ int main(int argc, char **argv)
 	//creating Publisher
 	ros::Publisher sensor_ping_pub = n.advertise<default_pkg::ultra_ranges>("sensor_ping_out", 10);
 	ros::Rate loop_rate(100);
+	int count = 0;
 
 	//open serial connection 
 	SerialStream Arduino_Serial;
-
 	ROS_INFO("connecting...");
-
 	Arduino_Serial.Open("/dev/ttyACM0");
 	Arduino_Serial.SetBaudRate(SerialStreamBuf::BAUD_115200);
 	Arduino_Serial.SetCharSize(SerialStreamBuf::CHAR_SIZE_8);
 	Arduino_Serial.SetNumOfStopBits(1);
 	Arduino_Serial.SetFlowControl(SerialStreamBuf::FLOW_CONTROL_HARD);
-
 	ROS_INFO("connected");
 
-	char ask_ident = 'i'; //"i"
-		char got_ident;
-
-		Arduino_Serial << ask_ident;
-
-		Arduino_Serial >> got_ident;
-
-		ROS_INFO("ID: %c", got_ident);
-
+	//----------Ident BETA
+	Arduino_Serial << ask_ident;
+	Arduino_Serial >> got_ident;
+	ROS_INFO("ID: %c", got_ident);
 	ROS_INFO("complete");
-	int count = 0;
+
+	//loop
 	while (ros::ok())
 	{
-
-
-		//asking;
-		Arduino_Serial << call;
-		usleep(20000);
+		//send ask to Arduino
 		Arduino_Serial << ask;
-		usleep(40000);
+		usleep(askdelay);
+		ROS_INFO("ask sended");
 		
-
-	
+		//read answer
+    	ROS_INFO("reading answer...");
 		Arduino_Serial.read(askram,32);
+   		ROS_INFO("...complete");
 
-		int16_t testtest = 0;
-		testtest = (((int16_t)askram[0]) | ((int16_t)(askram[1]<<8)));
+
+		float testtest = 0;
+		testtest = (float)(((int16_t)askram[0]) | ((int16_t)(askram[1]<<8)));
 
 		ROS_INFO("LSB: %d", (int)askram[0]);
 		ROS_INFO("MSB: %d", (int)askram[1]);
-
 		ROS_INFO("%d", testtest);
 
 
 
 
 
-
+		//message generation
 		::default_pkg::ultra_ranges ultra_r;
 		ultra_r.range_su0 = 0.4;
 		ultra_r.range_su1 = 44.0;
@@ -91,14 +84,20 @@ int main(int argc, char **argv)
 		ultra_r.range_su6 =  random() % 1001;
 		ultra_r.range_su7 = 22.4;
 		ultra_r.range_su8 = 22.4;
-		//ultra_r.range_su9 = 99;
+		ultra_r.range_su9 = 99;
 		
 
 		
-
+		//publish the message
 		sensor_ping_pub.publish(ultra_r);
-		ros::spinOnce();
+		ROS_INFO("message ultra_ranges sended");
 
+		//start new measurement
+		Arduino_Serial << call;
+		ROS_INFO("call sended");
+
+		//ros : end of loop
+		ros::spinOnce();
 		loop_rate.sleep();
 		++count;
 	}

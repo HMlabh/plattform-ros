@@ -238,5 +238,5 @@ target_link_libraries(sensor_ping ${catkin_LIBRARIES} serial)
 add_dependencies(sensor_ping beginner_tutorials_generate_messages_cpp)
 
 add_executable(sensor_flash src/sensor_flash.cpp)
-target_link_libraries(sensor_flash ${catkin_LIBRARIES})
+target_link_libraries(sensor_flash ${catkin_LIBRARIES} serial)
 add_dependencies(sensor_flash beginner_tutorials_generate_messages_cpp)
