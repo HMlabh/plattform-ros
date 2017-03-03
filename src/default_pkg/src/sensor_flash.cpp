@@ -27,8 +27,8 @@ int main(int argc, char **argv)
   ros::NodeHandle n;
 
   //creating Publisher
-  ros::Publisher sensor_flash_pub = n.advertise<default_pkg::ir_ranges>("sensor_flash_out", 10);
-  ros::Rate loop_rate(10);
+  ros::Publisher sensor_flash_pub = n.advertise<default_pkg::ir_ranges>("sensor_flash_out", 100);
+  ros::Rate loop_rate(40);
   int count = 0;
 
   //open serial connection 
@@ -50,16 +50,22 @@ int main(int argc, char **argv)
   //loop
   while (ros::ok())
   {
-	  //send ask to Arduino
-		Arduino_Serial << ask;
-		usleep(askdelay);
-		ROS_INFO("ask sended");
+	//Arduino_Serial.Open("/dev/ttyACM0");
+    //start new measurement
+    Arduino_Serial << call;
+    ROS_INFO("call sended");
+	usleep(20000);
+
+	//send ask to Arduino
+	Arduino_Serial << ask;
+	usleep(askdelay);
+	ROS_INFO("ask sended");
 
     //read answer
     ROS_INFO("reading answer...");
     Arduino_Serial.read(askram,32);
     ROS_INFO("...complete");
-
+	Arduino_Serial.flush();
 
     ROS_INFO("generating message ir_ranges");
     //message generation
@@ -86,10 +92,7 @@ int main(int argc, char **argv)
 	  sensor_flash_pub.publish(ir_r);
     ROS_INFO("message ir_ranges sended");
 
-    //start new measurement
-    Arduino_Serial << call;
-    ROS_INFO("call sended");
-
+	//Arduino_Serial.Close();
     //ros : end of loop
 	  ros::spinOnce();
 	  loop_rate.sleep();

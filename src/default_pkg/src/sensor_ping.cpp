@@ -29,7 +29,7 @@ int main(int argc, char **argv)
 
 	//creating Publisher
 	ros::Publisher sensor_ping_pub = n.advertise<default_pkg::ultra_ranges>("sensor_ping_out", 10);
-	ros::Rate loop_rate(100);
+	ros::Rate loop_rate(4);
 	int count = 0;
 
 	//open serial connection 
