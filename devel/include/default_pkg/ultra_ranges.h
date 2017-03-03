@@ -24,61 +24,61 @@ struct ultra_ranges_
   typedef ultra_ranges_<ContainerAllocator> Type;
 
   ultra_ranges_()
-    : range_su0(0.0)
-    , range_su1(0.0)
-    , range_su2(0.0)
-    , range_su3(0.0)
-    , range_su4(0.0)
-    , range_su5(0.0)
-    , range_su6(0.0)
-    , range_su7(0.0)
-    , range_su8(0.0)
-    , range_su9(0.0)  {
+    : range_su0(0)
+    , range_su1(0)
+    , range_su2(0)
+    , range_su3(0)
+    , range_su4(0)
+    , range_su5(0)
+    , range_su6(0)
+    , range_su7(0)
+    , range_su8(0)
+    , range_su9(0)  {
     }
   ultra_ranges_(const ContainerAllocator& _alloc)
-    : range_su0(0.0)
-    , range_su1(0.0)
-    , range_su2(0.0)
-    , range_su3(0.0)
-    , range_su4(0.0)
-    , range_su5(0.0)
-    , range_su6(0.0)
-    , range_su7(0.0)
-    , range_su8(0.0)
-    , range_su9(0.0)  {
+    : range_su0(0)
+    , range_su1(0)
+    , range_su2(0)
+    , range_su3(0)
+    , range_su4(0)
+    , range_su5(0)
+    , range_su6(0)
+    , range_su7(0)
+    , range_su8(0)
+    , range_su9(0)  {
   (void)_alloc;
     }
 
 
 
-   typedef float _range_su0_type;
+   typedef int16_t _range_su0_type;
   _range_su0_type range_su0;
 
-   typedef float _range_su1_type;
+   typedef int16_t _range_su1_type;
   _range_su1_type range_su1;
 
-   typedef float _range_su2_type;
+   typedef int16_t _range_su2_type;
   _range_su2_type range_su2;
 
-   typedef float _range_su3_type;
+   typedef int16_t _range_su3_type;
   _range_su3_type range_su3;
 
-   typedef float _range_su4_type;
+   typedef int16_t _range_su4_type;
   _range_su4_type range_su4;
 
-   typedef float _range_su5_type;
+   typedef int16_t _range_su5_type;
   _range_su5_type range_su5;
 
-   typedef float _range_su6_type;
+   typedef int16_t _range_su6_type;
   _range_su6_type range_su6;
 
-   typedef float _range_su7_type;
+   typedef int16_t _range_su7_type;
   _range_su7_type range_su7;
 
-   typedef float _range_su8_type;
+   typedef int16_t _range_su8_type;
   _range_su8_type range_su8;
 
-   typedef float _range_su9_type;
+   typedef int16_t _range_su9_type;
   _range_su9_type range_su9;
 
 
@@ -158,12 +158,12 @@ struct MD5Sum< ::default_pkg::ultra_ranges_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "93163f93503d91c254cfa8fc0452488a";
+    return "c2dbb8e43f5544a0679b039b5575a75f";
   }
 
   static const char* value(const ::default_pkg::ultra_ranges_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x93163f93503d91c2ULL;
-  static const uint64_t static_value2 = 0x54cfa8fc0452488aULL;
+  static const uint64_t static_value1 = 0xc2dbb8e43f5544a0ULL;
+  static const uint64_t static_value2 = 0x679b039b5575a75fULL;
 };
 
 template<class ContainerAllocator>
@@ -184,16 +184,16 @@ struct Definition< ::default_pkg::ultra_ranges_<ContainerAllocator> >
   {
     return "# ultra_ranges\n\
 # Ranges in cm of the 10 ultrasonic distance sensors\n\
-float32 range_su0\n\
-float32 range_su1\n\
-float32 range_su2\n\
-float32 range_su3\n\
-float32 range_su4\n\
-float32 range_su5\n\
-float32 range_su6\n\
-float32 range_su7\n\
-float32 range_su8\n\
-float32 range_su9\n\
+int16 range_su0\n\
+int16 range_su1\n\
+int16 range_su2\n\
+int16 range_su3\n\
+int16 range_su4\n\
+int16 range_su5\n\
+int16 range_su6\n\
+int16 range_su7\n\
+int16 range_su8\n\
+int16 range_su9\n\
 ";
   }
 
@@ -241,25 +241,25 @@ struct Printer< ::default_pkg::ultra_ranges_<ContainerAllocator> >
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::default_pkg::ultra_ranges_<ContainerAllocator>& v)
   {
     s << indent << "range_su0: ";
-    Printer<float>::stream(s, indent + "  ", v.range_su0);
+    Printer<int16_t>::stream(s, indent + "  ", v.range_su0);
     s << indent << "range_su1: ";
-    Printer<float>::stream(s, indent + "  ", v.range_su1);
+    Printer<int16_t>::stream(s, indent + "  ", v.range_su1);
     s << indent << "range_su2: ";
-    Printer<float>::stream(s, indent + "  ", v.range_su2);
+    Printer<int16_t>::stream(s, indent + "  ", v.range_su2);
     s << indent << "range_su3: ";
-    Printer<float>::stream(s, indent + "  ", v.range_su3);
+    Printer<int16_t>::stream(s, indent + "  ", v.range_su3);
     s << indent << "range_su4: ";
-    Printer<float>::stream(s, indent + "  ", v.range_su4);
+    Printer<int16_t>::stream(s, indent + "  ", v.range_su4);
     s << indent << "range_su5: ";
-    Printer<float>::stream(s, indent + "  ", v.range_su5);
+    Printer<int16_t>::stream(s, indent + "  ", v.range_su5);
     s << indent << "range_su6: ";
-    Printer<float>::stream(s, indent + "  ", v.range_su6);
+    Printer<int16_t>::stream(s, indent + "  ", v.range_su6);
     s << indent << "range_su7: ";
-    Printer<float>::stream(s, indent + "  ", v.range_su7);
+    Printer<int16_t>::stream(s, indent + "  ", v.range_su7);
     s << indent << "range_su8: ";
-    Printer<float>::stream(s, indent + "  ", v.range_su8);
+    Printer<int16_t>::stream(s, indent + "  ", v.range_su8);
     s << indent << "range_su9: ";
-    Printer<float>::stream(s, indent + "  ", v.range_su9);
+    Printer<int16_t>::stream(s, indent + "  ", v.range_su9);
   }
 };
 

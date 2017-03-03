@@ -18,7 +18,7 @@ char got_ident;
 char call = 'c';
 char ask = 'a';
 char askram[20];
-int16_t askdelay = 10000;
+uint16_t askdelay = 12000;
 
 
 int main(int argc, char **argv)
@@ -28,7 +28,7 @@ int main(int argc, char **argv)
 
 	//creating Publisher
 	ros::Publisher sensor_ping_pub = n.advertise<default_pkg::ultra_ranges>("sensor_ping_out", 10);
-	ros::Rate loop_rate(4);
+	ros::Rate loop_rate(1);
 	int count = 0;
 
 	//open serial connection 
@@ -52,10 +52,16 @@ int main(int argc, char **argv)
 	{
 		//Arduino_Serial.Open("/dev/ttyACM0");
 
+		//start new measurement
+		Arduino_Serial << call;
+		ROS_INFO("call sended");
+		usleep(220000);
+
 		//send ask to Arduino
+		ROS_INFO("sending ask...");
 		Arduino_Serial << ask;
-		usleep(askdelay);
 		ROS_INFO("ask sended");
+		usleep(askdelay);
 		
 		//read answer
     	ROS_INFO("reading answer...");
@@ -64,30 +70,29 @@ int main(int argc, char **argv)
 
 		//message generation
 		::default_pkg::ultra_ranges ultra_r;
-		ultra_r.range_su0 = (float)(((int16_t)askram[0]) | ((int16_t)(askram[1]<<8)));
-		ultra_r.range_su1 = (float)(((int16_t)askram[0]) | ((int16_t)(askram[1]<<8)));
-		ultra_r.range_su2 = (float)(((int16_t)askram[0]) | ((int16_t)(askram[1]<<8)));
-		ultra_r.range_su3 = (float)(((int16_t)askram[0]) | ((int16_t)(askram[1]<<8)));
-		ultra_r.range_su4 = (float)(((int16_t)askram[0]) | ((int16_t)(askram[1]<<8)));
-		ultra_r.range_su5 = (float)(((int16_t)askram[0]) | ((int16_t)(askram[1]<<8)));
-		ultra_r.range_su6 = (float)(((int16_t)askram[0]) | ((int16_t)(askram[1]<<8)));
-		ultra_r.range_su7 = (float)(((int16_t)askram[0]) | ((int16_t)(askram[1]<<8)));
-		ultra_r.range_su8 = (float)(((int16_t)askram[0]) | ((int16_t)(askram[1]<<8)));
-		ultra_r.range_su9 = (float)(((int16_t)askram[0]) | ((int16_t)(askram[1]<<8)));
+		ultra_r.range_su0 = (((int16_t)askram[0]) | ((int16_t)(askram[1]<<8)));
+		ultra_r.range_su1 = (((int16_t)askram[2]) | ((int16_t)(askram[3]<<8)));
+		ultra_r.range_su2 = (((int16_t)askram[4]) | ((int16_t)(askram[5]<<8)));
+		ultra_r.range_su3 = (((int16_t)askram[6]) | ((int16_t)(askram[7]<<8)));
+		ultra_r.range_su4 = (((int16_t)askram[8]) | ((int16_t)(askram[9]<<8)));
+		ultra_r.range_su5 = (((int16_t)askram[10]) | ((int16_t)(askram[11]<<8)));
+		ultra_r.range_su6 = (((int16_t)askram[12]) | ((int16_t)(askram[13]<<8)));
+		ultra_r.range_su7 = (((int16_t)askram[14]) | ((int16_t)(askram[15]<<8)));
+		ultra_r.range_su8 = (((int16_t)askram[16]) | ((int16_t)(askram[17]<<8)));
+		ultra_r.range_su9 = (((int16_t)askram[18]) | ((int16_t)(askram[19]<<8)));
 		
+		ROS_INFO("ID: %d", askram[0]);
+		ROS_INFO("ID: %d", askram[1]);
 
 		
 		//publish the message
 		sensor_ping_pub.publish(ultra_r);
 		ROS_INFO("message ultra_ranges sended");
 
-		//start new measurement
-		Arduino_Serial << call;
-		ROS_INFO("call sended");
 
 		//ros : end of loop
 		ros::spinOnce();
-		loop_rate.sleep();
+		//loop_rate.sleep();
 		++count;
 	}
 

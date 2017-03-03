@@ -7,23 +7,24 @@ import struct
 
 
 class ultra_ranges(genpy.Message):
-  _md5sum = "93163f93503d91c254cfa8fc0452488a"
+  _md5sum = "c2dbb8e43f5544a0679b039b5575a75f"
   _type = "default_pkg/ultra_ranges"
   _has_header = False #flag to mark the presence of a Header object
   _full_text = """# ultra_ranges
 # Ranges in cm of the 10 ultrasonic distance sensors
-float32 range_su0
-float32 range_su1
-float32 range_su2
-float32 range_su3
-float32 range_su4
-float32 range_su5
-float32 range_su6
-float32 range_su7
-float32 range_su8
-float32 range_su9"""
+int16 range_su0
+int16 range_su1
+int16 range_su2
+int16 range_su3
+int16 range_su4
+int16 range_su5
+int16 range_su6
+int16 range_su7
+int16 range_su8
+int16 range_su9
+"""
   __slots__ = ['range_su0','range_su1','range_su2','range_su3','range_su4','range_su5','range_su6','range_su7','range_su8','range_su9']
-  _slot_types = ['float32','float32','float32','float32','float32','float32','float32','float32','float32','float32']
+  _slot_types = ['int16','int16','int16','int16','int16','int16','int16','int16','int16','int16']
 
   def __init__(self, *args, **kwds):
     """
@@ -43,36 +44,36 @@ float32 range_su9"""
       super(ultra_ranges, self).__init__(*args, **kwds)
       #message fields cannot be None, assign default values for those that are
       if self.range_su0 is None:
-        self.range_su0 = 0.
+        self.range_su0 = 0
       if self.range_su1 is None:
-        self.range_su1 = 0.
+        self.range_su1 = 0
       if self.range_su2 is None:
-        self.range_su2 = 0.
+        self.range_su2 = 0
       if self.range_su3 is None:
-        self.range_su3 = 0.
+        self.range_su3 = 0
       if self.range_su4 is None:
-        self.range_su4 = 0.
+        self.range_su4 = 0
       if self.range_su5 is None:
-        self.range_su5 = 0.
+        self.range_su5 = 0
       if self.range_su6 is None:
-        self.range_su6 = 0.
+        self.range_su6 = 0
       if self.range_su7 is None:
-        self.range_su7 = 0.
+        self.range_su7 = 0
       if self.range_su8 is None:
-        self.range_su8 = 0.
+        self.range_su8 = 0
       if self.range_su9 is None:
-        self.range_su9 = 0.
+        self.range_su9 = 0
     else:
-      self.range_su0 = 0.
-      self.range_su1 = 0.
-      self.range_su2 = 0.
-      self.range_su3 = 0.
-      self.range_su4 = 0.
-      self.range_su5 = 0.
-      self.range_su6 = 0.
-      self.range_su7 = 0.
-      self.range_su8 = 0.
-      self.range_su9 = 0.
+      self.range_su0 = 0
+      self.range_su1 = 0
+      self.range_su2 = 0
+      self.range_su3 = 0
+      self.range_su4 = 0
+      self.range_su5 = 0
+      self.range_su6 = 0
+      self.range_su7 = 0
+      self.range_su8 = 0
+      self.range_su9 = 0
 
   def _get_types(self):
     """
@@ -87,7 +88,7 @@ float32 range_su9"""
     """
     try:
       _x = self
-      buff.write(_get_struct_10f().pack(_x.range_su0, _x.range_su1, _x.range_su2, _x.range_su3, _x.range_su4, _x.range_su5, _x.range_su6, _x.range_su7, _x.range_su8, _x.range_su9))
+      buff.write(_get_struct_10h().pack(_x.range_su0, _x.range_su1, _x.range_su2, _x.range_su3, _x.range_su4, _x.range_su5, _x.range_su6, _x.range_su7, _x.range_su8, _x.range_su9))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -100,8 +101,8 @@ float32 range_su9"""
       end = 0
       _x = self
       start = end
-      end += 40
-      (_x.range_su0, _x.range_su1, _x.range_su2, _x.range_su3, _x.range_su4, _x.range_su5, _x.range_su6, _x.range_su7, _x.range_su8, _x.range_su9,) = _get_struct_10f().unpack(str[start:end])
+      end += 20
+      (_x.range_su0, _x.range_su1, _x.range_su2, _x.range_su3, _x.range_su4, _x.range_su5, _x.range_su6, _x.range_su7, _x.range_su8, _x.range_su9,) = _get_struct_10h().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
@@ -115,7 +116,7 @@ float32 range_su9"""
     """
     try:
       _x = self
-      buff.write(_get_struct_10f().pack(_x.range_su0, _x.range_su1, _x.range_su2, _x.range_su3, _x.range_su4, _x.range_su5, _x.range_su6, _x.range_su7, _x.range_su8, _x.range_su9))
+      buff.write(_get_struct_10h().pack(_x.range_su0, _x.range_su1, _x.range_su2, _x.range_su3, _x.range_su4, _x.range_su5, _x.range_su6, _x.range_su7, _x.range_su8, _x.range_su9))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -129,8 +130,8 @@ float32 range_su9"""
       end = 0
       _x = self
       start = end
-      end += 40
-      (_x.range_su0, _x.range_su1, _x.range_su2, _x.range_su3, _x.range_su4, _x.range_su5, _x.range_su6, _x.range_su7, _x.range_su8, _x.range_su9,) = _get_struct_10f().unpack(str[start:end])
+      end += 20
+      (_x.range_su0, _x.range_su1, _x.range_su2, _x.range_su3, _x.range_su4, _x.range_su5, _x.range_su6, _x.range_su7, _x.range_su8, _x.range_su9,) = _get_struct_10h().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
@@ -139,9 +140,9 @@ _struct_I = genpy.struct_I
 def _get_struct_I():
     global _struct_I
     return _struct_I
-_struct_10f = None
-def _get_struct_10f():
-    global _struct_10f
-    if _struct_10f is None:
-        _struct_10f = struct.Struct("<10f")
-    return _struct_10f
+_struct_10h = None
+def _get_struct_10h():
+    global _struct_10h
+    if _struct_10h is None:
+        _struct_10h = struct.Struct("<10h")
+    return _struct_10h
