@@ -17,10 +17,9 @@ char ask_ident = 'i'; //"i"
 char got_ident;
 char call = 'c';
 char ask = 'a';
-char askram[32];
+char askram[20];
 int16_t askdelay = 10000;
 
-int8_t testchartoint;
 
 int main(int argc, char **argv)
 {
@@ -51,6 +50,8 @@ int main(int argc, char **argv)
 	//loop
 	while (ros::ok())
 	{
+		//Arduino_Serial.Open("/dev/ttyACM0");
+
 		//send ask to Arduino
 		Arduino_Serial << ask;
 		usleep(askdelay);
@@ -58,33 +59,21 @@ int main(int argc, char **argv)
 		
 		//read answer
     	ROS_INFO("reading answer...");
-		Arduino_Serial.read(askram,32);
+		Arduino_Serial.read(askram,20);
    		ROS_INFO("...complete");
-
-
-		float testtest = 0;
-		testtest = (float)(((int16_t)askram[0]) | ((int16_t)(askram[1]<<8)));
-
-		ROS_INFO("LSB: %d", (int)askram[0]);
-		ROS_INFO("MSB: %d", (int)askram[1]);
-		ROS_INFO("%d", testtest);
-
-
-
-
 
 		//message generation
 		::default_pkg::ultra_ranges ultra_r;
-		ultra_r.range_su0 = 0.4;
-		ultra_r.range_su1 = 44.0;
-		ultra_r.range_su2 = 22.4;
-		ultra_r.range_su3 = 56785.9;
-		ultra_r.range_su4 = 22.4;
-		ultra_r.range_su5 = 22.4;
-		ultra_r.range_su6 =  random() % 1001;
-		ultra_r.range_su7 = 22.4;
-		ultra_r.range_su8 = 22.4;
-		ultra_r.range_su9 = 99;
+		ultra_r.range_su0 = (float)(((int16_t)askram[0]) | ((int16_t)(askram[1]<<8)));
+		ultra_r.range_su1 = (float)(((int16_t)askram[0]) | ((int16_t)(askram[1]<<8)));
+		ultra_r.range_su2 = (float)(((int16_t)askram[0]) | ((int16_t)(askram[1]<<8)));
+		ultra_r.range_su3 = (float)(((int16_t)askram[0]) | ((int16_t)(askram[1]<<8)));
+		ultra_r.range_su4 = (float)(((int16_t)askram[0]) | ((int16_t)(askram[1]<<8)));
+		ultra_r.range_su5 = (float)(((int16_t)askram[0]) | ((int16_t)(askram[1]<<8)));
+		ultra_r.range_su6 = (float)(((int16_t)askram[0]) | ((int16_t)(askram[1]<<8)));
+		ultra_r.range_su7 = (float)(((int16_t)askram[0]) | ((int16_t)(askram[1]<<8)));
+		ultra_r.range_su8 = (float)(((int16_t)askram[0]) | ((int16_t)(askram[1]<<8)));
+		ultra_r.range_su9 = (float)(((int16_t)askram[0]) | ((int16_t)(askram[1]<<8)));
 		
 
 		

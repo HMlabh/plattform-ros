@@ -50,22 +50,22 @@ int main(int argc, char **argv)
   //loop
   while (ros::ok())
   {
-	//Arduino_Serial.Open("/dev/ttyACM0");
+    //Arduino_Serial.Open("/dev/ttyACM0");
+
     //start new measurement
     Arduino_Serial << call;
     ROS_INFO("call sended");
-	usleep(20000);
+	  usleep(20000);
 
-	//send ask to Arduino
-	Arduino_Serial << ask;
-	usleep(askdelay);
-	ROS_INFO("ask sended");
+	  //send ask to Arduino
+	  Arduino_Serial << ask;
+	  usleep(askdelay);
+	  ROS_INFO("ask sended");
 
     //read answer
     ROS_INFO("reading answer...");
     Arduino_Serial.read(askram,32);
     ROS_INFO("...complete");
-	Arduino_Serial.flush();
 
     ROS_INFO("generating message ir_ranges");
     //message generation
