@@ -2,54 +2,100 @@
 #include "std_msgs/String.h"
 #include "std_msgs/Int8.h"
 #include "default_pkg/ultra_ranges.h"
+#include "stdlib.h"
+
+#include <unistd.h>
+#include <iostream>
+
+#include <serial/serial.h>
+#include <SerialStream.h>
+
+using namespace LibSerial;
+
+//Initialisation
+char ask_ident = 'i'; //"i"
+char got_ident;
+char call = 'c';
+char ask = 'a';
+char askram[20];
+uint16_t askdelay = 12000;
+
 
 int main(int argc, char **argv)
 {
-  ros::init(argc, argv, "sensor_ping");
+	ros::init(argc, argv, "sensor_ping");
+	ros::NodeHandle n;
 
-  ros::NodeHandle n;
+	//creating Publisher
+	ros::Publisher sensor_ping_pub = n.advertise<default_pkg::ultra_ranges>("sensor_ping_out", 10);
+	ros::Rate loop_rate(1);
+	int count = 0;
 
-  
-  ros::Publisher sensor_ping_pub = n.advertise<default_pkg::ultra_ranges>("sensor_ping_out", 10);
-  ros::Rate loop_rate(1);
+	//open serial connection 
+	SerialStream Arduino_Serial;
+	ROS_INFO("connecting...");
+	Arduino_Serial.Open("/dev/ttyACM0");
+	Arduino_Serial.SetBaudRate(SerialStreamBuf::BAUD_115200);
+	Arduino_Serial.SetCharSize(SerialStreamBuf::CHAR_SIZE_8);
+	Arduino_Serial.SetNumOfStopBits(1);
+	Arduino_Serial.SetFlowControl(SerialStreamBuf::FLOW_CONTROL_HARD);
+	ROS_INFO("connected");
 
-  /**
-   * A count of how many messages we have sent. This is used to create
-   * a unique string for each message.
-   */
-  int count = 0;
-  while (ros::ok())
-  {
-	  /**
-	   * This is a message object. You stuff it with data, and then publish it.
-	   */
-	  ::default_pkg::ultra_ranges ultra_r;
-    ultra_r.range_su0 = 0.4;
-    ultra_r.range_su1 = 44.0;
-    ultra_r.range_su2 = 22.4;
-    ultra_r.range_su3 = 56785.9;
-    ultra_r.range_su4 = 22.4;
-    ultra_r.range_su5 = 22.4;
-    ultra_r.range_su6 =  random() % 1001;
-    ultra_r.range_su7 = 22.4;
-    ultra_r.range_su8 = 22.4;
-    //ultra_r.range_su9 = 99;
+	//----------Ident BETA
+	Arduino_Serial << ask_ident;
+	Arduino_Serial >> got_ident;
+	ROS_INFO("ID: %c", got_ident);
+	ROS_INFO("complete");
 
-	  //ROS_INFO("%d", msg.data);
+	//loop
+	while (ros::ok())
+	{
+		//Arduino_Serial.Open("/dev/ttyACM0");
 
-	  /**
-	   * The publish() function is how you send messages. The parameter
-	   * is the message object. The type of this object must agree with the type
-	   * given as a template parameter to the advertise<>() call, as was done
-	   * in the constructor above.
-	   */
-	  sensor_ping_pub.publish(ultra_r);
-	  ros::spinOnce();
+		//start new measurement
+		Arduino_Serial << call;
+		ROS_INFO("call sended");
+		usleep(220000);
 
-	  loop_rate.sleep();
-	  ++count;
-  }
+		//send ask to Arduino
+		ROS_INFO("sending ask...");
+		Arduino_Serial << ask;
+		ROS_INFO("ask sended");
+		usleep(askdelay);
+		
+		//read answer
+    	ROS_INFO("reading answer...");
+		Arduino_Serial.read(askram,20);
+   		ROS_INFO("...complete");
+
+		//message generation
+		::default_pkg::ultra_ranges ultra_r;
+		ultra_r.range_su0 = (((int16_t)askram[0]) | ((int16_t)(askram[1]<<8)));
+		ultra_r.range_su1 = (((int16_t)askram[2]) | ((int16_t)(askram[3]<<8)));
+		ultra_r.range_su2 = (((int16_t)askram[4]) | ((int16_t)(askram[5]<<8)));
+		ultra_r.range_su3 = (((int16_t)askram[6]) | ((int16_t)(askram[7]<<8)));
+		ultra_r.range_su4 = (((int16_t)askram[8]) | ((int16_t)(askram[9]<<8)));
+		ultra_r.range_su5 = (((int16_t)askram[10]) | ((int16_t)(askram[11]<<8)));
+		ultra_r.range_su6 = (((int16_t)askram[12]) | ((int16_t)(askram[13]<<8)));
+		ultra_r.range_su7 = (((int16_t)askram[14]) | ((int16_t)(askram[15]<<8)));
+		ultra_r.range_su8 = (((int16_t)askram[16]) | ((int16_t)(askram[17]<<8)));
+		ultra_r.range_su9 = (((int16_t)askram[18]) | ((int16_t)(askram[19]<<8)));
+		
+		ROS_INFO("ID: %d", askram[0]);
+		ROS_INFO("ID: %d", askram[1]);
+
+		
+		//publish the message
+		sensor_ping_pub.publish(ultra_r);
+		ROS_INFO("message ultra_ranges sended");
 
 
-  return 0;
+		//ros : end of loop
+		ros::spinOnce();
+		//loop_rate.sleep();
+		++count;
+	}
+
+
+	return 0;
 }
