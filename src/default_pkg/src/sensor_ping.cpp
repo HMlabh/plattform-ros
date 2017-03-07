@@ -62,11 +62,11 @@ int main(int argc, char **argv)
 		Arduino_Serial << ask;
 		ROS_INFO("ask sended");
 		usleep(askdelay);
-		
+
 		//read answer
-    	ROS_INFO("reading answer...");
+		ROS_INFO("reading answer...");
 		Arduino_Serial.read(askram,20);
-   		ROS_INFO("...complete");
+		ROS_INFO("...complete");
 
 		//message generation
 		::default_pkg::ultra_ranges ultra_r;
@@ -80,11 +80,11 @@ int main(int argc, char **argv)
 		ultra_r.range_su7 = (((int16_t)askram[14]) | ((int16_t)(askram[15]<<8)));
 		ultra_r.range_su8 = (((int16_t)askram[16]) | ((int16_t)(askram[17]<<8)));
 		ultra_r.range_su9 = (((int16_t)askram[18]) | ((int16_t)(askram[19]<<8)));
-		
+
 		ROS_INFO("ID: %d", askram[0]);
 		ROS_INFO("ID: %d", askram[1]);
 
-		
+
 		//publish the message
 		sensor_ping_pub.publish(ultra_r);
 		ROS_INFO("message ultra_ranges sended");
