@@ -1,5 +1,8 @@
 #include "ros/ros.h"
+
 #include "std_msgs/String.h"
+#include "std_msgs/Int8.h"
+#include "default_pkg/DummyTalk.h"
 
 #include <sstream>
 
@@ -63,6 +66,10 @@ int main(int argc, char **argv)
 		std::stringstream ss;
 		ss << "hello world " /*<< random() % 1000 << "\t"*/ << count;
 		msg.data = ss.str();
+
+		::default_pkg::DummyTalk DummyTalk;
+		DummyTalk.Counter = (int16_t)count;
+		DummyTalk.lcdD = "barfoo";
 
 		ROS_INFO("%s", msg.data.c_str());
 		//    ROS_INFO("%d", 42);

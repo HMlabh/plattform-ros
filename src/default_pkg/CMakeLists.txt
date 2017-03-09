@@ -221,7 +221,7 @@ target_link_libraries(DummyTalker ${catkin_LIBRARIES})
 #add_dependencies(DummyTalker beginner_tutorials_generate_messages_cpp)
 
 add_executable(DummyListener src/DummyListener.cpp)
-target_link_libraries(DummyListener ${catkin_LIBRARIES})
+target_link_libraries(DummyListener ${catkin_LIBRARIES} serial)
 #add_dependencies(DummyListener beginner_tutorials_generate_messages_cpp)
 
 

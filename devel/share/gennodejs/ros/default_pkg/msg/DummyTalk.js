@@ -13,13 +13,22 @@ let _finder = require('../find.js');
 
 class DummyTalk {
   constructor() {
-    this.Dummy = '';
+    this.lcdA = '';
+    this.lcdB = '';
+    this.lcdC = '';
+    this.lcdD = '';
   }
 
   static serialize(obj, bufferInfo) {
     // Serializes a message object of type DummyTalk
-    // Serialize message field [Dummy]
-    bufferInfo = _serializer.string(obj.Dummy, bufferInfo);
+    // Serialize message field [lcdA]
+    bufferInfo = _serializer.string(obj.lcdA, bufferInfo);
+    // Serialize message field [lcdB]
+    bufferInfo = _serializer.string(obj.lcdB, bufferInfo);
+    // Serialize message field [lcdC]
+    bufferInfo = _serializer.string(obj.lcdC, bufferInfo);
+    // Serialize message field [lcdD]
+    bufferInfo = _serializer.string(obj.lcdD, bufferInfo);
     return bufferInfo;
   }
 
@@ -28,9 +37,21 @@ class DummyTalk {
     let tmp;
     let len;
     let data = new DummyTalk();
-    // Deserialize message field [Dummy]
+    // Deserialize message field [lcdA]
     tmp = _deserializer.string(buffer);
-    data.Dummy = tmp.data;
+    data.lcdA = tmp.data;
+    buffer = tmp.buffer;
+    // Deserialize message field [lcdB]
+    tmp = _deserializer.string(buffer);
+    data.lcdB = tmp.data;
+    buffer = tmp.buffer;
+    // Deserialize message field [lcdC]
+    tmp = _deserializer.string(buffer);
+    data.lcdC = tmp.data;
+    buffer = tmp.buffer;
+    // Deserialize message field [lcdD]
+    tmp = _deserializer.string(buffer);
+    data.lcdD = tmp.data;
     buffer = tmp.buffer;
     return {
       data: data,
@@ -45,17 +66,26 @@ class DummyTalk {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '0384fc87228e14b49743ff10ce5c5bce';
+    return '24ea992dce1350a60ad5ebcd54710290';
   }
 
   static messageDefinition() {
     // Returns full string definition for message
     return `
-    string Dummy
+    int16 Counter = 7
+    string lcdA
+    string lcdB
+    string lcdC
+    string lcdD
     
     `;
   }
 
 };
+
+// Constants for message
+DummyTalk.Constants = {
+  COUNTER: 7,
+}
 
 module.exports = DummyTalk;

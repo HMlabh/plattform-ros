@@ -7,13 +7,20 @@ import struct
 
 
 class DummyTalk(genpy.Message):
-  _md5sum = "0384fc87228e14b49743ff10ce5c5bce"
+  _md5sum = "24ea992dce1350a60ad5ebcd54710290"
   _type = "default_pkg/DummyTalk"
   _has_header = False #flag to mark the presence of a Header object
-  _full_text = """string Dummy
+  _full_text = """int16 Counter = 7
+string lcdA
+string lcdB
+string lcdC
+string lcdD
 """
-  __slots__ = ['Dummy']
-  _slot_types = ['string']
+  # Pseudo-constants
+  Counter = 7
+
+  __slots__ = ['lcdA','lcdB','lcdC','lcdD']
+  _slot_types = ['string','string','string','string']
 
   def __init__(self, *args, **kwds):
     """
@@ -23,7 +30,7 @@ class DummyTalk(genpy.Message):
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       Dummy
+       lcdA,lcdB,lcdC,lcdD
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -32,10 +39,19 @@ class DummyTalk(genpy.Message):
     if args or kwds:
       super(DummyTalk, self).__init__(*args, **kwds)
       #message fields cannot be None, assign default values for those that are
-      if self.Dummy is None:
-        self.Dummy = ''
+      if self.lcdA is None:
+        self.lcdA = ''
+      if self.lcdB is None:
+        self.lcdB = ''
+      if self.lcdC is None:
+        self.lcdC = ''
+      if self.lcdD is None:
+        self.lcdD = ''
     else:
-      self.Dummy = ''
+      self.lcdA = ''
+      self.lcdB = ''
+      self.lcdC = ''
+      self.lcdD = ''
 
   def _get_types(self):
     """
@@ -49,7 +65,25 @@ class DummyTalk(genpy.Message):
     :param buff: buffer, ``StringIO``
     """
     try:
-      _x = self.Dummy
+      _x = self.lcdA
+      length = len(_x)
+      if python3 or type(_x) == unicode:
+        _x = _x.encode('utf-8')
+        length = len(_x)
+      buff.write(struct.pack('<I%ss'%length, length, _x))
+      _x = self.lcdB
+      length = len(_x)
+      if python3 or type(_x) == unicode:
+        _x = _x.encode('utf-8')
+        length = len(_x)
+      buff.write(struct.pack('<I%ss'%length, length, _x))
+      _x = self.lcdC
+      length = len(_x)
+      if python3 or type(_x) == unicode:
+        _x = _x.encode('utf-8')
+        length = len(_x)
+      buff.write(struct.pack('<I%ss'%length, length, _x))
+      _x = self.lcdD
       length = len(_x)
       if python3 or type(_x) == unicode:
         _x = _x.encode('utf-8')
@@ -71,9 +105,36 @@ class DummyTalk(genpy.Message):
       start = end
       end += length
       if python3:
-        self.Dummy = str[start:end].decode('utf-8')
+        self.lcdA = str[start:end].decode('utf-8')
       else:
-        self.Dummy = str[start:end]
+        self.lcdA = str[start:end]
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      start = end
+      end += length
+      if python3:
+        self.lcdB = str[start:end].decode('utf-8')
+      else:
+        self.lcdB = str[start:end]
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      start = end
+      end += length
+      if python3:
+        self.lcdC = str[start:end].decode('utf-8')
+      else:
+        self.lcdC = str[start:end]
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      start = end
+      end += length
+      if python3:
+        self.lcdD = str[start:end].decode('utf-8')
+      else:
+        self.lcdD = str[start:end]
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
@@ -86,7 +147,25 @@ class DummyTalk(genpy.Message):
     :param numpy: numpy python module
     """
     try:
-      _x = self.Dummy
+      _x = self.lcdA
+      length = len(_x)
+      if python3 or type(_x) == unicode:
+        _x = _x.encode('utf-8')
+        length = len(_x)
+      buff.write(struct.pack('<I%ss'%length, length, _x))
+      _x = self.lcdB
+      length = len(_x)
+      if python3 or type(_x) == unicode:
+        _x = _x.encode('utf-8')
+        length = len(_x)
+      buff.write(struct.pack('<I%ss'%length, length, _x))
+      _x = self.lcdC
+      length = len(_x)
+      if python3 or type(_x) == unicode:
+        _x = _x.encode('utf-8')
+        length = len(_x)
+      buff.write(struct.pack('<I%ss'%length, length, _x))
+      _x = self.lcdD
       length = len(_x)
       if python3 or type(_x) == unicode:
         _x = _x.encode('utf-8')
@@ -109,9 +188,36 @@ class DummyTalk(genpy.Message):
       start = end
       end += length
       if python3:
-        self.Dummy = str[start:end].decode('utf-8')
+        self.lcdA = str[start:end].decode('utf-8')
       else:
-        self.Dummy = str[start:end]
+        self.lcdA = str[start:end]
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      start = end
+      end += length
+      if python3:
+        self.lcdB = str[start:end].decode('utf-8')
+      else:
+        self.lcdB = str[start:end]
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      start = end
+      end += length
+      if python3:
+        self.lcdC = str[start:end].decode('utf-8')
+      else:
+        self.lcdC = str[start:end]
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      start = end
+      end += length
+      if python3:
+        self.lcdD = str[start:end].decode('utf-8')
+      else:
+        self.lcdD = str[start:end]
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
