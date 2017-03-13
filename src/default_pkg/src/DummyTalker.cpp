@@ -47,15 +47,16 @@ int main(int argc, char **argv)
 	 * than we can send them, the number here specifies how many messages to
 	 * buffer up before throwing some away.
 	 */
-	ros::Publisher chatter_pub = n.advertise<std_msgs::String>("DummyTalk", 1000);
+	ros::Publisher chatter_pub = n.advertise<std_msgs::String>("DummyTalk", 10);
+	ros::Publisher LcdOut = n.advertise<default_pkg::DummyTalk>("DummyMsg", 10);
 
-	ros::Rate loop_rate(10);
+	ros::Rate loop_rate(1); // default: 10 updaterate in [Hz]
 
 	/**
 	 * A count of how many messages we have sent. This is used to create
 	 * a unique string for each message.
 	 */
-	int count = 0;
+	int16_t count = 0;
 	while (ros::ok())
 	{
 		/**
@@ -67,18 +68,25 @@ int main(int argc, char **argv)
 		ss << "hello world " /*<< random() % 1000 << "\t"*/ << count;
 		msg.data = ss.str();
 
-		::default_pkg::DummyTalk DummyTalk;
-		DummyTalk.Counter = (int16_t)count;
-		DummyTalk.lcdD = "barfoo";
+		::default_pkg::DummyTalk DummyMsg;
+		DummyMsg.foo = count;
+		DummyMsg.counter = count;
+		DummyMsg.lcdD = "foobar";
 
 		ROS_INFO("%s", msg.data.c_str());
-		//    ROS_INFO("%d", 42);
+
+		LcdOut.publish(DummyMsg);
+
 		/**
 		 * The publish() function is how you send messages. The parameter
 		 * is the message object. The type of this object must agree with the type
 		 * given as a template parameter to the advertise<>() call, as was done
 		 * in the constructor above.
 		 */
+		
+		
+		
+		
 		chatter_pub.publish(msg);
 		//    chatter_pub.publish(42);
 		ros::spinOnce();

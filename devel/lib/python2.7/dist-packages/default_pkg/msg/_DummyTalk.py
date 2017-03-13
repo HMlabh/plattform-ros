@@ -7,20 +7,18 @@ import struct
 
 
 class DummyTalk(genpy.Message):
-  _md5sum = "24ea992dce1350a60ad5ebcd54710290"
+  _md5sum = "f7d2778ea339a60bbb0046d8ce90b72f"
   _type = "default_pkg/DummyTalk"
   _has_header = False #flag to mark the presence of a Header object
-  _full_text = """int16 Counter = 7
+  _full_text = """int16 counter
 string lcdA
 string lcdB
 string lcdC
 string lcdD
+int16 foo
 """
-  # Pseudo-constants
-  Counter = 7
-
-  __slots__ = ['lcdA','lcdB','lcdC','lcdD']
-  _slot_types = ['string','string','string','string']
+  __slots__ = ['counter','lcdA','lcdB','lcdC','lcdD','foo']
+  _slot_types = ['int16','string','string','string','string','int16']
 
   def __init__(self, *args, **kwds):
     """
@@ -30,7 +28,7 @@ string lcdD
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       lcdA,lcdB,lcdC,lcdD
+       counter,lcdA,lcdB,lcdC,lcdD,foo
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -39,6 +37,8 @@ string lcdD
     if args or kwds:
       super(DummyTalk, self).__init__(*args, **kwds)
       #message fields cannot be None, assign default values for those that are
+      if self.counter is None:
+        self.counter = 0
       if self.lcdA is None:
         self.lcdA = ''
       if self.lcdB is None:
@@ -47,11 +47,15 @@ string lcdD
         self.lcdC = ''
       if self.lcdD is None:
         self.lcdD = ''
+      if self.foo is None:
+        self.foo = 0
     else:
+      self.counter = 0
       self.lcdA = ''
       self.lcdB = ''
       self.lcdC = ''
       self.lcdD = ''
+      self.foo = 0
 
   def _get_types(self):
     """
@@ -65,6 +69,7 @@ string lcdD
     :param buff: buffer, ``StringIO``
     """
     try:
+      buff.write(_get_struct_h().pack(self.counter))
       _x = self.lcdA
       length = len(_x)
       if python3 or type(_x) == unicode:
@@ -89,6 +94,7 @@ string lcdD
         _x = _x.encode('utf-8')
         length = len(_x)
       buff.write(struct.pack('<I%ss'%length, length, _x))
+      buff.write(_get_struct_h().pack(self.foo))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -99,6 +105,9 @@ string lcdD
     """
     try:
       end = 0
+      start = end
+      end += 2
+      (self.counter,) = _get_struct_h().unpack(str[start:end])
       start = end
       end += 4
       (length,) = _struct_I.unpack(str[start:end])
@@ -135,6 +144,9 @@ string lcdD
         self.lcdD = str[start:end].decode('utf-8')
       else:
         self.lcdD = str[start:end]
+      start = end
+      end += 2
+      (self.foo,) = _get_struct_h().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
@@ -147,6 +159,7 @@ string lcdD
     :param numpy: numpy python module
     """
     try:
+      buff.write(_get_struct_h().pack(self.counter))
       _x = self.lcdA
       length = len(_x)
       if python3 or type(_x) == unicode:
@@ -171,6 +184,7 @@ string lcdD
         _x = _x.encode('utf-8')
         length = len(_x)
       buff.write(struct.pack('<I%ss'%length, length, _x))
+      buff.write(_get_struct_h().pack(self.foo))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -182,6 +196,9 @@ string lcdD
     """
     try:
       end = 0
+      start = end
+      end += 2
+      (self.counter,) = _get_struct_h().unpack(str[start:end])
       start = end
       end += 4
       (length,) = _struct_I.unpack(str[start:end])
@@ -218,6 +235,9 @@ string lcdD
         self.lcdD = str[start:end].decode('utf-8')
       else:
         self.lcdD = str[start:end]
+      start = end
+      end += 2
+      (self.foo,) = _get_struct_h().unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
@@ -226,3 +246,9 @@ _struct_I = genpy.struct_I
 def _get_struct_I():
     global _struct_I
     return _struct_I
+_struct_h = None
+def _get_struct_h():
+    global _struct_h
+    if _struct_h is None:
+        _struct_h = struct.Struct("<h")
+    return _struct_h

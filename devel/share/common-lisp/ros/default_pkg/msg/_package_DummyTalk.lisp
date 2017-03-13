@@ -1,5 +1,7 @@
 (cl:in-package default_pkg-msg)
-(cl:export '(LCDA-VAL
+(cl:export '(COUNTER-VAL
+          COUNTER
+          LCDA-VAL
           LCDA
           LCDB-VAL
           LCDB
@@ -7,4 +9,6 @@
           LCDC
           LCDD-VAL
           LCDD
+          FOO-VAL
+          FOO
 ))

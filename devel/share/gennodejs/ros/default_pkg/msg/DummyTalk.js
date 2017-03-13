@@ -13,14 +13,18 @@ let _finder = require('../find.js');
 
 class DummyTalk {
   constructor() {
+    this.counter = 0;
     this.lcdA = '';
     this.lcdB = '';
     this.lcdC = '';
     this.lcdD = '';
+    this.foo = 0;
   }
 
   static serialize(obj, bufferInfo) {
     // Serializes a message object of type DummyTalk
+    // Serialize message field [counter]
+    bufferInfo = _serializer.int16(obj.counter, bufferInfo);
     // Serialize message field [lcdA]
     bufferInfo = _serializer.string(obj.lcdA, bufferInfo);
     // Serialize message field [lcdB]
@@ -29,6 +33,8 @@ class DummyTalk {
     bufferInfo = _serializer.string(obj.lcdC, bufferInfo);
     // Serialize message field [lcdD]
     bufferInfo = _serializer.string(obj.lcdD, bufferInfo);
+    // Serialize message field [foo]
+    bufferInfo = _serializer.int16(obj.foo, bufferInfo);
     return bufferInfo;
   }
 
@@ -37,6 +43,10 @@ class DummyTalk {
     let tmp;
     let len;
     let data = new DummyTalk();
+    // Deserialize message field [counter]
+    tmp = _deserializer.int16(buffer);
+    data.counter = tmp.data;
+    buffer = tmp.buffer;
     // Deserialize message field [lcdA]
     tmp = _deserializer.string(buffer);
     data.lcdA = tmp.data;
@@ -53,6 +63,10 @@ class DummyTalk {
     tmp = _deserializer.string(buffer);
     data.lcdD = tmp.data;
     buffer = tmp.buffer;
+    // Deserialize message field [foo]
+    tmp = _deserializer.int16(buffer);
+    data.foo = tmp.data;
+    buffer = tmp.buffer;
     return {
       data: data,
       buffer: buffer
@@ -66,26 +80,22 @@ class DummyTalk {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '24ea992dce1350a60ad5ebcd54710290';
+    return 'f7d2778ea339a60bbb0046d8ce90b72f';
   }
 
   static messageDefinition() {
     // Returns full string definition for message
     return `
-    int16 Counter = 7
+    int16 counter
     string lcdA
     string lcdB
     string lcdC
     string lcdD
+    int16 foo
     
     `;
   }
 
 };
-
-// Constants for message
-DummyTalk.Constants = {
-  COUNTER: 7,
-}
 
 module.exports = DummyTalk;

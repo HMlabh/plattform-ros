@@ -6,8 +6,8 @@
 
 // ROS
 #include "ros/ros.h"
-#include "std_msgs/Int8.h"
 #include "std_msgs/String.h"
+#include "std_msgs/Int8.h"
 #include "default_pkg/DummyTalk.h"
 
 
@@ -52,38 +52,38 @@ int main(int argc, char **argv)
 		return 1;
 	}
 	ROS_INFO ("\tdone");
-	mySerial << "y";		// clear LCD
+	mySerial << "y\n";		// clear LCD
 	mySerial << "aFoo!\n";
 	mySerial << "bBar\n";
 	mySerial << "c23\n";
 
 	ROS_INFO ("start callback");
 
-	ros::Subscriber sub = n.subscribe("DummyTalk", 1000, chatterCallback);
-
+	ros::Subscriber sub = n.subscribe("DummyTalk", 10, chatterCallback);
+	//ros::Subscriber lcdout = n.subscribe("DummyMsg", 10);
 
 	ROS_INFO("spinOnce()");
 	std::string foo;
 
-	::default_pkg::DummyTalk DummyTalk;
 
-	ros::Rate r(10); // 5 hz
+	ros::Rate r(1); // 5 hz
 	while (ros::ok())
 	{
-		DummyTalk.lcdA = randFakeFloat();
-		DummyTalk.lcdB = randFakeFloat();
-		DummyTalk.lcdC = "Foo";
-		//DummyTalk.lcdD = "baR";
+		::default_pkg::DummyTalk DummyMsg;
+		DummyMsg.lcdA = randFakeFloat();
+		DummyMsg.lcdB = randFakeFloat();
+		DummyMsg.lcdC = "v25";
 
 		//std::string str(DummyTalk.Counter);
-		ROS_INFO("-> counter =  %d", DummyTalk.Counter); // from DummyTalker
+		ROS_INFO("-> counter =  %d", DummyMsg.counter); // from DummyTalker
 		//ROS_INFO("s %s", str);
-		mySerial << "a" << DummyTalk.Counter << "\n";
-		mySerial << "b" << DummyTalk.lcdA << "\n";
-		mySerial << "c" << DummyTalk.lcdB << "\n";
-		mySerial << "d" << DummyTalk.lcdC << "\n";
-		mySerial << "e" << DummyTalk.lcdD << "\n";
-
+		mySerial << "a" << DummyMsg.lcdA << "\n";
+		mySerial << "b" << DummyMsg.lcdB << "\n";
+		mySerial << "c" << DummyMsg.lcdC << "\n";
+		mySerial << "d" << DummyMsg.lcdD << "\n";
+		mySerial << "e" << DummyMsg.counter << "\n";
+		mySerial << "f" << DummyMsg.foo << "\n";
+		
 
 		ros::spinOnce();
 		r.sleep();

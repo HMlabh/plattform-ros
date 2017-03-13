@@ -24,20 +24,27 @@ struct DummyTalk_
   typedef DummyTalk_<ContainerAllocator> Type;
 
   DummyTalk_()
-    : lcdA()
+    : counter(0)
+    , lcdA()
     , lcdB()
     , lcdC()
-    , lcdD()  {
+    , lcdD()
+    , foo(0)  {
     }
   DummyTalk_(const ContainerAllocator& _alloc)
-    : lcdA(_alloc)
+    : counter(0)
+    , lcdA(_alloc)
     , lcdB(_alloc)
     , lcdC(_alloc)
-    , lcdD(_alloc)  {
+    , lcdD(_alloc)
+    , foo(0)  {
   (void)_alloc;
     }
 
 
+
+   typedef int16_t _counter_type;
+  _counter_type counter;
 
    typedef std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other >  _lcdA_type;
   _lcdA_type lcdA;
@@ -51,9 +58,11 @@ struct DummyTalk_
    typedef std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other >  _lcdD_type;
   _lcdD_type lcdD;
 
+   typedef int16_t _foo_type;
+  _foo_type foo;
 
-    enum { Counter = 7 };
- 
+
+
 
   typedef boost::shared_ptr< ::default_pkg::DummyTalk_<ContainerAllocator> > Ptr;
   typedef boost::shared_ptr< ::default_pkg::DummyTalk_<ContainerAllocator> const> ConstPtr;
@@ -66,8 +75,6 @@ typedef boost::shared_ptr< ::default_pkg::DummyTalk > DummyTalkPtr;
 typedef boost::shared_ptr< ::default_pkg::DummyTalk const> DummyTalkConstPtr;
 
 // constants requiring out of line definition
-
-   
 
 
 
@@ -131,12 +138,12 @@ struct MD5Sum< ::default_pkg::DummyTalk_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "24ea992dce1350a60ad5ebcd54710290";
+    return "f7d2778ea339a60bbb0046d8ce90b72f";
   }
 
   static const char* value(const ::default_pkg::DummyTalk_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x24ea992dce1350a6ULL;
-  static const uint64_t static_value2 = 0x0ad5ebcd54710290ULL;
+  static const uint64_t static_value1 = 0xf7d2778ea339a60bULL;
+  static const uint64_t static_value2 = 0xbb0046d8ce90b72fULL;
 };
 
 template<class ContainerAllocator>
@@ -155,11 +162,12 @@ struct Definition< ::default_pkg::DummyTalk_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "int16 Counter = 7\n\
+    return "int16 counter\n\
 string lcdA\n\
 string lcdB\n\
 string lcdC\n\
 string lcdD\n\
+int16 foo\n\
 ";
   }
 
@@ -178,10 +186,12 @@ namespace serialization
   {
     template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
     {
+      stream.next(m.counter);
       stream.next(m.lcdA);
       stream.next(m.lcdB);
       stream.next(m.lcdC);
       stream.next(m.lcdD);
+      stream.next(m.foo);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER;
@@ -200,6 +210,8 @@ struct Printer< ::default_pkg::DummyTalk_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::default_pkg::DummyTalk_<ContainerAllocator>& v)
   {
+    s << indent << "counter: ";
+    Printer<int16_t>::stream(s, indent + "  ", v.counter);
     s << indent << "lcdA: ";
     Printer<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other > >::stream(s, indent + "  ", v.lcdA);
     s << indent << "lcdB: ";
@@ -208,6 +220,8 @@ struct Printer< ::default_pkg::DummyTalk_<ContainerAllocator> >
     Printer<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other > >::stream(s, indent + "  ", v.lcdC);
     s << indent << "lcdD: ";
     Printer<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other > >::stream(s, indent + "  ", v.lcdD);
+    s << indent << "foo: ";
+    Printer<int16_t>::stream(s, indent + "  ", v.foo);
   }
 };
 
