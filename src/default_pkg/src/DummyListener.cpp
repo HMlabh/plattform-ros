@@ -23,8 +23,8 @@ using namespace LibSerial;
 // Function Prototypes
 std::string randFakeFloat(void);
 void chatterCallback(const std_msgs::String::ConstPtr& msg);
-void dummyMsgCallback(::default_pkg::DummyTalk::ConstPtr& DummyMsg);
-void callback(const default_pkg::DummyTalk& msg);
+void lcdCallback(const default_pkg::DummyTalk& msg);
+int setupSerial(std::string portStr, bool debug);
 
 // global variables
 int counterSerial = 0;
@@ -36,20 +36,7 @@ int main(int argc, char **argv)
 
 	ros::NodeHandle n;
 
-	ROS_INFO ("setup Serial");
-
-	mySerial.SetBaudRate(SerialStreamBuf::BAUD_115200);
-	mySerial.SetCharSize(SerialStreamBuf::CHAR_SIZE_8);
-	mySerial.SetNumOfStopBits(1);
-	mySerial.SetFlowControl(SerialStreamBuf::FLOW_CONTROL_HARD);
-	mySerial.Open("/dev/ttyACM0");
-	int err = mySerial.IsOpen();
-	if (err == 0)
-	{
-		std::cout << "port is closed...\n";
-		return 1;
-	}
-	ROS_INFO ("\tdone");
+	setupSerial("/dev/ttyACM0", true);
 	mySerial << "y\n";		// clear LCD
 	mySerial << "aFoo!\n";
 	mySerial << "bBar\n";
@@ -57,10 +44,8 @@ int main(int argc, char **argv)
 
 	ROS_INFO ("start callback");
 
-	ros::Subscriber sub = n.subscribe("DummyLcdOut", 10, callback);
-	//ros::Subscriber sub = n.subscribe("DummyTalk", 10, chatterCallback);
-	//ros::Subscriber Sub = n.subscribe("DummyLcdOut", 10, dummyMsgCallback);
-
+	ros::Subscriber sub_LCD = n.subscribe("DummyLcdOut", 10, lcdCallback);
+	ros::Subscriber sub_chat = n.subscribe("DummyTalk", 10, chatterCallback);
 
 
 	ROS_INFO("ros::spin()");
@@ -72,28 +57,15 @@ int main(int argc, char **argv)
 void chatterCallback(const std_msgs::String::ConstPtr& msg)
 {
 	ROS_INFO("I heard: [%s]", msg->data.c_str());
-	ROS_INFO ("msg = %s", msg->data.c_str());
-	
-	::default_pkg::DummyTalk DummyMsg;
-	DummyMsg.lcdA = randFakeFloat();
-	DummyMsg.lcdB = randFakeFloat();
-	DummyMsg.lcdC = "v25";
-
-	ROS_INFO("-> counter =  %d", DummyMsg.counter); // from DummyTalker
-	mySerial << "a" << DummyMsg.lcdA << "\n";
-	mySerial << "b" << DummyMsg.lcdB << "\n";
-	mySerial << "c" << DummyMsg.lcdC << "\n";
-	mySerial << "d" << DummyMsg.lcdD << "\n";
-	mySerial << "e" << DummyMsg.counter << "\n";
 }
 
 //------------------------------------------------------------------
-void callback(const default_pkg::DummyTalk& msg)
+void lcdCallback(const default_pkg::DummyTalk& msg)
 {
-	ROS_INFO("lcd: %s", msg.lcdA);
-	ROS_INFO("lcd: %s", msg.lcdB);
-	ROS_INFO("lcd: %s", msg.lcdC);
-	ROS_INFO("lcd: %s", msg.lcdD);
+	ROS_INFO("lcd: %s", msg.lcdA.c_str());
+	ROS_INFO("lcd: %s", msg.lcdB.c_str());
+	ROS_INFO("lcd: %s", msg.lcdC.c_str());
+	ROS_INFO("lcd: %s", msg.lcdD.c_str());
 	ROS_INFO("-> counter =  %d", msg.counter); // from DummyTalker
 	mySerial << "a" << msg.lcdA << "\n";
 	mySerial << "b" << msg.lcdB << "\n";
@@ -101,26 +73,23 @@ void callback(const default_pkg::DummyTalk& msg)
 	mySerial << "d" << msg.lcdD << "\n";
 	mySerial << "e" << msg.counter << "\n";
 }
-//------------------------------------------------------------------
-void dummyMsgCallback(::default_pkg::DummyTalk::ConstPtr& DummyMsg)
+
+//-----------------------------------------------------------------
+int setupSerial(std::string portStr, bool debug)
 {
-	//::default_pkg::DummyTalk DummyMsg;
-
-	ROS_INFO ("callback");
-/*
-	DummyMsg.lcdA = randFakeFloat();
-	DummyMsg.lcdB = randFakeFloat();
-	DummyMsg.lcdC = "v25";
-
-	ROS_INFO("-> counter =  %d", DummyMsg.counter); // from DummyTalker
-	mySerial << "a" << DummyMsg.lcdA << "\n";
-	mySerial << "b" << DummyMsg.lcdB << "\n";
-	mySerial << "c" << DummyMsg.lcdC << "\n";
-	mySerial << "d" << DummyMsg.lcdD << "\n";
-
-	mySerial << "e" << DummyMsg.counter << "\n";
-	mySerial << "f" << DummyMsg.foo << "\n";
-*/
+	if (debug) ROS_INFO ("setup Serial");
+	mySerial.SetBaudRate(SerialStreamBuf::BAUD_115200);
+	mySerial.SetCharSize(SerialStreamBuf::CHAR_SIZE_8);
+	mySerial.SetNumOfStopBits(1);
+	mySerial.SetFlowControl(SerialStreamBuf::FLOW_CONTROL_HARD);
+	mySerial.Open(portStr);
+	int err = mySerial.IsOpen();
+	if (err == 0)
+	{
+		std::cout << "port is closed...!!!\n";
+		return 1;
+	}
+	if (debug) ROS_INFO ("\tdone");
 }
 //-----------------------------------------------------------------
 std::string randFakeFloat(void)

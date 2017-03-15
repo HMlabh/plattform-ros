@@ -50,7 +50,7 @@ int main(int argc, char **argv)
 	//ros::Publisher chatter_pub = n.advertise<std_msgs::String>("DummyTalk", 10);
 	ros::Publisher lcd_pub = n.advertise<default_pkg::DummyTalk>("DummyLcdOut", 10);
 
-	ros::Rate loop_rate(1); // default: 10 updaterate in [Hz]
+	ros::Rate loop_rate(5); // default: 10 updaterate in [Hz]
 
 	/**
 	 * A count of how many messages we have sent. This is used to create
@@ -58,6 +58,10 @@ int main(int argc, char **argv)
 	 */
 	int16_t count = 0;
 	::default_pkg::DummyTalk DummyMsg;
+	DummyMsg.lcdA = "v123";
+	DummyMsg.lcdB = "";
+	DummyMsg.lcdC = "foobar";
+	DummyMsg.lcdD = "test";
 	while (ros::ok())
 	{
 		/**
@@ -71,10 +75,8 @@ int main(int argc, char **argv)
 
 		DummyMsg.foo = count;
 		DummyMsg.counter = count;
-		DummyMsg.lcdD = "foobar";
 
 		ROS_INFO("%s", msg.data.c_str());
-
 
 		/**
 		 * The publish() function is how you send messages. The parameter
@@ -82,9 +84,6 @@ int main(int argc, char **argv)
 		 * given as a template parameter to the advertise<>() call, as was done
 		 * in the constructor above.
 		 */
-
-
-
 
 		//	chatter_pub.publish(msg);
 		lcd_pub.publish(DummyMsg);
