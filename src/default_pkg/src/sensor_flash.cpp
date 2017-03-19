@@ -1,3 +1,6 @@
+//sensor_flash.cpp
+
+//-------Includes-------
 #include "ros/ros.h"
 #include "std_msgs/String.h"
 #include "std_msgs/Int8.h"
@@ -12,21 +15,22 @@
 
 using namespace LibSerial;
 
-//Initialisation
-char ask_ident = 'i'; //"i"
+//Variable Initialisation
+char ask_ident = 'i';
 char got_ident;
 char call = 'c';
 char ask = 'a';
 char askram[32];
 int16_t askdelay = 10000;
 
+//main loop
 int main(int argc, char **argv)
 {
-
+	//Node Initialisation
 	ros::init(argc, argv, "sensor_flash");
 	ros::NodeHandle n;
 
-	//creating Publisher
+	//creating Publisher sensor_flash_out
 	ros::Publisher sensor_flash_pub = n.advertise<default_pkg::ir_ranges>("sensor_flash_out", 100);
 	ros::Rate loop_rate(40);
 	int count = 0;
@@ -41,16 +45,15 @@ int main(int argc, char **argv)
 	Arduino_Serial.SetFlowControl(SerialStreamBuf::FLOW_CONTROL_HARD);
 	ROS_INFO("connected");
 
-	//----------Ident BETA
+	//ask for Ident
 	Arduino_Serial << ask_ident;
 	Arduino_Serial >> got_ident;
 	ROS_INFO("ID: %c", got_ident);
 	ROS_INFO("complete");
 
-	//loop
+	//runtime loop
 	while (ros::ok())
 	{
-		//Arduino_Serial.Open("/dev/ttyACM0");
 
 		//start new measurement
 		Arduino_Serial << call;
@@ -58,17 +61,18 @@ int main(int argc, char **argv)
 		usleep(20000);
 
 		//send ask to Arduino
+		ROS_INFO("sending ask...");
 		Arduino_Serial << ask;
-		usleep(askdelay);
 		ROS_INFO("ask sended");
+		usleep(askdelay);
 
 		//read answer
 		ROS_INFO("reading answer...");
 		Arduino_Serial.read(askram,32);
 		ROS_INFO("...complete");
 
-		ROS_INFO("generating message ir_ranges");
 		//message generation
+		ROS_INFO("generating message ir_ranges");
 		::default_pkg::ir_ranges ir_r;
 		ir_r.range_si0  = (((int16_t)askram[0]) | ((int16_t)(askram[1]<<8)));
 		ir_r.range_si1  = (((int16_t)askram[2]) | ((int16_t)(askram[3]<<8)));
@@ -87,18 +91,15 @@ int main(int argc, char **argv)
 		ir_r.range_si14 = (((int16_t)askram[28]) | ((int16_t)(askram[29]<<8)));
 		ir_r.range_si15 = (((int16_t)askram[30]) | ((int16_t)(askram[31]<<8)));
 
-
 		//publish the message
 		sensor_flash_pub.publish(ir_r);
 		ROS_INFO("message ir_ranges sended");
 
-		//Arduino_Serial.Close();
 		//ros : end of loop
 		ros::spinOnce();
 		loop_rate.sleep();
 		++count;
 	}
-
 
 	return 0;
 }

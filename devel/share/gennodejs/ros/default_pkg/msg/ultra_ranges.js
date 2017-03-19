@@ -5,100 +5,148 @@
 
 "use strict";
 
-let _serializer = require('../base_serialize.js');
-let _deserializer = require('../base_deserialize.js');
-let _finder = require('../find.js');
+const _serializer = _ros_msg_utils.Serialize;
+const _arraySerializer = _serializer.Array;
+const _deserializer = _ros_msg_utils.Deserialize;
+const _arrayDeserializer = _deserializer.Array;
+const _finder = _ros_msg_utils.Find;
+const _getByteLength = _ros_msg_utils.getByteLength;
 
 //-----------------------------------------------------------
 
 class ultra_ranges {
-  constructor() {
-    this.range_su0 = 0;
-    this.range_su1 = 0;
-    this.range_su2 = 0;
-    this.range_su3 = 0;
-    this.range_su4 = 0;
-    this.range_su5 = 0;
-    this.range_su6 = 0;
-    this.range_su7 = 0;
-    this.range_su8 = 0;
-    this.range_su9 = 0;
+  constructor(initObj={}) {
+    if (initObj === null) {
+      // initObj === null is a special case for deserialization where we don't initialize fields
+      this.range_su0 = null;
+      this.range_su1 = null;
+      this.range_su2 = null;
+      this.range_su3 = null;
+      this.range_su4 = null;
+      this.range_su5 = null;
+      this.range_su6 = null;
+      this.range_su7 = null;
+      this.range_su8 = null;
+      this.range_su9 = null;
+    }
+    else {
+      if (initObj.hasOwnProperty('range_su0')) {
+        this.range_su0 = initObj.range_su0
+      }
+      else {
+        this.range_su0 = 0;
+      }
+      if (initObj.hasOwnProperty('range_su1')) {
+        this.range_su1 = initObj.range_su1
+      }
+      else {
+        this.range_su1 = 0;
+      }
+      if (initObj.hasOwnProperty('range_su2')) {
+        this.range_su2 = initObj.range_su2
+      }
+      else {
+        this.range_su2 = 0;
+      }
+      if (initObj.hasOwnProperty('range_su3')) {
+        this.range_su3 = initObj.range_su3
+      }
+      else {
+        this.range_su3 = 0;
+      }
+      if (initObj.hasOwnProperty('range_su4')) {
+        this.range_su4 = initObj.range_su4
+      }
+      else {
+        this.range_su4 = 0;
+      }
+      if (initObj.hasOwnProperty('range_su5')) {
+        this.range_su5 = initObj.range_su5
+      }
+      else {
+        this.range_su5 = 0;
+      }
+      if (initObj.hasOwnProperty('range_su6')) {
+        this.range_su6 = initObj.range_su6
+      }
+      else {
+        this.range_su6 = 0;
+      }
+      if (initObj.hasOwnProperty('range_su7')) {
+        this.range_su7 = initObj.range_su7
+      }
+      else {
+        this.range_su7 = 0;
+      }
+      if (initObj.hasOwnProperty('range_su8')) {
+        this.range_su8 = initObj.range_su8
+      }
+      else {
+        this.range_su8 = 0;
+      }
+      if (initObj.hasOwnProperty('range_su9')) {
+        this.range_su9 = initObj.range_su9
+      }
+      else {
+        this.range_su9 = 0;
+      }
+    }
   }
 
-  static serialize(obj, bufferInfo) {
+  static serialize(obj, buffer, bufferOffset) {
     // Serializes a message object of type ultra_ranges
     // Serialize message field [range_su0]
-    bufferInfo = _serializer.int16(obj.range_su0, bufferInfo);
+    bufferOffset = _serializer.int16(obj.range_su0, buffer, bufferOffset);
     // Serialize message field [range_su1]
-    bufferInfo = _serializer.int16(obj.range_su1, bufferInfo);
+    bufferOffset = _serializer.int16(obj.range_su1, buffer, bufferOffset);
     // Serialize message field [range_su2]
-    bufferInfo = _serializer.int16(obj.range_su2, bufferInfo);
+    bufferOffset = _serializer.int16(obj.range_su2, buffer, bufferOffset);
     // Serialize message field [range_su3]
-    bufferInfo = _serializer.int16(obj.range_su3, bufferInfo);
+    bufferOffset = _serializer.int16(obj.range_su3, buffer, bufferOffset);
     // Serialize message field [range_su4]
-    bufferInfo = _serializer.int16(obj.range_su4, bufferInfo);
+    bufferOffset = _serializer.int16(obj.range_su4, buffer, bufferOffset);
     // Serialize message field [range_su5]
-    bufferInfo = _serializer.int16(obj.range_su5, bufferInfo);
+    bufferOffset = _serializer.int16(obj.range_su5, buffer, bufferOffset);
     // Serialize message field [range_su6]
-    bufferInfo = _serializer.int16(obj.range_su6, bufferInfo);
+    bufferOffset = _serializer.int16(obj.range_su6, buffer, bufferOffset);
     // Serialize message field [range_su7]
-    bufferInfo = _serializer.int16(obj.range_su7, bufferInfo);
+    bufferOffset = _serializer.int16(obj.range_su7, buffer, bufferOffset);
     // Serialize message field [range_su8]
-    bufferInfo = _serializer.int16(obj.range_su8, bufferInfo);
+    bufferOffset = _serializer.int16(obj.range_su8, buffer, bufferOffset);
     // Serialize message field [range_su9]
-    bufferInfo = _serializer.int16(obj.range_su9, bufferInfo);
-    return bufferInfo;
+    bufferOffset = _serializer.int16(obj.range_su9, buffer, bufferOffset);
+    return bufferOffset;
   }
 
-  static deserialize(buffer) {
+  static deserialize(buffer, bufferOffset=[0]) {
     //deserializes a message object of type ultra_ranges
-    let tmp;
     let len;
-    let data = new ultra_ranges();
+    let data = new ultra_ranges(null);
     // Deserialize message field [range_su0]
-    tmp = _deserializer.int16(buffer);
-    data.range_su0 = tmp.data;
-    buffer = tmp.buffer;
+    data.range_su0 = _deserializer.int16(buffer, bufferOffset);
     // Deserialize message field [range_su1]
-    tmp = _deserializer.int16(buffer);
-    data.range_su1 = tmp.data;
-    buffer = tmp.buffer;
+    data.range_su1 = _deserializer.int16(buffer, bufferOffset);
     // Deserialize message field [range_su2]
-    tmp = _deserializer.int16(buffer);
-    data.range_su2 = tmp.data;
-    buffer = tmp.buffer;
+    data.range_su2 = _deserializer.int16(buffer, bufferOffset);
     // Deserialize message field [range_su3]
-    tmp = _deserializer.int16(buffer);
-    data.range_su3 = tmp.data;
-    buffer = tmp.buffer;
+    data.range_su3 = _deserializer.int16(buffer, bufferOffset);
     // Deserialize message field [range_su4]
-    tmp = _deserializer.int16(buffer);
-    data.range_su4 = tmp.data;
-    buffer = tmp.buffer;
+    data.range_su4 = _deserializer.int16(buffer, bufferOffset);
     // Deserialize message field [range_su5]
-    tmp = _deserializer.int16(buffer);
-    data.range_su5 = tmp.data;
-    buffer = tmp.buffer;
+    data.range_su5 = _deserializer.int16(buffer, bufferOffset);
     // Deserialize message field [range_su6]
-    tmp = _deserializer.int16(buffer);
-    data.range_su6 = tmp.data;
-    buffer = tmp.buffer;
+    data.range_su6 = _deserializer.int16(buffer, bufferOffset);
     // Deserialize message field [range_su7]
-    tmp = _deserializer.int16(buffer);
-    data.range_su7 = tmp.data;
-    buffer = tmp.buffer;
+    data.range_su7 = _deserializer.int16(buffer, bufferOffset);
     // Deserialize message field [range_su8]
-    tmp = _deserializer.int16(buffer);
-    data.range_su8 = tmp.data;
-    buffer = tmp.buffer;
+    data.range_su8 = _deserializer.int16(buffer, bufferOffset);
     // Deserialize message field [range_su9]
-    tmp = _deserializer.int16(buffer);
-    data.range_su9 = tmp.data;
-    buffer = tmp.buffer;
-    return {
-      data: data,
-      buffer: buffer
-    }
+    data.range_su9 = _deserializer.int16(buffer, bufferOffset);
+    return data;
+  }
+
+  static getMessageSize(object) {
+    return 20;
   }
 
   static datatype() {
@@ -114,7 +162,7 @@ class ultra_ranges {
   static messageDefinition() {
     // Returns full string definition for message
     return `
-    # ultra_ranges
+    # ultra_ranges.msg
     # Ranges in cm of the 10 ultrasonic distance sensors
     int16 range_su0
     int16 range_su1
@@ -130,6 +178,84 @@ class ultra_ranges {
     `;
   }
 
+  static Resolve(msg) {
+    // deep-construct a valid message object instance of whatever was passed in
+    if (typeof msg !== 'object' || msg === null) {
+      msg = {};
+    }
+    const resolved = new ultra_ranges(null);
+    if (msg.range_su0 !== undefined) {
+      resolved.range_su0 = msg.range_su0;
+    }
+    else {
+      resolved.range_su0 = 0
+    }
+
+    if (msg.range_su1 !== undefined) {
+      resolved.range_su1 = msg.range_su1;
+    }
+    else {
+      resolved.range_su1 = 0
+    }
+
+    if (msg.range_su2 !== undefined) {
+      resolved.range_su2 = msg.range_su2;
+    }
+    else {
+      resolved.range_su2 = 0
+    }
+
+    if (msg.range_su3 !== undefined) {
+      resolved.range_su3 = msg.range_su3;
+    }
+    else {
+      resolved.range_su3 = 0
+    }
+
+    if (msg.range_su4 !== undefined) {
+      resolved.range_su4 = msg.range_su4;
+    }
+    else {
+      resolved.range_su4 = 0
+    }
+
+    if (msg.range_su5 !== undefined) {
+      resolved.range_su5 = msg.range_su5;
+    }
+    else {
+      resolved.range_su5 = 0
+    }
+
+    if (msg.range_su6 !== undefined) {
+      resolved.range_su6 = msg.range_su6;
+    }
+    else {
+      resolved.range_su6 = 0
+    }
+
+    if (msg.range_su7 !== undefined) {
+      resolved.range_su7 = msg.range_su7;
+    }
+    else {
+      resolved.range_su7 = 0
+    }
+
+    if (msg.range_su8 !== undefined) {
+      resolved.range_su8 = msg.range_su8;
+    }
+    else {
+      resolved.range_su8 = 0
+    }
+
+    if (msg.range_su9 !== undefined) {
+      resolved.range_su9 = msg.range_su9;
+    }
+    else {
+      resolved.range_su9 = 0
+    }
+
+    return resolved;
+    }
 };
 
 module.exports = ultra_ranges;

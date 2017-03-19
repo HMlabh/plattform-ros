@@ -172,7 +172,7 @@ struct Definition< ::default_pkg::lift_pressure_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "# lift_pressure\n\
+    return "# lift_pressure.msg\n\
 # Pressure measured by the 8 Load-Cells\n\
 int16 pressure_load0\n\
 int16 pressure_load1\n\

@@ -172,7 +172,7 @@ struct Definition< ::default_pkg::lift_endstops_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "# lift_endstops\n\
+    return "# lift_endstops.msg\n\
 # Status of the 8 Endstops at the top of the lifts\n\
 # 0 = lift is up ; 1 = lift is not up\n\
 int8 lift_end0\n\

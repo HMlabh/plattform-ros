@@ -325,10 +325,10 @@
   "7dbdcf64d1ec9ac6dd04fe79926d8e6c")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<ir_ranges>)))
   "Returns full string definition for message of type '<ir_ranges>"
-  (cl:format cl:nil "# ir_ranges~%#  Values detected by the 16 infrared Sensors~%# -1 = invalid or sensor offline~%int16 range_si0~%int16 range_si1~%int16 range_si2~%int16 range_si3~%int16 range_si4~%int16 range_si5~%int16 range_si6~%int16 range_si7~%int16 range_si8~%int16 range_si9~%int16 range_si10~%int16 range_si11~%int16 range_si12~%int16 range_si13~%int16 range_si14~%int16 range_si15~%~%"))
+  (cl:format cl:nil "# ir_ranges.msg~%# Values detected by the 16 infrared Sensors~%# -1 = invalid or sensor offline~%int16 range_si0~%int16 range_si1~%int16 range_si2~%int16 range_si3~%int16 range_si4~%int16 range_si5~%int16 range_si6~%int16 range_si7~%int16 range_si8~%int16 range_si9~%int16 range_si10~%int16 range_si11~%int16 range_si12~%int16 range_si13~%int16 range_si14~%int16 range_si15~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'ir_ranges)))
   "Returns full string definition for message of type 'ir_ranges"
-  (cl:format cl:nil "# ir_ranges~%#  Values detected by the 16 infrared Sensors~%# -1 = invalid or sensor offline~%int16 range_si0~%int16 range_si1~%int16 range_si2~%int16 range_si3~%int16 range_si4~%int16 range_si5~%int16 range_si6~%int16 range_si7~%int16 range_si8~%int16 range_si9~%int16 range_si10~%int16 range_si11~%int16 range_si12~%int16 range_si13~%int16 range_si14~%int16 range_si15~%~%"))
+  (cl:format cl:nil "# ir_ranges.msg~%# Values detected by the 16 infrared Sensors~%# -1 = invalid or sensor offline~%int16 range_si0~%int16 range_si1~%int16 range_si2~%int16 range_si3~%int16 range_si4~%int16 range_si5~%int16 range_si6~%int16 range_si7~%int16 range_si8~%int16 range_si9~%int16 range_si10~%int16 range_si11~%int16 range_si12~%int16 range_si13~%int16 range_si14~%int16 range_si15~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <ir_ranges>))
   (cl:+ 0
      2

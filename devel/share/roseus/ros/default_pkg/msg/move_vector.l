@@ -74,7 +74,7 @@
 (setf (get default_pkg::move_vector :md5sum-) "246cc4b029915cb120f7b3f5cc0f4db0")
 (setf (get default_pkg::move_vector :datatype-) "default_pkg/move_vector")
 (setf (get default_pkg::move_vector :definition-)
-      "# move_vector
+      "# move_vector.msg
 # move_speed = movement-vector forwards and backwards:
 #     0 = none ; neg. = backwards ; pos. = forwards
 # move_side = movement-vector left and right:

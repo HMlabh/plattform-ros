@@ -137,7 +137,7 @@
 (setf (get default_pkg::lift_endstops :md5sum-) "930e42309aa3f8c5743576e13be17207")
 (setf (get default_pkg::lift_endstops :datatype-) "default_pkg/lift_endstops")
 (setf (get default_pkg::lift_endstops :definition-)
-      "# lift_endstops
+      "# lift_endstops.msg
 # Status of the 8 Endstops at the top of the lifts
 # 0 = lift is up ; 1 = lift is not up
 int8 lift_end0

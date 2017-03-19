@@ -228,8 +228,8 @@ class ir_ranges {
   static messageDefinition() {
     // Returns full string definition for message
     return `
-    # ir_ranges
-    #  Values detected by the 16 infrared Sensors
+    # ir_ranges.msg
+    # Values detected by the 16 infrared Sensors
     # -1 = invalid or sensor offline
     int16 range_si0
     int16 range_si1

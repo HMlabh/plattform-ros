@@ -217,10 +217,10 @@
   "c2dbb8e43f5544a0679b039b5575a75f")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<ultra_ranges>)))
   "Returns full string definition for message of type '<ultra_ranges>"
-  (cl:format cl:nil "# ultra_ranges~%# Ranges in cm of the 10 ultrasonic distance sensors~%int16 range_su0~%int16 range_su1~%int16 range_su2~%int16 range_su3~%int16 range_su4~%int16 range_su5~%int16 range_su6~%int16 range_su7~%int16 range_su8~%int16 range_su9~%~%~%"))
+  (cl:format cl:nil "# ultra_ranges.msg~%# Ranges in cm of the 10 ultrasonic distance sensors~%int16 range_su0~%int16 range_su1~%int16 range_su2~%int16 range_su3~%int16 range_su4~%int16 range_su5~%int16 range_su6~%int16 range_su7~%int16 range_su8~%int16 range_su9~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'ultra_ranges)))
   "Returns full string definition for message of type 'ultra_ranges"
-  (cl:format cl:nil "# ultra_ranges~%# Ranges in cm of the 10 ultrasonic distance sensors~%int16 range_su0~%int16 range_su1~%int16 range_su2~%int16 range_su3~%int16 range_su4~%int16 range_su5~%int16 range_su6~%int16 range_su7~%int16 range_su8~%int16 range_su9~%~%~%"))
+  (cl:format cl:nil "# ultra_ranges.msg~%# Ranges in cm of the 10 ultrasonic distance sensors~%int16 range_su0~%int16 range_su1~%int16 range_su2~%int16 range_su3~%int16 range_su4~%int16 range_su5~%int16 range_su6~%int16 range_su7~%int16 range_su8~%int16 range_su9~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <ultra_ranges>))
   (cl:+ 0
      2

@@ -212,8 +212,8 @@ struct Definition< ::default_pkg::ir_ranges_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "# ir_ranges\n\
-#  Values detected by the 16 infrared Sensors\n\
+    return "# ir_ranges.msg\n\
+# Values detected by the 16 infrared Sensors\n\
 # -1 = invalid or sensor offline\n\
 int16 range_si0\n\
 int16 range_si1\n\

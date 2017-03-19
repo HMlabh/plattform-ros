@@ -129,7 +129,7 @@
 (setf (get default_pkg::lift_pressure :md5sum-) "a8db6d3508127a0e3968bf2cc3e4314f")
 (setf (get default_pkg::lift_pressure :datatype-) "default_pkg/lift_pressure")
 (setf (get default_pkg::lift_pressure :definition-)
-      "# lift_pressure
+      "# lift_pressure.msg
 # Pressure measured by the 8 Load-Cells
 int16 pressure_load0
 int16 pressure_load1

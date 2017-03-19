@@ -147,7 +147,7 @@ struct Definition< ::default_pkg::move_vector_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "# move_vector\n\
+    return "# move_vector.msg\n\
 # move_speed = movement-vector forwards and backwards:\n\
 #     0 = none ; neg. = backwards ; pos. = forwards\n\
 # move_side = movement-vector left and right:\n\

@@ -151,7 +151,7 @@
 (setf (get default_pkg::ultra_ranges :md5sum-) "c2dbb8e43f5544a0679b039b5575a75f")
 (setf (get default_pkg::ultra_ranges :datatype-) "default_pkg/ultra_ranges")
 (setf (get default_pkg::ultra_ranges :definition-)
-      "# ultra_ranges
+      "# ultra_ranges.msg
 # Ranges in cm of the 10 ultrasonic distance sensors
 int16 range_su0
 int16 range_su1

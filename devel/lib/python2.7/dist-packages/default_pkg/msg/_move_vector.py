@@ -10,7 +10,7 @@ class move_vector(genpy.Message):
   _md5sum = "246cc4b029915cb120f7b3f5cc0f4db0"
   _type = "default_pkg/move_vector"
   _has_header = False #flag to mark the presence of a Header object
-  _full_text = """# move_vector
+  _full_text = """# move_vector.msg
 # move_speed = movement-vector forwards and backwards:
 #     0 = none ; neg. = backwards ; pos. = forwards
 # move_side = movement-vector left and right:

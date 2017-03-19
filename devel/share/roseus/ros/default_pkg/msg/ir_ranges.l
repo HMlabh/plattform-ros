@@ -217,8 +217,8 @@
 (setf (get default_pkg::ir_ranges :md5sum-) "7dbdcf64d1ec9ac6dd04fe79926d8e6c")
 (setf (get default_pkg::ir_ranges :datatype-) "default_pkg/ir_ranges")
 (setf (get default_pkg::ir_ranges :definition-)
-      "# ir_ranges
-#  Values detected by the 16 infrared Sensors
+      "# ir_ranges.msg
+# Values detected by the 16 infrared Sensors
 # -1 = invalid or sensor offline
 int16 range_si0
 int16 range_si1

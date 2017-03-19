@@ -10,7 +10,7 @@ class ultra_ranges(genpy.Message):
   _md5sum = "c2dbb8e43f5544a0679b039b5575a75f"
   _type = "default_pkg/ultra_ranges"
   _has_header = False #flag to mark the presence of a Header object
-  _full_text = """# ultra_ranges
+  _full_text = """# ultra_ranges.msg
 # Ranges in cm of the 10 ultrasonic distance sensors
 int16 range_su0
 int16 range_su1

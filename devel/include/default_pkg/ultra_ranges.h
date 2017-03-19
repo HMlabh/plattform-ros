@@ -182,7 +182,7 @@ struct Definition< ::default_pkg::ultra_ranges_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "# ultra_ranges\n\
+    return "# ultra_ranges.msg\n\
 # Ranges in cm of the 10 ultrasonic distance sensors\n\
 int16 range_su0\n\
 int16 range_su1\n\

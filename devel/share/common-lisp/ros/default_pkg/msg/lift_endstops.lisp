@@ -165,10 +165,10 @@
   "930e42309aa3f8c5743576e13be17207")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<lift_endstops>)))
   "Returns full string definition for message of type '<lift_endstops>"
-  (cl:format cl:nil "# lift_endstops~%# Status of the 8 Endstops at the top of the lifts~%# 0 = lift is up ; 1 = lift is not up~%int8 lift_end0~%int8 lift_end1~%int8 lift_end2~%int8 lift_end3~%int8 lift_end4~%int8 lift_end5~%int8 lift_end6~%int8 lift_end7~%~%"))
+  (cl:format cl:nil "# lift_endstops.msg~%# Status of the 8 Endstops at the top of the lifts~%# 0 = lift is up ; 1 = lift is not up~%int8 lift_end0~%int8 lift_end1~%int8 lift_end2~%int8 lift_end3~%int8 lift_end4~%int8 lift_end5~%int8 lift_end6~%int8 lift_end7~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'lift_endstops)))
   "Returns full string definition for message of type 'lift_endstops"
-  (cl:format cl:nil "# lift_endstops~%# Status of the 8 Endstops at the top of the lifts~%# 0 = lift is up ; 1 = lift is not up~%int8 lift_end0~%int8 lift_end1~%int8 lift_end2~%int8 lift_end3~%int8 lift_end4~%int8 lift_end5~%int8 lift_end6~%int8 lift_end7~%~%"))
+  (cl:format cl:nil "# lift_endstops.msg~%# Status of the 8 Endstops at the top of the lifts~%# 0 = lift is up ; 1 = lift is not up~%int8 lift_end0~%int8 lift_end1~%int8 lift_end2~%int8 lift_end3~%int8 lift_end4~%int8 lift_end5~%int8 lift_end6~%int8 lift_end7~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <lift_endstops>))
   (cl:+ 0
      1

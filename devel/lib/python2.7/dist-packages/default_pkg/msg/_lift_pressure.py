@@ -10,7 +10,7 @@ class lift_pressure(genpy.Message):
   _md5sum = "a8db6d3508127a0e3968bf2cc3e4314f"
   _type = "default_pkg/lift_pressure"
   _has_header = False #flag to mark the presence of a Header object
-  _full_text = """# lift_pressure
+  _full_text = """# lift_pressure.msg
 # Pressure measured by the 8 Load-Cells
 int16 pressure_load0
 int16 pressure_load1

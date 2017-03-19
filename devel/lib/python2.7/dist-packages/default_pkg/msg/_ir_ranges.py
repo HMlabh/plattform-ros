@@ -10,8 +10,8 @@ class ir_ranges(genpy.Message):
   _md5sum = "7dbdcf64d1ec9ac6dd04fe79926d8e6c"
   _type = "default_pkg/ir_ranges"
   _has_header = False #flag to mark the presence of a Header object
-  _full_text = """# ir_ranges
-#  Values detected by the 16 infrared Sensors
+  _full_text = """# ir_ranges.msg
+# Values detected by the 16 infrared Sensors
 # -1 = invalid or sensor offline
 int16 range_si0
 int16 range_si1

@@ -1,3 +1,6 @@
+//sensor_ping.cpp
+
+//-------Includes-------
 #include "ros/ros.h"
 #include "std_msgs/String.h"
 #include "std_msgs/Int8.h"
@@ -12,21 +15,22 @@
 
 using namespace LibSerial;
 
-//Initialisation
-char ask_ident = 'i'; //"i"
+//Variable Initialisation
+char ask_ident = 'i';
 char got_ident;
 char call = 'c';
 char ask = 'a';
 char askram[20];
 uint16_t askdelay = 12000;
 
-
+//main loop
 int main(int argc, char **argv)
 {
+	//Node Initialisation
 	ros::init(argc, argv, "sensor_ping");
 	ros::NodeHandle n;
 
-	//creating Publisher
+	//creating Publisher sensor_ping_out
 	ros::Publisher sensor_ping_pub = n.advertise<default_pkg::ultra_ranges>("sensor_ping_out", 10);
 	ros::Rate loop_rate(1);
 	int count = 0;
@@ -41,17 +45,16 @@ int main(int argc, char **argv)
 	Arduino_Serial.SetFlowControl(SerialStreamBuf::FLOW_CONTROL_HARD);
 	ROS_INFO("connected");
 
-	//----------Ident BETA
+	//ask for Ident
 	Arduino_Serial << ask_ident;
 	Arduino_Serial >> got_ident;
 	ROS_INFO("ID: %c", got_ident);
 	ROS_INFO("complete");
 
-	//loop
+	//runtime loop
 	while (ros::ok())
 	{
-		//Arduino_Serial.Open("/dev/ttyACM0");
-
+		
 		//start new measurement
 		Arduino_Serial << call;
 		ROS_INFO("call sended");
@@ -69,6 +72,7 @@ int main(int argc, char **argv)
 		ROS_INFO("...complete");
 
 		//message generation
+		ROS_INFO("generating message ultra_ranges");
 		::default_pkg::ultra_ranges ultra_r;
 		ultra_r.range_su0 = (((int16_t)askram[0]) | ((int16_t)(askram[1]<<8)));
 		ultra_r.range_su1 = (((int16_t)askram[2]) | ((int16_t)(askram[3]<<8)));
@@ -81,21 +85,15 @@ int main(int argc, char **argv)
 		ultra_r.range_su8 = (((int16_t)askram[16]) | ((int16_t)(askram[17]<<8)));
 		ultra_r.range_su9 = (((int16_t)askram[18]) | ((int16_t)(askram[19]<<8)));
 
-		ROS_INFO("ID: %d", askram[0]);
-		ROS_INFO("ID: %d", askram[1]);
-
-
 		//publish the message
 		sensor_ping_pub.publish(ultra_r);
 		ROS_INFO("message ultra_ranges sended");
-
 
 		//ros : end of loop
 		ros::spinOnce();
 		//loop_rate.sleep();
 		++count;
 	}
-
 
 	return 0;
 }

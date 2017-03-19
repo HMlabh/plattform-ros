@@ -10,7 +10,7 @@ class lift_endstops(genpy.Message):
   _md5sum = "930e42309aa3f8c5743576e13be17207"
   _type = "default_pkg/lift_endstops"
   _has_header = False #flag to mark the presence of a Header object
-  _full_text = """# lift_endstops
+  _full_text = """# lift_endstops.msg
 # Status of the 8 Endstops at the top of the lifts
 # 0 = lift is up ; 1 = lift is not up
 int8 lift_end0

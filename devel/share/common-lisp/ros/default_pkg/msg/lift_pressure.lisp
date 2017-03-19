@@ -181,10 +181,10 @@
   "a8db6d3508127a0e3968bf2cc3e4314f")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<lift_pressure>)))
   "Returns full string definition for message of type '<lift_pressure>"
-  (cl:format cl:nil "# lift_pressure~%# Pressure measured by the 8 Load-Cells~%int16 pressure_load0~%int16 pressure_load1~%int16 pressure_load2~%int16 pressure_load3~%int16 pressure_load4~%int16 pressure_load5~%int16 pressure_load6~%int16 pressure_load7~%~%"))
+  (cl:format cl:nil "# lift_pressure.msg~%# Pressure measured by the 8 Load-Cells~%int16 pressure_load0~%int16 pressure_load1~%int16 pressure_load2~%int16 pressure_load3~%int16 pressure_load4~%int16 pressure_load5~%int16 pressure_load6~%int16 pressure_load7~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'lift_pressure)))
   "Returns full string definition for message of type 'lift_pressure"
-  (cl:format cl:nil "# lift_pressure~%# Pressure measured by the 8 Load-Cells~%int16 pressure_load0~%int16 pressure_load1~%int16 pressure_load2~%int16 pressure_load3~%int16 pressure_load4~%int16 pressure_load5~%int16 pressure_load6~%int16 pressure_load7~%~%"))
+  (cl:format cl:nil "# lift_pressure.msg~%# Pressure measured by the 8 Load-Cells~%int16 pressure_load0~%int16 pressure_load1~%int16 pressure_load2~%int16 pressure_load3~%int16 pressure_load4~%int16 pressure_load5~%int16 pressure_load6~%int16 pressure_load7~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <lift_pressure>))
   (cl:+ 0
      2
