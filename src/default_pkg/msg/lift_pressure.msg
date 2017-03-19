@@ -1,4 +1,4 @@
-# lift_pressure
+# lift_pressure.msg
 # Pressure measured by the 8 Load-Cells
 int16 pressure_load0
 int16 pressure_load1

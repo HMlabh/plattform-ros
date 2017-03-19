@@ -1,4 +1,4 @@
-# lift_endstops
+# lift_endstops.msg
 # Status of the 8 Endstops at the top of the lifts
 # 0 = lift is up ; 1 = lift is not up
 int8 lift_end0

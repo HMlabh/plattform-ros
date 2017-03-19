@@ -5,142 +5,214 @@
 
 "use strict";
 
-let _serializer = require('../base_serialize.js');
-let _deserializer = require('../base_deserialize.js');
-let _finder = require('../find.js');
+const _serializer = _ros_msg_utils.Serialize;
+const _arraySerializer = _serializer.Array;
+const _deserializer = _ros_msg_utils.Deserialize;
+const _arrayDeserializer = _deserializer.Array;
+const _finder = _ros_msg_utils.Find;
+const _getByteLength = _ros_msg_utils.getByteLength;
 
 //-----------------------------------------------------------
 
 class ir_ranges {
-  constructor() {
-    this.range_si0 = 0;
-    this.range_si1 = 0;
-    this.range_si2 = 0;
-    this.range_si3 = 0;
-    this.range_si4 = 0;
-    this.range_si5 = 0;
-    this.range_si6 = 0;
-    this.range_si7 = 0;
-    this.range_si8 = 0;
-    this.range_si9 = 0;
-    this.range_si10 = 0;
-    this.range_si11 = 0;
-    this.range_si12 = 0;
-    this.range_si13 = 0;
-    this.range_si14 = 0;
-    this.range_si15 = 0;
+  constructor(initObj={}) {
+    if (initObj === null) {
+      // initObj === null is a special case for deserialization where we don't initialize fields
+      this.range_si0 = null;
+      this.range_si1 = null;
+      this.range_si2 = null;
+      this.range_si3 = null;
+      this.range_si4 = null;
+      this.range_si5 = null;
+      this.range_si6 = null;
+      this.range_si7 = null;
+      this.range_si8 = null;
+      this.range_si9 = null;
+      this.range_si10 = null;
+      this.range_si11 = null;
+      this.range_si12 = null;
+      this.range_si13 = null;
+      this.range_si14 = null;
+      this.range_si15 = null;
+    }
+    else {
+      if (initObj.hasOwnProperty('range_si0')) {
+        this.range_si0 = initObj.range_si0
+      }
+      else {
+        this.range_si0 = 0;
+      }
+      if (initObj.hasOwnProperty('range_si1')) {
+        this.range_si1 = initObj.range_si1
+      }
+      else {
+        this.range_si1 = 0;
+      }
+      if (initObj.hasOwnProperty('range_si2')) {
+        this.range_si2 = initObj.range_si2
+      }
+      else {
+        this.range_si2 = 0;
+      }
+      if (initObj.hasOwnProperty('range_si3')) {
+        this.range_si3 = initObj.range_si3
+      }
+      else {
+        this.range_si3 = 0;
+      }
+      if (initObj.hasOwnProperty('range_si4')) {
+        this.range_si4 = initObj.range_si4
+      }
+      else {
+        this.range_si4 = 0;
+      }
+      if (initObj.hasOwnProperty('range_si5')) {
+        this.range_si5 = initObj.range_si5
+      }
+      else {
+        this.range_si5 = 0;
+      }
+      if (initObj.hasOwnProperty('range_si6')) {
+        this.range_si6 = initObj.range_si6
+      }
+      else {
+        this.range_si6 = 0;
+      }
+      if (initObj.hasOwnProperty('range_si7')) {
+        this.range_si7 = initObj.range_si7
+      }
+      else {
+        this.range_si7 = 0;
+      }
+      if (initObj.hasOwnProperty('range_si8')) {
+        this.range_si8 = initObj.range_si8
+      }
+      else {
+        this.range_si8 = 0;
+      }
+      if (initObj.hasOwnProperty('range_si9')) {
+        this.range_si9 = initObj.range_si9
+      }
+      else {
+        this.range_si9 = 0;
+      }
+      if (initObj.hasOwnProperty('range_si10')) {
+        this.range_si10 = initObj.range_si10
+      }
+      else {
+        this.range_si10 = 0;
+      }
+      if (initObj.hasOwnProperty('range_si11')) {
+        this.range_si11 = initObj.range_si11
+      }
+      else {
+        this.range_si11 = 0;
+      }
+      if (initObj.hasOwnProperty('range_si12')) {
+        this.range_si12 = initObj.range_si12
+      }
+      else {
+        this.range_si12 = 0;
+      }
+      if (initObj.hasOwnProperty('range_si13')) {
+        this.range_si13 = initObj.range_si13
+      }
+      else {
+        this.range_si13 = 0;
+      }
+      if (initObj.hasOwnProperty('range_si14')) {
+        this.range_si14 = initObj.range_si14
+      }
+      else {
+        this.range_si14 = 0;
+      }
+      if (initObj.hasOwnProperty('range_si15')) {
+        this.range_si15 = initObj.range_si15
+      }
+      else {
+        this.range_si15 = 0;
+      }
+    }
   }
 
-  static serialize(obj, bufferInfo) {
+  static serialize(obj, buffer, bufferOffset) {
     // Serializes a message object of type ir_ranges
     // Serialize message field [range_si0]
-    bufferInfo = _serializer.int16(obj.range_si0, bufferInfo);
+    bufferOffset = _serializer.int16(obj.range_si0, buffer, bufferOffset);
     // Serialize message field [range_si1]
-    bufferInfo = _serializer.int16(obj.range_si1, bufferInfo);
+    bufferOffset = _serializer.int16(obj.range_si1, buffer, bufferOffset);
     // Serialize message field [range_si2]
-    bufferInfo = _serializer.int16(obj.range_si2, bufferInfo);
+    bufferOffset = _serializer.int16(obj.range_si2, buffer, bufferOffset);
     // Serialize message field [range_si3]
-    bufferInfo = _serializer.int16(obj.range_si3, bufferInfo);
+    bufferOffset = _serializer.int16(obj.range_si3, buffer, bufferOffset);
     // Serialize message field [range_si4]
-    bufferInfo = _serializer.int16(obj.range_si4, bufferInfo);
+    bufferOffset = _serializer.int16(obj.range_si4, buffer, bufferOffset);
     // Serialize message field [range_si5]
-    bufferInfo = _serializer.int16(obj.range_si5, bufferInfo);
+    bufferOffset = _serializer.int16(obj.range_si5, buffer, bufferOffset);
     // Serialize message field [range_si6]
-    bufferInfo = _serializer.int16(obj.range_si6, bufferInfo);
+    bufferOffset = _serializer.int16(obj.range_si6, buffer, bufferOffset);
     // Serialize message field [range_si7]
-    bufferInfo = _serializer.int16(obj.range_si7, bufferInfo);
+    bufferOffset = _serializer.int16(obj.range_si7, buffer, bufferOffset);
     // Serialize message field [range_si8]
-    bufferInfo = _serializer.int16(obj.range_si8, bufferInfo);
+    bufferOffset = _serializer.int16(obj.range_si8, buffer, bufferOffset);
     // Serialize message field [range_si9]
-    bufferInfo = _serializer.int16(obj.range_si9, bufferInfo);
+    bufferOffset = _serializer.int16(obj.range_si9, buffer, bufferOffset);
     // Serialize message field [range_si10]
-    bufferInfo = _serializer.int16(obj.range_si10, bufferInfo);
+    bufferOffset = _serializer.int16(obj.range_si10, buffer, bufferOffset);
     // Serialize message field [range_si11]
-    bufferInfo = _serializer.int16(obj.range_si11, bufferInfo);
+    bufferOffset = _serializer.int16(obj.range_si11, buffer, bufferOffset);
     // Serialize message field [range_si12]
-    bufferInfo = _serializer.int16(obj.range_si12, bufferInfo);
+    bufferOffset = _serializer.int16(obj.range_si12, buffer, bufferOffset);
     // Serialize message field [range_si13]
-    bufferInfo = _serializer.int16(obj.range_si13, bufferInfo);
+    bufferOffset = _serializer.int16(obj.range_si13, buffer, bufferOffset);
     // Serialize message field [range_si14]
-    bufferInfo = _serializer.int16(obj.range_si14, bufferInfo);
+    bufferOffset = _serializer.int16(obj.range_si14, buffer, bufferOffset);
     // Serialize message field [range_si15]
-    bufferInfo = _serializer.int16(obj.range_si15, bufferInfo);
-    return bufferInfo;
+    bufferOffset = _serializer.int16(obj.range_si15, buffer, bufferOffset);
+    return bufferOffset;
   }
 
-  static deserialize(buffer) {
+  static deserialize(buffer, bufferOffset=[0]) {
     //deserializes a message object of type ir_ranges
-    let tmp;
     let len;
-    let data = new ir_ranges();
+    let data = new ir_ranges(null);
     // Deserialize message field [range_si0]
-    tmp = _deserializer.int16(buffer);
-    data.range_si0 = tmp.data;
-    buffer = tmp.buffer;
+    data.range_si0 = _deserializer.int16(buffer, bufferOffset);
     // Deserialize message field [range_si1]
-    tmp = _deserializer.int16(buffer);
-    data.range_si1 = tmp.data;
-    buffer = tmp.buffer;
+    data.range_si1 = _deserializer.int16(buffer, bufferOffset);
     // Deserialize message field [range_si2]
-    tmp = _deserializer.int16(buffer);
-    data.range_si2 = tmp.data;
-    buffer = tmp.buffer;
+    data.range_si2 = _deserializer.int16(buffer, bufferOffset);
     // Deserialize message field [range_si3]
-    tmp = _deserializer.int16(buffer);
-    data.range_si3 = tmp.data;
-    buffer = tmp.buffer;
+    data.range_si3 = _deserializer.int16(buffer, bufferOffset);
     // Deserialize message field [range_si4]
-    tmp = _deserializer.int16(buffer);
-    data.range_si4 = tmp.data;
-    buffer = tmp.buffer;
+    data.range_si4 = _deserializer.int16(buffer, bufferOffset);
     // Deserialize message field [range_si5]
-    tmp = _deserializer.int16(buffer);
-    data.range_si5 = tmp.data;
-    buffer = tmp.buffer;
+    data.range_si5 = _deserializer.int16(buffer, bufferOffset);
     // Deserialize message field [range_si6]
-    tmp = _deserializer.int16(buffer);
-    data.range_si6 = tmp.data;
-    buffer = tmp.buffer;
+    data.range_si6 = _deserializer.int16(buffer, bufferOffset);
     // Deserialize message field [range_si7]
-    tmp = _deserializer.int16(buffer);
-    data.range_si7 = tmp.data;
-    buffer = tmp.buffer;
+    data.range_si7 = _deserializer.int16(buffer, bufferOffset);
     // Deserialize message field [range_si8]
-    tmp = _deserializer.int16(buffer);
-    data.range_si8 = tmp.data;
-    buffer = tmp.buffer;
+    data.range_si8 = _deserializer.int16(buffer, bufferOffset);
     // Deserialize message field [range_si9]
-    tmp = _deserializer.int16(buffer);
-    data.range_si9 = tmp.data;
-    buffer = tmp.buffer;
+    data.range_si9 = _deserializer.int16(buffer, bufferOffset);
     // Deserialize message field [range_si10]
-    tmp = _deserializer.int16(buffer);
-    data.range_si10 = tmp.data;
-    buffer = tmp.buffer;
+    data.range_si10 = _deserializer.int16(buffer, bufferOffset);
     // Deserialize message field [range_si11]
-    tmp = _deserializer.int16(buffer);
-    data.range_si11 = tmp.data;
-    buffer = tmp.buffer;
+    data.range_si11 = _deserializer.int16(buffer, bufferOffset);
     // Deserialize message field [range_si12]
-    tmp = _deserializer.int16(buffer);
-    data.range_si12 = tmp.data;
-    buffer = tmp.buffer;
+    data.range_si12 = _deserializer.int16(buffer, bufferOffset);
     // Deserialize message field [range_si13]
-    tmp = _deserializer.int16(buffer);
-    data.range_si13 = tmp.data;
-    buffer = tmp.buffer;
+    data.range_si13 = _deserializer.int16(buffer, bufferOffset);
     // Deserialize message field [range_si14]
-    tmp = _deserializer.int16(buffer);
-    data.range_si14 = tmp.data;
-    buffer = tmp.buffer;
+    data.range_si14 = _deserializer.int16(buffer, bufferOffset);
     // Deserialize message field [range_si15]
-    tmp = _deserializer.int16(buffer);
-    data.range_si15 = tmp.data;
-    buffer = tmp.buffer;
-    return {
-      data: data,
-      buffer: buffer
-    }
+    data.range_si15 = _deserializer.int16(buffer, bufferOffset);
+    return data;
+  }
+
+  static getMessageSize(object) {
+    return 32;
   }
 
   static datatype() {
@@ -178,6 +250,126 @@ class ir_ranges {
     `;
   }
 
+  static Resolve(msg) {
+    // deep-construct a valid message object instance of whatever was passed in
+    if (typeof msg !== 'object' || msg === null) {
+      msg = {};
+    }
+    const resolved = new ir_ranges(null);
+    if (msg.range_si0 !== undefined) {
+      resolved.range_si0 = msg.range_si0;
+    }
+    else {
+      resolved.range_si0 = 0
+    }
+
+    if (msg.range_si1 !== undefined) {
+      resolved.range_si1 = msg.range_si1;
+    }
+    else {
+      resolved.range_si1 = 0
+    }
+
+    if (msg.range_si2 !== undefined) {
+      resolved.range_si2 = msg.range_si2;
+    }
+    else {
+      resolved.range_si2 = 0
+    }
+
+    if (msg.range_si3 !== undefined) {
+      resolved.range_si3 = msg.range_si3;
+    }
+    else {
+      resolved.range_si3 = 0
+    }
+
+    if (msg.range_si4 !== undefined) {
+      resolved.range_si4 = msg.range_si4;
+    }
+    else {
+      resolved.range_si4 = 0
+    }
+
+    if (msg.range_si5 !== undefined) {
+      resolved.range_si5 = msg.range_si5;
+    }
+    else {
+      resolved.range_si5 = 0
+    }
+
+    if (msg.range_si6 !== undefined) {
+      resolved.range_si6 = msg.range_si6;
+    }
+    else {
+      resolved.range_si6 = 0
+    }
+
+    if (msg.range_si7 !== undefined) {
+      resolved.range_si7 = msg.range_si7;
+    }
+    else {
+      resolved.range_si7 = 0
+    }
+
+    if (msg.range_si8 !== undefined) {
+      resolved.range_si8 = msg.range_si8;
+    }
+    else {
+      resolved.range_si8 = 0
+    }
+
+    if (msg.range_si9 !== undefined) {
+      resolved.range_si9 = msg.range_si9;
+    }
+    else {
+      resolved.range_si9 = 0
+    }
+
+    if (msg.range_si10 !== undefined) {
+      resolved.range_si10 = msg.range_si10;
+    }
+    else {
+      resolved.range_si10 = 0
+    }
+
+    if (msg.range_si11 !== undefined) {
+      resolved.range_si11 = msg.range_si11;
+    }
+    else {
+      resolved.range_si11 = 0
+    }
+
+    if (msg.range_si12 !== undefined) {
+      resolved.range_si12 = msg.range_si12;
+    }
+    else {
+      resolved.range_si12 = 0
+    }
+
+    if (msg.range_si13 !== undefined) {
+      resolved.range_si13 = msg.range_si13;
+    }
+    else {
+      resolved.range_si13 = 0
+    }
+
+    if (msg.range_si14 !== undefined) {
+      resolved.range_si14 = msg.range_si14;
+    }
+    else {
+      resolved.range_si14 = 0
+    }
+
+    if (msg.range_si15 !== undefined) {
+      resolved.range_si15 = msg.range_si15;
+    }
+    else {
+      resolved.range_si15 = 0
+    }
+
+    return resolved;
+    }
 };
 
 module.exports = ir_ranges;

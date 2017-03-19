@@ -1,4 +1,4 @@
-# move_vector
+# move_vector.msg
 # move_speed = movement-vector forwards and backwards:
 #     0 = none ; neg. = backwards ; pos. = forwards
 # move_side = movement-vector left and right:

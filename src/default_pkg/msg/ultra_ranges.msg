@@ -1,4 +1,4 @@
-# ultra_ranges
+# ultra_ranges.msg
 # Ranges in cm of the 10 ultrasonic distance sensors
 int16 range_su0
 int16 range_su1
