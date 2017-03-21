@@ -46,51 +46,55 @@ import time
 
 class arduino:
 
-            def checkUSB1(self,name):
-                try:
-                    self.name=name  
-                    ser=serial.Serial(self.name,9600,timeout=2)
-                    ser.write("t")
-                    time.sleep(1);
-                    ident = ser.readline()       
-                    return ident
-                except:
-                    return 0
-
-            def checkUSB2(self,name):
-                try:
-                    self.name=name
-                    ser=serial.Serial(self.name,9600,timeout=2)
-                    ser.write("t")
-                    time.sleep(1);
-                    ident = ser.readline()
-                    return ident
-                except:
-                    return 0
-
-            def checkUSB3(self,name):
-                try:
-                    self.name=name
-                    ser=serial.Serial(self.name,9600,timeout=2)
-                    ser.write("t")
-                    time.sleep(1);
-                    ident = ser.readline()
-                    return ident
-                except:
-                    return 0
-
-            def checkUSB4(self,name):
-                try:
-                    self.name=name
-                    ser=serial.Serial(self.name,9600,timeout=2)
-                    ser.write("t")
-                    time.sleep(1);
-                    ident = ser.readline()
-                    return ident
-                except:
-                    return 0 
-
+    def checkUSB1(self,name):
+        try:
+            self.name=name  
+            ser=serial.Serial('/dev/ttyACM0',9600,timeout=2)
+            ser.write("t")
             
+            time.sleep(3);
+            ident = ser.readline()
+            rospy.loginfo("%s acm0 %sT", ident, ident) 
+            
+            return ident
+        except:
+            return 0
+
+    def checkUSB2(self,name):
+        try:
+            self.name=name
+            ser=serial.Serial('/dev/ttyACM1',9600,timeout=2)
+            ser.write("t")
+            time.sleep(3);
+
+            ident = ser.readline()
+            rospy.loginfo("%s acm1 %sT", ident, ident) 
+            return ident
+        except:
+            return 0
+
+    def checkUSB3(self,name):
+        try:
+            self.name=name
+            ser=serial.Serial(self.name,9600,timeout=2)
+            ser.write("t")
+            time.sleep(3);
+            ident = ser.readline()
+            return ident
+        except:
+            return 0
+
+    def checkUSB4(self,name):
+        try:
+            self.name=name
+            ser=serial.Serial(self.name,9600,timeout=2)
+            ser.write("t")
+            time.sleep(1);
+            ident = ser.readline()
+            return ident
+        except:
+            return 0 
+
 check=arduino()
 time.sleep(2);
 
@@ -98,32 +102,37 @@ time.sleep(2);
 
 
 def talker():
-	pub = rospy.Publisher('usb_detect_output', usb_ident)
-	rospy.init_node('usb_detect_node', anonymous=True)
-	r = rospy.Rate(1) # 10hz
-	msg = usb_ident()
-	
-	msg.usb_ident0=check.checkUSB1("/dev/ttyACM0")
+    pub = rospy.Publisher('usb_detect_output', usb_ident, queue_size=10 )
+    rospy.init_node('usb_detect_node', anonymous=True)
+    r = rospy.Rate(1) # 10hz
+    msg = usb_ident()
 
-	if msg.usb_ident0 == 0:
-		msg.usb_loc0="None"			
-	else:
-		msg.usb_loc0="ttyACM0"
+    msg.usb_ident0=check.checkUSB1("/dev/ttyACM0")
+    test = msg.usb_ident0
 
-	msg.usb_ident1=check.checkUSB2("/dev/ttyACM1")
+    if msg.usb_ident0 == 0:
+        msg.usb_loc0="None = 0"
 
-	if msg.usb_ident1 == 0:
-		msg.usb_loc1="None"			
-	else:
-		msg.usb_loc1="ttyACM1"
-		
-	while not rospy.is_shutdown():
-		#hello_str = "hello world %s" % rospy.get_time()
-		rospy.loginfo(msg)
-		pub.publish(msg)
-		r.sleep()
+    else:
+        msg.usb_loc0 = "ACM0"
+        msg.usb_ident0 = test
+
+    msg.usb_ident1=check.checkUSB2("/dev/ttyACM1")
+    test = msg.usb_ident1
+
+    if msg.usb_ident1 == 0:
+        msg.usb_loc1="None"			
+    else:
+        msg.usb_loc1=msg.usb_ident0
+        msg.usb_ident1 = test
+
+    while not rospy.is_shutdown():
+    #hello_str = "hello world %s" % rospy.get_time()
+        rospy.loginfo(msg)
+        pub.publish(msg)
+        time.sleep(5)
 
 if __name__ == '__main__':
-	try:
-		talker()
-	except rospy.ROSInterruptException: pass
+    try: talker()
+        #time.sleep(5) 
+    except rospy.ROSInterruptException: pass

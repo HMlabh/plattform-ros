@@ -1,8 +1,8 @@
 # usb_ident.msg
 # information of all via USB attached Devices
-int8 usb_ident0
+string usb_ident0
 string usb_loc0
-int8 usb_ident1
+string usb_ident1
 string usb_loc1
 int8 usb_ident2
 string usb_loc2
