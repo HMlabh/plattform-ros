@@ -63,17 +63,17 @@ void chatterCallback(const std_msgs::String::ConstPtr& msg)
 void lcdCallback(const default_pkg::DummyTalk& msg)
 {
 	/*
-	ROS_INFO("lcd: %s", msg.lcdA.c_str());
-	ROS_INFO("lcd: %s", msg.lcdB.c_str());
-	ROS_INFO("lcd: %s", msg.lcdC.c_str());
-	ROS_INFO("lcd: %s", msg.lcdD.c_str());
-	ROS_INFO("-> counter =  %d", msg.counter); // from DummyTalker
-	mySerial << "a" << msg.lcdA << "\n";
-	mySerial << "b" << msg.lcdB << "\n";
-	mySerial << "c" << msg.lcdC << "\n";
-	mySerial << "d" << msg.lcdD << "\n";
-	mySerial << "e" << msg.counter << "\n";
-	*/
+	   ROS_INFO("lcd: %s", msg.lcdA.c_str());
+	   ROS_INFO("lcd: %s", msg.lcdB.c_str());
+	   ROS_INFO("lcd: %s", msg.lcdC.c_str());
+	   ROS_INFO("lcd: %s", msg.lcdD.c_str());
+	   ROS_INFO("-> counter =  %d", msg.counter); // from DummyTalker
+	   mySerial << "a" << msg.lcdA << "\n";
+	   mySerial << "b" << msg.lcdB << "\n";
+	   mySerial << "c" << msg.lcdC << "\n";
+	   mySerial << "d" << msg.lcdD << "\n";
+	   mySerial << "e" << msg.counter << "\n";
+	   */
 	ROS_INFO("-> t");
 	mySerial << "t" << msg.lcdA << "\n";
 	int foo;

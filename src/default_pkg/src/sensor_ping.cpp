@@ -21,7 +21,7 @@ char got_ident;
 char call = 'c';
 char ask = 'a';
 char askram[20];
-uint16_t askdelay = 12000;
+uint16_t askdelay = 20000;
 
 //main loop
 int main(int argc, char **argv)
@@ -32,7 +32,7 @@ int main(int argc, char **argv)
 
 	//creating Publisher sensor_ping_out
 	ros::Publisher sensor_ping_pub = n.advertise<default_pkg::ultra_ranges>("sensor_ping_out", 10);
-	ros::Rate loop_rate(1);
+	ros::Rate loop_rate(4);
 	int count = 0;
 
 	//open serial connection 
@@ -54,7 +54,7 @@ int main(int argc, char **argv)
 	//runtime loop
 	while (ros::ok())
 	{
-		
+
 		//start new measurement
 		Arduino_Serial << call;
 		ROS_INFO("call sended");
@@ -91,7 +91,7 @@ int main(int argc, char **argv)
 
 		//ros : end of loop
 		ros::spinOnce();
-		//loop_rate.sleep();
+		loop_rate.sleep();
 		++count;
 	}
 

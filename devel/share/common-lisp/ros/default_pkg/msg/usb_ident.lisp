@@ -437,10 +437,10 @@
   "7d1facd4c7ec19aa6f45e3253a7c9524")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<usb_ident>)))
   "Returns full string definition for message of type '<usb_ident>"
-  (cl:format cl:nil "# usb_ident.msg~%# information of all via USB attached Devices~%int8 usb_ident0~%string usb_loc0~%int8 usb_ident1~%string usb_loc1~%int8 usb_ident2~%string usb_loc2~%int8 usb_ident3~%string usb_loc3~%int8 usb_ident4~%string usb_loc4~%int8 usb_ident5~%string usb_loc5~%int8 usb_ident6~%string usb_loc6~%int8 usb_ident7~%string usb_loc7~%int8 usb_ident8~%string usb_loc8~%int8 usb_ident9~%string usb_loc9~%~%"))
+  (cl:format cl:nil "# usb_ident.msg~%# information of all via USB attached Devices~%int8 usb_ident0~%string usb_loc0~%int8 usb_ident1~%string usb_loc1~%int8 usb_ident2~%string usb_loc2~%int8 usb_ident3~%string usb_loc3~%int8 usb_ident4~%string usb_loc4~%int8 usb_ident5~%string usb_loc5~%int8 usb_ident6~%string usb_loc6~%int8 usb_ident7~%string usb_loc7~%int8 usb_ident8~%string usb_loc8~%int8 usb_ident9~%string usb_loc9~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'usb_ident)))
   "Returns full string definition for message of type 'usb_ident"
-  (cl:format cl:nil "# usb_ident.msg~%# information of all via USB attached Devices~%int8 usb_ident0~%string usb_loc0~%int8 usb_ident1~%string usb_loc1~%int8 usb_ident2~%string usb_loc2~%int8 usb_ident3~%string usb_loc3~%int8 usb_ident4~%string usb_loc4~%int8 usb_ident5~%string usb_loc5~%int8 usb_ident6~%string usb_loc6~%int8 usb_ident7~%string usb_loc7~%int8 usb_ident8~%string usb_loc8~%int8 usb_ident9~%string usb_loc9~%~%"))
+  (cl:format cl:nil "# usb_ident.msg~%# information of all via USB attached Devices~%int8 usb_ident0~%string usb_loc0~%int8 usb_ident1~%string usb_loc1~%int8 usb_ident2~%string usb_loc2~%int8 usb_ident3~%string usb_loc3~%int8 usb_ident4~%string usb_loc4~%int8 usb_ident5~%string usb_loc5~%int8 usb_ident6~%string usb_loc6~%int8 usb_ident7~%string usb_loc7~%int8 usb_ident8~%string usb_loc8~%int8 usb_ident9~%string usb_loc9~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <usb_ident>))
   (cl:+ 0
      1

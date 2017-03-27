@@ -31,7 +31,8 @@ string usb_loc7
 int8 usb_ident8
 string usb_loc8
 int8 usb_ident9
-string usb_loc9"""
+string usb_loc9
+"""
   __slots__ = ['usb_ident0','usb_loc0','usb_ident1','usb_loc1','usb_ident2','usb_loc2','usb_ident3','usb_loc3','usb_ident4','usb_loc4','usb_ident5','usb_loc5','usb_ident6','usb_loc6','usb_ident7','usb_loc7','usb_ident8','usb_loc8','usb_ident9','usb_loc9']
   _slot_types = ['int8','string','int8','string','int8','string','int8','string','int8','string','int8','string','int8','string','int8','string','int8','string','int8','string']
 

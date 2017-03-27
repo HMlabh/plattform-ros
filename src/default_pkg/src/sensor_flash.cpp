@@ -32,7 +32,7 @@ int main(int argc, char **argv)
 
 	//creating Publisher sensor_flash_out
 	ros::Publisher sensor_flash_pub = n.advertise<default_pkg::ir_ranges>("sensor_flash_out", 100);
-	ros::Rate loop_rate(40);
+	ros::Rate loop_rate(36);
 	int count = 0;
 
 	//open serial connection 

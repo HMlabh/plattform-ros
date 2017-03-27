@@ -51,11 +51,10 @@ class arduino:
             self.name=name  
             ser=serial.Serial('/dev/ttyACM0',9600,timeout=2)
             ser.write("t")
-            
+
             time.sleep(3);
             ident = ser.readline()
-            rospy.loginfo("%s acm0 %sT", ident, ident) 
-            
+
             return ident
         except:
             return 0
@@ -104,35 +103,52 @@ time.sleep(2);
 def talker():
     pub = rospy.Publisher('usb_detect_output', usb_ident, queue_size=10 )
     rospy.init_node('usb_detect_node', anonymous=True)
-    r = rospy.Rate(1) # 10hz
+    r = rospy.Rate(1) # 1Hz
+
     msg = usb_ident()
 
+
     msg.usb_ident0=check.checkUSB1("/dev/ttyACM0")
-    test = msg.usb_ident0
+    #identX = msg.usb_ident0
 
     if msg.usb_ident0 == 0:
-        msg.usb_loc0="None = 0"
+        msg.usb_loc0="None"
 
     else:
-        msg.usb_loc0 = "ACM0"
-        msg.usb_ident0 = test
+        msg.usb_loc0 = "/dev/ttyACM0"
+        rospy.loginfo("msg.usb_loc0 = \"%s\" w/ msg.usb_ident0 = %s", msg.usb_loc0, msg.usb_ident0)
+
+#        rospy.loginfo(msg.usb_loc0)
+#        rospy.loginfo(msg.usb_ident0) 
+#        rospy.loginfo("%s acm0 %sT", ident, ident) 
 
     msg.usb_ident1=check.checkUSB2("/dev/ttyACM1")
-    test = msg.usb_ident1
 
     if msg.usb_ident1 == 0:
         msg.usb_loc1="None"			
     else:
-        msg.usb_loc1=msg.usb_ident0
-        msg.usb_ident1 = test
+        msg.usb_loc1 = "/dev/ttyACM1"
+        rospy.loginfo("msg.usb_loc1 = %s - ident1= %s", msg.usb_loc1, msg.usb_ident1)
+
+
+    msg.usb_ident2 = check.checkUSB2("/dev/ttyACM2")
+    if msg.usb_ident2 == 0:
+        msg.usb_loc2="None"			
+    else:
+        msg.usb_loc2 = "/dev/ttyACM2"
+        rospy.loginfo("msg.usb_loc2 = %s - ident2= %s", msg.usb_loc2, msg.usb_ident2)
+
+
+
 
     while not rospy.is_shutdown():
-    #hello_str = "hello world %s" % rospy.get_time()
-        rospy.loginfo(msg)
-        pub.publish(msg)
+        #hello_str = "hello world %s" % rospy.get_time()
+        #rospy.loginfo(msg)
+        #pub.publish(msg)
         time.sleep(5)
 
 if __name__ == '__main__':
-    try: talker()
-        #time.sleep(5) 
+    try:
+        talker()
+        time.sleep(5) 
     except rospy.ROSInterruptException: pass

@@ -46,17 +46,17 @@ import time
 
 class sensor:
 
-			def sensor_read(self,name):
-				try:
-					self.name=name  
-					ser=serial.Serial(self.name,9600,timeout=2)
-					ser.write("t")
-					time.sleep(1);
-					ident = ser.readline()   
-					return ident
-				except:
-					return None
-           
+    def sensor_read(self,name):
+        try:
+            self.name=name  
+            ser=serial.Serial(self.name,9600,timeout=2)
+            ser.write("t")
+            time.sleep(1);
+            ident = ser.readline()   
+            return ident
+        except:
+            return None
+
 check=sensor()
 
 
@@ -66,29 +66,29 @@ check=sensor()
 
 
 def talker():
-	pub = rospy.Publisher('sensor_presure_output', lift_endstops)
-	rospy.init_node('sensor_presure_node', anonymous=True)
-	r = rospy.Rate(1) # 10hz
-	msg = lift_endstops()
-	
-	x=check.sensor_read("/dev/ttyACM0")
-	
-	msg.lift_end0 = x.split(';')[0]
-	msg.lift_end1= x.split(';')[1]
-	msg.lift_end2= x.split(';')[2]
-	msg.lift_end3= x.split(';')[3]
-	msg.lift_end4= x.split(';')[4]
-	msg.lift_end5= x.split(';')[5]
-	msg.lift_end6= x.split(';')[6]
-	msg.lift_end7= x.split(';')[7]
-		
-	while not rospy.is_shutdown():
-		#hello_str = "hello world %s" % rospy.get_time()
-		rospy.loginfo(msg)
-		pub.publish(msg)
-		r.sleep()
+    pub = rospy.Publisher('sensor_presure_output', lift_endstops)
+        rospy.init_node('sensor_presure_node', anonymous=True)
+        r = rospy.Rate(1) # 10hz
+        msg = lift_endstops()
+
+        x=check.sensor_read("/dev/ttyACM0")
+
+        msg.lift_end0 = x.split(';')[0]
+        msg.lift_end1= x.split(';')[1]
+        msg.lift_end2= x.split(';')[2]
+        msg.lift_end3= x.split(';')[3]
+        msg.lift_end4= x.split(';')[4]
+        msg.lift_end5= x.split(';')[5]
+        msg.lift_end6= x.split(';')[6]
+        msg.lift_end7= x.split(';')[7]
+
+        while not rospy.is_shutdown():
+            #hello_str = "hello world %s" % rospy.get_time()
+            rospy.loginfo(msg)
+            pub.publish(msg)
+            r.sleep()
 
 if __name__ == '__main__':
-	try:
-		talker()
-	except rospy.ROSInterruptException: pass
+    try:
+        talker()
+    except rospy.ROSInterruptException: pass

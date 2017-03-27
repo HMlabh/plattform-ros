@@ -206,6 +206,7 @@ class usb_ident {
     string usb_loc8
     int8 usb_ident9
     string usb_loc9
+    
     `;
   }
 
