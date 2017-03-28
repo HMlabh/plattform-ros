@@ -101,54 +101,130 @@ time.sleep(2);
 
 
 def talker():
-    pub = rospy.Publisher('usb_detect_output', usb_ident, queue_size=10 )
+    # ros inti
+    pub = rospy.Publisher('usb_detect_output', usb_ident, queue_size = 10)
     rospy.init_node('usb_detect_node', anonymous=True)
     r = rospy.Rate(1) # 1Hz
 
+    # msg init
     msg = usb_ident()
 
+    # call
+    rospy.loginfo("Call USB:")
 
-    msg.usb_ident0=check.checkUSB1("/dev/ttyACM0")
+    port = "/dev/ttyACM0"
+    call = callUSB(port)
+    msg.usb_ident0 = int(call)
+    if msg.usb_ident0 != 0:
+        msg.usb_loc0 = port
+
+    port = "/dev/ttyACM1"
+    call = callUSB(port)
+    msg.usb_ident1 = int(call)
+    if msg.usb_ident1 != 0:
+        msg.usb_loc1 = port
+
+    port = "/dev/ttyACM2"
+    call = callUSB(port)
+    msg.usb_ident2 = int(call)
+    if msg.usb_ident2 != 0:
+        msg.usb_loc2 = port
+
+    port = "/dev/ttyACM3"
+    call = callUSB(port)
+    msg.usb_ident3 = int(call)
+    if msg.usb_ident3 != 0:
+        msg.usb_loc3 = port
+
+    port = "/dev/ttyACM4"
+    call = callUSB(port)
+    msg.usb_ident4 = int(call)
+    if msg.usb_ident4 != 0:
+        msg.usb_loc4 = port
+
+    port = "/dev/ttyACM5"
+    call = callUSB(port)
+    msg.usb_ident5 = int(call)
+    if msg.usb_ident5 != 0:
+        msg.usb_loc5 = port
+
+    port = "/dev/ttyACM6"
+    call = callUSB(port)
+    msg.usb_ident6 = int(call)
+    if msg.usb_ident6 != 0:
+        msg.usb_loc6 = port
+
+    port = "/dev/ttyACM7"
+    call = callUSB(port)
+    msg.usb_ident7 = int(call)
+    if msg.usb_ident7 != 0:
+        msg.usb_loc7 = port
+
+    port = "/dev/ttyACM8"
+    call = callUSB(port)
+    msg.usb_ident8 = int(call)
+    if msg.usb_ident8 != 0:
+        msg.usb_loc8 = port
+
+    port = "/dev/ttyACM9"
+    call = callUSB(port)
+    msg.usb_ident9 = int(call)
+    if msg.usb_ident9 != 0:
+        msg.usb_loc9 = port
+
+
+    #msg.usb_ident0 = check.checkUSB1("/dev/ttyACM0")
     #identX = msg.usb_ident0
 
-    if msg.usb_ident0 == 0:
-        msg.usb_loc0="None"
+    #if msg.usb_ident0 == 0:
+    #    msg.usb_loc0="None"
 
-    else:
-        msg.usb_loc0 = "/dev/ttyACM0"
-        rospy.loginfo("msg.usb_loc0 = \"%s\" w/ msg.usb_ident0 = %s", msg.usb_loc0, msg.usb_ident0)
+    #else:
+    #    msg.usb_loc0 = "/dev/ttyACM0"
+    #    rospy.loginfo("msg.usb_loc0 = \"%s\" w/ msg.usb_ident0 = %s", msg.usb_loc0, msg.usb_ident0)
 
 #        rospy.loginfo(msg.usb_loc0)
 #        rospy.loginfo(msg.usb_ident0) 
 #        rospy.loginfo("%s acm0 %sT", ident, ident) 
 
-    msg.usb_ident1=check.checkUSB2("/dev/ttyACM1")
+    #msg.usb_ident1=check.checkUSB2("/dev/ttyACM1")
 
-    if msg.usb_ident1 == 0:
-        msg.usb_loc1="None"			
-    else:
-        msg.usb_loc1 = "/dev/ttyACM1"
-        rospy.loginfo("msg.usb_loc1 = %s - ident1= %s", msg.usb_loc1, msg.usb_ident1)
+    #if msg.usb_ident1 == 0:
+    #    msg.usb_loc1="None"			
+    #else:
+    #    msg.usb_loc1 = "/dev/ttyACM1"
+    #    rospy.loginfo("msg.usb_loc1 = %s - ident1= %s", msg.usb_loc1, msg.usb_ident1)
 
 
-    msg.usb_ident2 = check.checkUSB2("/dev/ttyACM2")
-    if msg.usb_ident2 == 0:
-        msg.usb_loc2="None"			
-    else:
-        msg.usb_loc2 = "/dev/ttyACM2"
-        rospy.loginfo("msg.usb_loc2 = %s - ident2= %s", msg.usb_loc2, msg.usb_ident2)
-
+    #msg.usb_ident2 = check.checkUSB2("/dev/ttyACM2")
+    #if msg.usb_ident2 == 0:
+    #    msg.usb_loc2="None"			
+    #else:
+    #    msg.usb_loc2 = "/dev/ttyACM2"
+    #    rospy.loginfo("msg.usb_loc2 = %s - ident2= %s", msg.usb_loc2, msg.usb_ident2)
 
 
 
     while not rospy.is_shutdown():
-        #hello_str = "hello world %s" % rospy.get_time()
-        #rospy.loginfo(msg)
-        #pub.publish(msg)
-        time.sleep(5)
+        hello_str = "hello world %s" % rospy.get_time()
+        rospy.loginfo("%s\n%s", hello_str, msg)
+        pub.publish(msg)
+        time.sleep(1)
+
+def callUSB(port):
+    try:
+        ser = serial.Serial(port, 9600, timeout = 2)
+        ser.write("t")
+        time.sleep(1);
+        ident = ser.readline()
+        return ident
+
+    except:
+        return 0
+
 
 if __name__ == '__main__':
     try:
         talker()
-        time.sleep(5) 
+        #time.sleep(5) 
     except rospy.ROSInterruptException: pass
