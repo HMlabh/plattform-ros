@@ -5,170 +5,269 @@
 
 "use strict";
 
-let _serializer = require('../base_serialize.js');
-let _deserializer = require('../base_deserialize.js');
-let _finder = require('../find.js');
+const _serializer = _ros_msg_utils.Serialize;
+const _arraySerializer = _serializer.Array;
+const _deserializer = _ros_msg_utils.Deserialize;
+const _arrayDeserializer = _deserializer.Array;
+const _finder = _ros_msg_utils.Find;
+const _getByteLength = _ros_msg_utils.getByteLength;
 
 //-----------------------------------------------------------
 
 class usb_ident {
-  constructor() {
-    this.usb_ident0 = 0;
-    this.usb_loc0 = '';
-    this.usb_ident1 = 0;
-    this.usb_loc1 = '';
-    this.usb_ident2 = 0;
-    this.usb_loc2 = '';
-    this.usb_ident3 = 0;
-    this.usb_loc3 = '';
-    this.usb_ident4 = 0;
-    this.usb_loc4 = '';
-    this.usb_ident5 = 0;
-    this.usb_loc5 = '';
-    this.usb_ident6 = 0;
-    this.usb_loc6 = '';
-    this.usb_ident7 = 0;
-    this.usb_loc7 = '';
-    this.usb_ident8 = 0;
-    this.usb_loc8 = '';
-    this.usb_ident9 = 0;
-    this.usb_loc9 = '';
+  constructor(initObj={}) {
+    if (initObj === null) {
+      // initObj === null is a special case for deserialization where we don't initialize fields
+      this.usb_ident0 = null;
+      this.usb_loc0 = null;
+      this.usb_ident1 = null;
+      this.usb_loc1 = null;
+      this.usb_ident2 = null;
+      this.usb_loc2 = null;
+      this.usb_ident3 = null;
+      this.usb_loc3 = null;
+      this.usb_ident4 = null;
+      this.usb_loc4 = null;
+      this.usb_ident5 = null;
+      this.usb_loc5 = null;
+      this.usb_ident6 = null;
+      this.usb_loc6 = null;
+      this.usb_ident7 = null;
+      this.usb_loc7 = null;
+      this.usb_ident8 = null;
+      this.usb_loc8 = null;
+      this.usb_ident9 = null;
+      this.usb_loc9 = null;
+    }
+    else {
+      if (initObj.hasOwnProperty('usb_ident0')) {
+        this.usb_ident0 = initObj.usb_ident0
+      }
+      else {
+        this.usb_ident0 = 0;
+      }
+      if (initObj.hasOwnProperty('usb_loc0')) {
+        this.usb_loc0 = initObj.usb_loc0
+      }
+      else {
+        this.usb_loc0 = '';
+      }
+      if (initObj.hasOwnProperty('usb_ident1')) {
+        this.usb_ident1 = initObj.usb_ident1
+      }
+      else {
+        this.usb_ident1 = 0;
+      }
+      if (initObj.hasOwnProperty('usb_loc1')) {
+        this.usb_loc1 = initObj.usb_loc1
+      }
+      else {
+        this.usb_loc1 = '';
+      }
+      if (initObj.hasOwnProperty('usb_ident2')) {
+        this.usb_ident2 = initObj.usb_ident2
+      }
+      else {
+        this.usb_ident2 = 0;
+      }
+      if (initObj.hasOwnProperty('usb_loc2')) {
+        this.usb_loc2 = initObj.usb_loc2
+      }
+      else {
+        this.usb_loc2 = '';
+      }
+      if (initObj.hasOwnProperty('usb_ident3')) {
+        this.usb_ident3 = initObj.usb_ident3
+      }
+      else {
+        this.usb_ident3 = 0;
+      }
+      if (initObj.hasOwnProperty('usb_loc3')) {
+        this.usb_loc3 = initObj.usb_loc3
+      }
+      else {
+        this.usb_loc3 = '';
+      }
+      if (initObj.hasOwnProperty('usb_ident4')) {
+        this.usb_ident4 = initObj.usb_ident4
+      }
+      else {
+        this.usb_ident4 = 0;
+      }
+      if (initObj.hasOwnProperty('usb_loc4')) {
+        this.usb_loc4 = initObj.usb_loc4
+      }
+      else {
+        this.usb_loc4 = '';
+      }
+      if (initObj.hasOwnProperty('usb_ident5')) {
+        this.usb_ident5 = initObj.usb_ident5
+      }
+      else {
+        this.usb_ident5 = 0;
+      }
+      if (initObj.hasOwnProperty('usb_loc5')) {
+        this.usb_loc5 = initObj.usb_loc5
+      }
+      else {
+        this.usb_loc5 = '';
+      }
+      if (initObj.hasOwnProperty('usb_ident6')) {
+        this.usb_ident6 = initObj.usb_ident6
+      }
+      else {
+        this.usb_ident6 = 0;
+      }
+      if (initObj.hasOwnProperty('usb_loc6')) {
+        this.usb_loc6 = initObj.usb_loc6
+      }
+      else {
+        this.usb_loc6 = '';
+      }
+      if (initObj.hasOwnProperty('usb_ident7')) {
+        this.usb_ident7 = initObj.usb_ident7
+      }
+      else {
+        this.usb_ident7 = 0;
+      }
+      if (initObj.hasOwnProperty('usb_loc7')) {
+        this.usb_loc7 = initObj.usb_loc7
+      }
+      else {
+        this.usb_loc7 = '';
+      }
+      if (initObj.hasOwnProperty('usb_ident8')) {
+        this.usb_ident8 = initObj.usb_ident8
+      }
+      else {
+        this.usb_ident8 = 0;
+      }
+      if (initObj.hasOwnProperty('usb_loc8')) {
+        this.usb_loc8 = initObj.usb_loc8
+      }
+      else {
+        this.usb_loc8 = '';
+      }
+      if (initObj.hasOwnProperty('usb_ident9')) {
+        this.usb_ident9 = initObj.usb_ident9
+      }
+      else {
+        this.usb_ident9 = 0;
+      }
+      if (initObj.hasOwnProperty('usb_loc9')) {
+        this.usb_loc9 = initObj.usb_loc9
+      }
+      else {
+        this.usb_loc9 = '';
+      }
+    }
   }
 
-  static serialize(obj, bufferInfo) {
+  static serialize(obj, buffer, bufferOffset) {
     // Serializes a message object of type usb_ident
     // Serialize message field [usb_ident0]
-    bufferInfo = _serializer.int8(obj.usb_ident0, bufferInfo);
+    bufferOffset = _serializer.int8(obj.usb_ident0, buffer, bufferOffset);
     // Serialize message field [usb_loc0]
-    bufferInfo = _serializer.string(obj.usb_loc0, bufferInfo);
+    bufferOffset = _serializer.string(obj.usb_loc0, buffer, bufferOffset);
     // Serialize message field [usb_ident1]
-    bufferInfo = _serializer.int8(obj.usb_ident1, bufferInfo);
+    bufferOffset = _serializer.int8(obj.usb_ident1, buffer, bufferOffset);
     // Serialize message field [usb_loc1]
-    bufferInfo = _serializer.string(obj.usb_loc1, bufferInfo);
+    bufferOffset = _serializer.string(obj.usb_loc1, buffer, bufferOffset);
     // Serialize message field [usb_ident2]
-    bufferInfo = _serializer.int8(obj.usb_ident2, bufferInfo);
+    bufferOffset = _serializer.int8(obj.usb_ident2, buffer, bufferOffset);
     // Serialize message field [usb_loc2]
-    bufferInfo = _serializer.string(obj.usb_loc2, bufferInfo);
+    bufferOffset = _serializer.string(obj.usb_loc2, buffer, bufferOffset);
     // Serialize message field [usb_ident3]
-    bufferInfo = _serializer.int8(obj.usb_ident3, bufferInfo);
+    bufferOffset = _serializer.int8(obj.usb_ident3, buffer, bufferOffset);
     // Serialize message field [usb_loc3]
-    bufferInfo = _serializer.string(obj.usb_loc3, bufferInfo);
+    bufferOffset = _serializer.string(obj.usb_loc3, buffer, bufferOffset);
     // Serialize message field [usb_ident4]
-    bufferInfo = _serializer.int8(obj.usb_ident4, bufferInfo);
+    bufferOffset = _serializer.int8(obj.usb_ident4, buffer, bufferOffset);
     // Serialize message field [usb_loc4]
-    bufferInfo = _serializer.string(obj.usb_loc4, bufferInfo);
+    bufferOffset = _serializer.string(obj.usb_loc4, buffer, bufferOffset);
     // Serialize message field [usb_ident5]
-    bufferInfo = _serializer.int8(obj.usb_ident5, bufferInfo);
+    bufferOffset = _serializer.int8(obj.usb_ident5, buffer, bufferOffset);
     // Serialize message field [usb_loc5]
-    bufferInfo = _serializer.string(obj.usb_loc5, bufferInfo);
+    bufferOffset = _serializer.string(obj.usb_loc5, buffer, bufferOffset);
     // Serialize message field [usb_ident6]
-    bufferInfo = _serializer.int8(obj.usb_ident6, bufferInfo);
+    bufferOffset = _serializer.int8(obj.usb_ident6, buffer, bufferOffset);
     // Serialize message field [usb_loc6]
-    bufferInfo = _serializer.string(obj.usb_loc6, bufferInfo);
+    bufferOffset = _serializer.string(obj.usb_loc6, buffer, bufferOffset);
     // Serialize message field [usb_ident7]
-    bufferInfo = _serializer.int8(obj.usb_ident7, bufferInfo);
+    bufferOffset = _serializer.int8(obj.usb_ident7, buffer, bufferOffset);
     // Serialize message field [usb_loc7]
-    bufferInfo = _serializer.string(obj.usb_loc7, bufferInfo);
+    bufferOffset = _serializer.string(obj.usb_loc7, buffer, bufferOffset);
     // Serialize message field [usb_ident8]
-    bufferInfo = _serializer.int8(obj.usb_ident8, bufferInfo);
+    bufferOffset = _serializer.int8(obj.usb_ident8, buffer, bufferOffset);
     // Serialize message field [usb_loc8]
-    bufferInfo = _serializer.string(obj.usb_loc8, bufferInfo);
+    bufferOffset = _serializer.string(obj.usb_loc8, buffer, bufferOffset);
     // Serialize message field [usb_ident9]
-    bufferInfo = _serializer.int8(obj.usb_ident9, bufferInfo);
+    bufferOffset = _serializer.int8(obj.usb_ident9, buffer, bufferOffset);
     // Serialize message field [usb_loc9]
-    bufferInfo = _serializer.string(obj.usb_loc9, bufferInfo);
-    return bufferInfo;
+    bufferOffset = _serializer.string(obj.usb_loc9, buffer, bufferOffset);
+    return bufferOffset;
   }
 
-  static deserialize(buffer) {
+  static deserialize(buffer, bufferOffset=[0]) {
     //deserializes a message object of type usb_ident
-    let tmp;
     let len;
-    let data = new usb_ident();
+    let data = new usb_ident(null);
     // Deserialize message field [usb_ident0]
-    tmp = _deserializer.int8(buffer);
-    data.usb_ident0 = tmp.data;
-    buffer = tmp.buffer;
+    data.usb_ident0 = _deserializer.int8(buffer, bufferOffset);
     // Deserialize message field [usb_loc0]
-    tmp = _deserializer.string(buffer);
-    data.usb_loc0 = tmp.data;
-    buffer = tmp.buffer;
+    data.usb_loc0 = _deserializer.string(buffer, bufferOffset);
     // Deserialize message field [usb_ident1]
-    tmp = _deserializer.int8(buffer);
-    data.usb_ident1 = tmp.data;
-    buffer = tmp.buffer;
+    data.usb_ident1 = _deserializer.int8(buffer, bufferOffset);
     // Deserialize message field [usb_loc1]
-    tmp = _deserializer.string(buffer);
-    data.usb_loc1 = tmp.data;
-    buffer = tmp.buffer;
+    data.usb_loc1 = _deserializer.string(buffer, bufferOffset);
     // Deserialize message field [usb_ident2]
-    tmp = _deserializer.int8(buffer);
-    data.usb_ident2 = tmp.data;
-    buffer = tmp.buffer;
+    data.usb_ident2 = _deserializer.int8(buffer, bufferOffset);
     // Deserialize message field [usb_loc2]
-    tmp = _deserializer.string(buffer);
-    data.usb_loc2 = tmp.data;
-    buffer = tmp.buffer;
+    data.usb_loc2 = _deserializer.string(buffer, bufferOffset);
     // Deserialize message field [usb_ident3]
-    tmp = _deserializer.int8(buffer);
-    data.usb_ident3 = tmp.data;
-    buffer = tmp.buffer;
+    data.usb_ident3 = _deserializer.int8(buffer, bufferOffset);
     // Deserialize message field [usb_loc3]
-    tmp = _deserializer.string(buffer);
-    data.usb_loc3 = tmp.data;
-    buffer = tmp.buffer;
+    data.usb_loc3 = _deserializer.string(buffer, bufferOffset);
     // Deserialize message field [usb_ident4]
-    tmp = _deserializer.int8(buffer);
-    data.usb_ident4 = tmp.data;
-    buffer = tmp.buffer;
+    data.usb_ident4 = _deserializer.int8(buffer, bufferOffset);
     // Deserialize message field [usb_loc4]
-    tmp = _deserializer.string(buffer);
-    data.usb_loc4 = tmp.data;
-    buffer = tmp.buffer;
+    data.usb_loc4 = _deserializer.string(buffer, bufferOffset);
     // Deserialize message field [usb_ident5]
-    tmp = _deserializer.int8(buffer);
-    data.usb_ident5 = tmp.data;
-    buffer = tmp.buffer;
+    data.usb_ident5 = _deserializer.int8(buffer, bufferOffset);
     // Deserialize message field [usb_loc5]
-    tmp = _deserializer.string(buffer);
-    data.usb_loc5 = tmp.data;
-    buffer = tmp.buffer;
+    data.usb_loc5 = _deserializer.string(buffer, bufferOffset);
     // Deserialize message field [usb_ident6]
-    tmp = _deserializer.int8(buffer);
-    data.usb_ident6 = tmp.data;
-    buffer = tmp.buffer;
+    data.usb_ident6 = _deserializer.int8(buffer, bufferOffset);
     // Deserialize message field [usb_loc6]
-    tmp = _deserializer.string(buffer);
-    data.usb_loc6 = tmp.data;
-    buffer = tmp.buffer;
+    data.usb_loc6 = _deserializer.string(buffer, bufferOffset);
     // Deserialize message field [usb_ident7]
-    tmp = _deserializer.int8(buffer);
-    data.usb_ident7 = tmp.data;
-    buffer = tmp.buffer;
+    data.usb_ident7 = _deserializer.int8(buffer, bufferOffset);
     // Deserialize message field [usb_loc7]
-    tmp = _deserializer.string(buffer);
-    data.usb_loc7 = tmp.data;
-    buffer = tmp.buffer;
+    data.usb_loc7 = _deserializer.string(buffer, bufferOffset);
     // Deserialize message field [usb_ident8]
-    tmp = _deserializer.int8(buffer);
-    data.usb_ident8 = tmp.data;
-    buffer = tmp.buffer;
+    data.usb_ident8 = _deserializer.int8(buffer, bufferOffset);
     // Deserialize message field [usb_loc8]
-    tmp = _deserializer.string(buffer);
-    data.usb_loc8 = tmp.data;
-    buffer = tmp.buffer;
+    data.usb_loc8 = _deserializer.string(buffer, bufferOffset);
     // Deserialize message field [usb_ident9]
-    tmp = _deserializer.int8(buffer);
-    data.usb_ident9 = tmp.data;
-    buffer = tmp.buffer;
+    data.usb_ident9 = _deserializer.int8(buffer, bufferOffset);
     // Deserialize message field [usb_loc9]
-    tmp = _deserializer.string(buffer);
-    data.usb_loc9 = tmp.data;
-    buffer = tmp.buffer;
-    return {
-      data: data,
-      buffer: buffer
-    }
+    data.usb_loc9 = _deserializer.string(buffer, bufferOffset);
+    return data;
+  }
+
+  static getMessageSize(object) {
+    let length = 0;
+    length += object.usb_loc0.length;
+    length += object.usb_loc1.length;
+    length += object.usb_loc2.length;
+    length += object.usb_loc3.length;
+    length += object.usb_loc4.length;
+    length += object.usb_loc5.length;
+    length += object.usb_loc6.length;
+    length += object.usb_loc7.length;
+    length += object.usb_loc8.length;
+    length += object.usb_loc9.length;
+    return length + 50;
   }
 
   static datatype() {
@@ -210,6 +309,154 @@ class usb_ident {
     `;
   }
 
+  static Resolve(msg) {
+    // deep-construct a valid message object instance of whatever was passed in
+    if (typeof msg !== 'object' || msg === null) {
+      msg = {};
+    }
+    const resolved = new usb_ident(null);
+    if (msg.usb_ident0 !== undefined) {
+      resolved.usb_ident0 = msg.usb_ident0;
+    }
+    else {
+      resolved.usb_ident0 = 0
+    }
+
+    if (msg.usb_loc0 !== undefined) {
+      resolved.usb_loc0 = msg.usb_loc0;
+    }
+    else {
+      resolved.usb_loc0 = ''
+    }
+
+    if (msg.usb_ident1 !== undefined) {
+      resolved.usb_ident1 = msg.usb_ident1;
+    }
+    else {
+      resolved.usb_ident1 = 0
+    }
+
+    if (msg.usb_loc1 !== undefined) {
+      resolved.usb_loc1 = msg.usb_loc1;
+    }
+    else {
+      resolved.usb_loc1 = ''
+    }
+
+    if (msg.usb_ident2 !== undefined) {
+      resolved.usb_ident2 = msg.usb_ident2;
+    }
+    else {
+      resolved.usb_ident2 = 0
+    }
+
+    if (msg.usb_loc2 !== undefined) {
+      resolved.usb_loc2 = msg.usb_loc2;
+    }
+    else {
+      resolved.usb_loc2 = ''
+    }
+
+    if (msg.usb_ident3 !== undefined) {
+      resolved.usb_ident3 = msg.usb_ident3;
+    }
+    else {
+      resolved.usb_ident3 = 0
+    }
+
+    if (msg.usb_loc3 !== undefined) {
+      resolved.usb_loc3 = msg.usb_loc3;
+    }
+    else {
+      resolved.usb_loc3 = ''
+    }
+
+    if (msg.usb_ident4 !== undefined) {
+      resolved.usb_ident4 = msg.usb_ident4;
+    }
+    else {
+      resolved.usb_ident4 = 0
+    }
+
+    if (msg.usb_loc4 !== undefined) {
+      resolved.usb_loc4 = msg.usb_loc4;
+    }
+    else {
+      resolved.usb_loc4 = ''
+    }
+
+    if (msg.usb_ident5 !== undefined) {
+      resolved.usb_ident5 = msg.usb_ident5;
+    }
+    else {
+      resolved.usb_ident5 = 0
+    }
+
+    if (msg.usb_loc5 !== undefined) {
+      resolved.usb_loc5 = msg.usb_loc5;
+    }
+    else {
+      resolved.usb_loc5 = ''
+    }
+
+    if (msg.usb_ident6 !== undefined) {
+      resolved.usb_ident6 = msg.usb_ident6;
+    }
+    else {
+      resolved.usb_ident6 = 0
+    }
+
+    if (msg.usb_loc6 !== undefined) {
+      resolved.usb_loc6 = msg.usb_loc6;
+    }
+    else {
+      resolved.usb_loc6 = ''
+    }
+
+    if (msg.usb_ident7 !== undefined) {
+      resolved.usb_ident7 = msg.usb_ident7;
+    }
+    else {
+      resolved.usb_ident7 = 0
+    }
+
+    if (msg.usb_loc7 !== undefined) {
+      resolved.usb_loc7 = msg.usb_loc7;
+    }
+    else {
+      resolved.usb_loc7 = ''
+    }
+
+    if (msg.usb_ident8 !== undefined) {
+      resolved.usb_ident8 = msg.usb_ident8;
+    }
+    else {
+      resolved.usb_ident8 = 0
+    }
+
+    if (msg.usb_loc8 !== undefined) {
+      resolved.usb_loc8 = msg.usb_loc8;
+    }
+    else {
+      resolved.usb_loc8 = ''
+    }
+
+    if (msg.usb_ident9 !== undefined) {
+      resolved.usb_ident9 = msg.usb_ident9;
+    }
+    else {
+      resolved.usb_ident9 = 0
+    }
+
+    if (msg.usb_loc9 !== undefined) {
+      resolved.usb_loc9 = msg.usb_loc9;
+    }
+    else {
+      resolved.usb_loc9 = ''
+    }
+
+    return resolved;
+    }
 };
 
 module.exports = usb_ident;

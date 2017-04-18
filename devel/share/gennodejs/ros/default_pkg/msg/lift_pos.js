@@ -5,86 +5,126 @@
 
 "use strict";
 
-let _serializer = require('../base_serialize.js');
-let _deserializer = require('../base_deserialize.js');
-let _finder = require('../find.js');
+const _serializer = _ros_msg_utils.Serialize;
+const _arraySerializer = _serializer.Array;
+const _deserializer = _ros_msg_utils.Deserialize;
+const _arrayDeserializer = _deserializer.Array;
+const _finder = _ros_msg_utils.Find;
+const _getByteLength = _ros_msg_utils.getByteLength;
 
 //-----------------------------------------------------------
 
 class lift_pos {
-  constructor() {
-    this.lift_pos0 = 0;
-    this.lift_pos1 = 0;
-    this.lift_pos2 = 0;
-    this.lift_pos3 = 0;
-    this.lift_pos4 = 0;
-    this.lift_pos5 = 0;
-    this.lift_pos6 = 0;
-    this.lift_pos7 = 0;
+  constructor(initObj={}) {
+    if (initObj === null) {
+      // initObj === null is a special case for deserialization where we don't initialize fields
+      this.lift_pos0 = null;
+      this.lift_pos1 = null;
+      this.lift_pos2 = null;
+      this.lift_pos3 = null;
+      this.lift_pos4 = null;
+      this.lift_pos5 = null;
+      this.lift_pos6 = null;
+      this.lift_pos7 = null;
+    }
+    else {
+      if (initObj.hasOwnProperty('lift_pos0')) {
+        this.lift_pos0 = initObj.lift_pos0
+      }
+      else {
+        this.lift_pos0 = 0;
+      }
+      if (initObj.hasOwnProperty('lift_pos1')) {
+        this.lift_pos1 = initObj.lift_pos1
+      }
+      else {
+        this.lift_pos1 = 0;
+      }
+      if (initObj.hasOwnProperty('lift_pos2')) {
+        this.lift_pos2 = initObj.lift_pos2
+      }
+      else {
+        this.lift_pos2 = 0;
+      }
+      if (initObj.hasOwnProperty('lift_pos3')) {
+        this.lift_pos3 = initObj.lift_pos3
+      }
+      else {
+        this.lift_pos3 = 0;
+      }
+      if (initObj.hasOwnProperty('lift_pos4')) {
+        this.lift_pos4 = initObj.lift_pos4
+      }
+      else {
+        this.lift_pos4 = 0;
+      }
+      if (initObj.hasOwnProperty('lift_pos5')) {
+        this.lift_pos5 = initObj.lift_pos5
+      }
+      else {
+        this.lift_pos5 = 0;
+      }
+      if (initObj.hasOwnProperty('lift_pos6')) {
+        this.lift_pos6 = initObj.lift_pos6
+      }
+      else {
+        this.lift_pos6 = 0;
+      }
+      if (initObj.hasOwnProperty('lift_pos7')) {
+        this.lift_pos7 = initObj.lift_pos7
+      }
+      else {
+        this.lift_pos7 = 0;
+      }
+    }
   }
 
-  static serialize(obj, bufferInfo) {
+  static serialize(obj, buffer, bufferOffset) {
     // Serializes a message object of type lift_pos
     // Serialize message field [lift_pos0]
-    bufferInfo = _serializer.int16(obj.lift_pos0, bufferInfo);
+    bufferOffset = _serializer.int16(obj.lift_pos0, buffer, bufferOffset);
     // Serialize message field [lift_pos1]
-    bufferInfo = _serializer.int16(obj.lift_pos1, bufferInfo);
+    bufferOffset = _serializer.int16(obj.lift_pos1, buffer, bufferOffset);
     // Serialize message field [lift_pos2]
-    bufferInfo = _serializer.int16(obj.lift_pos2, bufferInfo);
+    bufferOffset = _serializer.int16(obj.lift_pos2, buffer, bufferOffset);
     // Serialize message field [lift_pos3]
-    bufferInfo = _serializer.int16(obj.lift_pos3, bufferInfo);
+    bufferOffset = _serializer.int16(obj.lift_pos3, buffer, bufferOffset);
     // Serialize message field [lift_pos4]
-    bufferInfo = _serializer.int16(obj.lift_pos4, bufferInfo);
+    bufferOffset = _serializer.int16(obj.lift_pos4, buffer, bufferOffset);
     // Serialize message field [lift_pos5]
-    bufferInfo = _serializer.int16(obj.lift_pos5, bufferInfo);
+    bufferOffset = _serializer.int16(obj.lift_pos5, buffer, bufferOffset);
     // Serialize message field [lift_pos6]
-    bufferInfo = _serializer.int16(obj.lift_pos6, bufferInfo);
+    bufferOffset = _serializer.int16(obj.lift_pos6, buffer, bufferOffset);
     // Serialize message field [lift_pos7]
-    bufferInfo = _serializer.int16(obj.lift_pos7, bufferInfo);
-    return bufferInfo;
+    bufferOffset = _serializer.int16(obj.lift_pos7, buffer, bufferOffset);
+    return bufferOffset;
   }
 
-  static deserialize(buffer) {
+  static deserialize(buffer, bufferOffset=[0]) {
     //deserializes a message object of type lift_pos
-    let tmp;
     let len;
-    let data = new lift_pos();
+    let data = new lift_pos(null);
     // Deserialize message field [lift_pos0]
-    tmp = _deserializer.int16(buffer);
-    data.lift_pos0 = tmp.data;
-    buffer = tmp.buffer;
+    data.lift_pos0 = _deserializer.int16(buffer, bufferOffset);
     // Deserialize message field [lift_pos1]
-    tmp = _deserializer.int16(buffer);
-    data.lift_pos1 = tmp.data;
-    buffer = tmp.buffer;
+    data.lift_pos1 = _deserializer.int16(buffer, bufferOffset);
     // Deserialize message field [lift_pos2]
-    tmp = _deserializer.int16(buffer);
-    data.lift_pos2 = tmp.data;
-    buffer = tmp.buffer;
+    data.lift_pos2 = _deserializer.int16(buffer, bufferOffset);
     // Deserialize message field [lift_pos3]
-    tmp = _deserializer.int16(buffer);
-    data.lift_pos3 = tmp.data;
-    buffer = tmp.buffer;
+    data.lift_pos3 = _deserializer.int16(buffer, bufferOffset);
     // Deserialize message field [lift_pos4]
-    tmp = _deserializer.int16(buffer);
-    data.lift_pos4 = tmp.data;
-    buffer = tmp.buffer;
+    data.lift_pos4 = _deserializer.int16(buffer, bufferOffset);
     // Deserialize message field [lift_pos5]
-    tmp = _deserializer.int16(buffer);
-    data.lift_pos5 = tmp.data;
-    buffer = tmp.buffer;
+    data.lift_pos5 = _deserializer.int16(buffer, bufferOffset);
     // Deserialize message field [lift_pos6]
-    tmp = _deserializer.int16(buffer);
-    data.lift_pos6 = tmp.data;
-    buffer = tmp.buffer;
+    data.lift_pos6 = _deserializer.int16(buffer, bufferOffset);
     // Deserialize message field [lift_pos7]
-    tmp = _deserializer.int16(buffer);
-    data.lift_pos7 = tmp.data;
-    buffer = tmp.buffer;
-    return {
-      data: data,
-      buffer: buffer
-    }
+    data.lift_pos7 = _deserializer.int16(buffer, bufferOffset);
+    return data;
+  }
+
+  static getMessageSize(object) {
+    return 16;
   }
 
   static datatype() {
@@ -115,6 +155,70 @@ class lift_pos {
     `;
   }
 
+  static Resolve(msg) {
+    // deep-construct a valid message object instance of whatever was passed in
+    if (typeof msg !== 'object' || msg === null) {
+      msg = {};
+    }
+    const resolved = new lift_pos(null);
+    if (msg.lift_pos0 !== undefined) {
+      resolved.lift_pos0 = msg.lift_pos0;
+    }
+    else {
+      resolved.lift_pos0 = 0
+    }
+
+    if (msg.lift_pos1 !== undefined) {
+      resolved.lift_pos1 = msg.lift_pos1;
+    }
+    else {
+      resolved.lift_pos1 = 0
+    }
+
+    if (msg.lift_pos2 !== undefined) {
+      resolved.lift_pos2 = msg.lift_pos2;
+    }
+    else {
+      resolved.lift_pos2 = 0
+    }
+
+    if (msg.lift_pos3 !== undefined) {
+      resolved.lift_pos3 = msg.lift_pos3;
+    }
+    else {
+      resolved.lift_pos3 = 0
+    }
+
+    if (msg.lift_pos4 !== undefined) {
+      resolved.lift_pos4 = msg.lift_pos4;
+    }
+    else {
+      resolved.lift_pos4 = 0
+    }
+
+    if (msg.lift_pos5 !== undefined) {
+      resolved.lift_pos5 = msg.lift_pos5;
+    }
+    else {
+      resolved.lift_pos5 = 0
+    }
+
+    if (msg.lift_pos6 !== undefined) {
+      resolved.lift_pos6 = msg.lift_pos6;
+    }
+    else {
+      resolved.lift_pos6 = 0
+    }
+
+    if (msg.lift_pos7 !== undefined) {
+      resolved.lift_pos7 = msg.lift_pos7;
+    }
+    else {
+      resolved.lift_pos7 = 0
+    }
+
+    return resolved;
+    }
 };
 
 module.exports = lift_pos;

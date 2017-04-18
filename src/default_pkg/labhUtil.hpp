@@ -5,7 +5,7 @@
  *
  *  Date:       2017-04-18
  *  Autor:      krl
- *  Version:    0.22
+ *  Version:    0.22.1
  *
  */
 
@@ -23,10 +23,11 @@ class labhUtil
 		void test(void);
 		void usbIdent(int usbIdent);
 		std::string getUSBloc();
+		int startSerial(void);
 
 	private:
 		int _ident;
-		int _port;
+		std::string _port;
 		int _baud;
 
 };

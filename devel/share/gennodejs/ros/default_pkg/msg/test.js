@@ -5,44 +5,60 @@
 
 "use strict";
 
-let _serializer = require('../base_serialize.js');
-let _deserializer = require('../base_deserialize.js');
-let _finder = require('../find.js');
+const _serializer = _ros_msg_utils.Serialize;
+const _arraySerializer = _serializer.Array;
+const _deserializer = _ros_msg_utils.Deserialize;
+const _arrayDeserializer = _deserializer.Array;
+const _finder = _ros_msg_utils.Find;
+const _getByteLength = _ros_msg_utils.getByteLength;
 
 //-----------------------------------------------------------
 
 class test {
-  constructor() {
-    this.pos1 = 0;
-    this.pos2 = 0;
+  constructor(initObj={}) {
+    if (initObj === null) {
+      // initObj === null is a special case for deserialization where we don't initialize fields
+      this.pos1 = null;
+      this.pos2 = null;
+    }
+    else {
+      if (initObj.hasOwnProperty('pos1')) {
+        this.pos1 = initObj.pos1
+      }
+      else {
+        this.pos1 = 0;
+      }
+      if (initObj.hasOwnProperty('pos2')) {
+        this.pos2 = initObj.pos2
+      }
+      else {
+        this.pos2 = 0;
+      }
+    }
   }
 
-  static serialize(obj, bufferInfo) {
+  static serialize(obj, buffer, bufferOffset) {
     // Serializes a message object of type test
     // Serialize message field [pos1]
-    bufferInfo = _serializer.uint8(obj.pos1, bufferInfo);
+    bufferOffset = _serializer.uint8(obj.pos1, buffer, bufferOffset);
     // Serialize message field [pos2]
-    bufferInfo = _serializer.uint8(obj.pos2, bufferInfo);
-    return bufferInfo;
+    bufferOffset = _serializer.uint8(obj.pos2, buffer, bufferOffset);
+    return bufferOffset;
   }
 
-  static deserialize(buffer) {
+  static deserialize(buffer, bufferOffset=[0]) {
     //deserializes a message object of type test
-    let tmp;
     let len;
-    let data = new test();
+    let data = new test(null);
     // Deserialize message field [pos1]
-    tmp = _deserializer.uint8(buffer);
-    data.pos1 = tmp.data;
-    buffer = tmp.buffer;
+    data.pos1 = _deserializer.uint8(buffer, bufferOffset);
     // Deserialize message field [pos2]
-    tmp = _deserializer.uint8(buffer);
-    data.pos2 = tmp.data;
-    buffer = tmp.buffer;
-    return {
-      data: data,
-      buffer: buffer
-    }
+    data.pos2 = _deserializer.uint8(buffer, bufferOffset);
+    return data;
+  }
+
+  static getMessageSize(object) {
+    return 2;
   }
 
   static datatype() {
@@ -64,6 +80,28 @@ class test {
     `;
   }
 
+  static Resolve(msg) {
+    // deep-construct a valid message object instance of whatever was passed in
+    if (typeof msg !== 'object' || msg === null) {
+      msg = {};
+    }
+    const resolved = new test(null);
+    if (msg.pos1 !== undefined) {
+      resolved.pos1 = msg.pos1;
+    }
+    else {
+      resolved.pos1 = 0
+    }
+
+    if (msg.pos2 !== undefined) {
+      resolved.pos2 = msg.pos2;
+    }
+    else {
+      resolved.pos2 = 0
+    }
+
+    return resolved;
+    }
 };
 
 module.exports = test;

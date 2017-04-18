@@ -5,86 +5,126 @@
 
 "use strict";
 
-let _serializer = require('../base_serialize.js');
-let _deserializer = require('../base_deserialize.js');
-let _finder = require('../find.js');
+const _serializer = _ros_msg_utils.Serialize;
+const _arraySerializer = _serializer.Array;
+const _deserializer = _ros_msg_utils.Deserialize;
+const _arrayDeserializer = _deserializer.Array;
+const _finder = _ros_msg_utils.Find;
+const _getByteLength = _ros_msg_utils.getByteLength;
 
 //-----------------------------------------------------------
 
 class lift_speeds {
-  constructor() {
-    this.lift_speed0 = 0;
-    this.lift_speed1 = 0;
-    this.lift_speed2 = 0;
-    this.lift_speed3 = 0;
-    this.lift_speed4 = 0;
-    this.lift_speed5 = 0;
-    this.lift_speed6 = 0;
-    this.lift_speed7 = 0;
+  constructor(initObj={}) {
+    if (initObj === null) {
+      // initObj === null is a special case for deserialization where we don't initialize fields
+      this.lift_speed0 = null;
+      this.lift_speed1 = null;
+      this.lift_speed2 = null;
+      this.lift_speed3 = null;
+      this.lift_speed4 = null;
+      this.lift_speed5 = null;
+      this.lift_speed6 = null;
+      this.lift_speed7 = null;
+    }
+    else {
+      if (initObj.hasOwnProperty('lift_speed0')) {
+        this.lift_speed0 = initObj.lift_speed0
+      }
+      else {
+        this.lift_speed0 = 0;
+      }
+      if (initObj.hasOwnProperty('lift_speed1')) {
+        this.lift_speed1 = initObj.lift_speed1
+      }
+      else {
+        this.lift_speed1 = 0;
+      }
+      if (initObj.hasOwnProperty('lift_speed2')) {
+        this.lift_speed2 = initObj.lift_speed2
+      }
+      else {
+        this.lift_speed2 = 0;
+      }
+      if (initObj.hasOwnProperty('lift_speed3')) {
+        this.lift_speed3 = initObj.lift_speed3
+      }
+      else {
+        this.lift_speed3 = 0;
+      }
+      if (initObj.hasOwnProperty('lift_speed4')) {
+        this.lift_speed4 = initObj.lift_speed4
+      }
+      else {
+        this.lift_speed4 = 0;
+      }
+      if (initObj.hasOwnProperty('lift_speed5')) {
+        this.lift_speed5 = initObj.lift_speed5
+      }
+      else {
+        this.lift_speed5 = 0;
+      }
+      if (initObj.hasOwnProperty('lift_speed6')) {
+        this.lift_speed6 = initObj.lift_speed6
+      }
+      else {
+        this.lift_speed6 = 0;
+      }
+      if (initObj.hasOwnProperty('lift_speed7')) {
+        this.lift_speed7 = initObj.lift_speed7
+      }
+      else {
+        this.lift_speed7 = 0;
+      }
+    }
   }
 
-  static serialize(obj, bufferInfo) {
+  static serialize(obj, buffer, bufferOffset) {
     // Serializes a message object of type lift_speeds
     // Serialize message field [lift_speed0]
-    bufferInfo = _serializer.int8(obj.lift_speed0, bufferInfo);
+    bufferOffset = _serializer.int8(obj.lift_speed0, buffer, bufferOffset);
     // Serialize message field [lift_speed1]
-    bufferInfo = _serializer.int8(obj.lift_speed1, bufferInfo);
+    bufferOffset = _serializer.int8(obj.lift_speed1, buffer, bufferOffset);
     // Serialize message field [lift_speed2]
-    bufferInfo = _serializer.int8(obj.lift_speed2, bufferInfo);
+    bufferOffset = _serializer.int8(obj.lift_speed2, buffer, bufferOffset);
     // Serialize message field [lift_speed3]
-    bufferInfo = _serializer.int8(obj.lift_speed3, bufferInfo);
+    bufferOffset = _serializer.int8(obj.lift_speed3, buffer, bufferOffset);
     // Serialize message field [lift_speed4]
-    bufferInfo = _serializer.int8(obj.lift_speed4, bufferInfo);
+    bufferOffset = _serializer.int8(obj.lift_speed4, buffer, bufferOffset);
     // Serialize message field [lift_speed5]
-    bufferInfo = _serializer.int8(obj.lift_speed5, bufferInfo);
+    bufferOffset = _serializer.int8(obj.lift_speed5, buffer, bufferOffset);
     // Serialize message field [lift_speed6]
-    bufferInfo = _serializer.int8(obj.lift_speed6, bufferInfo);
+    bufferOffset = _serializer.int8(obj.lift_speed6, buffer, bufferOffset);
     // Serialize message field [lift_speed7]
-    bufferInfo = _serializer.int8(obj.lift_speed7, bufferInfo);
-    return bufferInfo;
+    bufferOffset = _serializer.int8(obj.lift_speed7, buffer, bufferOffset);
+    return bufferOffset;
   }
 
-  static deserialize(buffer) {
+  static deserialize(buffer, bufferOffset=[0]) {
     //deserializes a message object of type lift_speeds
-    let tmp;
     let len;
-    let data = new lift_speeds();
+    let data = new lift_speeds(null);
     // Deserialize message field [lift_speed0]
-    tmp = _deserializer.int8(buffer);
-    data.lift_speed0 = tmp.data;
-    buffer = tmp.buffer;
+    data.lift_speed0 = _deserializer.int8(buffer, bufferOffset);
     // Deserialize message field [lift_speed1]
-    tmp = _deserializer.int8(buffer);
-    data.lift_speed1 = tmp.data;
-    buffer = tmp.buffer;
+    data.lift_speed1 = _deserializer.int8(buffer, bufferOffset);
     // Deserialize message field [lift_speed2]
-    tmp = _deserializer.int8(buffer);
-    data.lift_speed2 = tmp.data;
-    buffer = tmp.buffer;
+    data.lift_speed2 = _deserializer.int8(buffer, bufferOffset);
     // Deserialize message field [lift_speed3]
-    tmp = _deserializer.int8(buffer);
-    data.lift_speed3 = tmp.data;
-    buffer = tmp.buffer;
+    data.lift_speed3 = _deserializer.int8(buffer, bufferOffset);
     // Deserialize message field [lift_speed4]
-    tmp = _deserializer.int8(buffer);
-    data.lift_speed4 = tmp.data;
-    buffer = tmp.buffer;
+    data.lift_speed4 = _deserializer.int8(buffer, bufferOffset);
     // Deserialize message field [lift_speed5]
-    tmp = _deserializer.int8(buffer);
-    data.lift_speed5 = tmp.data;
-    buffer = tmp.buffer;
+    data.lift_speed5 = _deserializer.int8(buffer, bufferOffset);
     // Deserialize message field [lift_speed6]
-    tmp = _deserializer.int8(buffer);
-    data.lift_speed6 = tmp.data;
-    buffer = tmp.buffer;
+    data.lift_speed6 = _deserializer.int8(buffer, bufferOffset);
     // Deserialize message field [lift_speed7]
-    tmp = _deserializer.int8(buffer);
-    data.lift_speed7 = tmp.data;
-    buffer = tmp.buffer;
-    return {
-      data: data,
-      buffer: buffer
-    }
+    data.lift_speed7 = _deserializer.int8(buffer, bufferOffset);
+    return data;
+  }
+
+  static getMessageSize(object) {
+    return 8;
   }
 
   static datatype() {
@@ -114,6 +154,70 @@ class lift_speeds {
     `;
   }
 
+  static Resolve(msg) {
+    // deep-construct a valid message object instance of whatever was passed in
+    if (typeof msg !== 'object' || msg === null) {
+      msg = {};
+    }
+    const resolved = new lift_speeds(null);
+    if (msg.lift_speed0 !== undefined) {
+      resolved.lift_speed0 = msg.lift_speed0;
+    }
+    else {
+      resolved.lift_speed0 = 0
+    }
+
+    if (msg.lift_speed1 !== undefined) {
+      resolved.lift_speed1 = msg.lift_speed1;
+    }
+    else {
+      resolved.lift_speed1 = 0
+    }
+
+    if (msg.lift_speed2 !== undefined) {
+      resolved.lift_speed2 = msg.lift_speed2;
+    }
+    else {
+      resolved.lift_speed2 = 0
+    }
+
+    if (msg.lift_speed3 !== undefined) {
+      resolved.lift_speed3 = msg.lift_speed3;
+    }
+    else {
+      resolved.lift_speed3 = 0
+    }
+
+    if (msg.lift_speed4 !== undefined) {
+      resolved.lift_speed4 = msg.lift_speed4;
+    }
+    else {
+      resolved.lift_speed4 = 0
+    }
+
+    if (msg.lift_speed5 !== undefined) {
+      resolved.lift_speed5 = msg.lift_speed5;
+    }
+    else {
+      resolved.lift_speed5 = 0
+    }
+
+    if (msg.lift_speed6 !== undefined) {
+      resolved.lift_speed6 = msg.lift_speed6;
+    }
+    else {
+      resolved.lift_speed6 = 0
+    }
+
+    if (msg.lift_speed7 !== undefined) {
+      resolved.lift_speed7 = msg.lift_speed7;
+    }
+    else {
+      resolved.lift_speed7 = 0
+    }
+
+    return resolved;
+    }
 };
 
 module.exports = lift_speeds;

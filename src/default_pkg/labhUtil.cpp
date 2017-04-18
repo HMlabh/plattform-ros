@@ -61,4 +61,5 @@ std::string labhUtil::getUSBloc()
 int labhUtil::startSerial(void)
 {
 	//WIP....
-}
+	return 0;
+};
