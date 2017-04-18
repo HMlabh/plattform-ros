@@ -16,10 +16,11 @@ class move_vector(genpy.Message):
 # move_side = movement-vector left and right:
 #     0 = none ; neg. = left ; pos. = right
 # move_rot = movement-vector rotation:
-#     0 = none ; neg. = anti-clockwise ; pos. = clockwise
+#     0 = none ; neg. = counter-clockwise ; pos. = clockwise
 float32 move_speed
 float32 move_side
-float32 move_rot"""
+float32 move_rot
+"""
   __slots__ = ['move_speed','move_side','move_rot']
   _slot_types = ['float32','float32','float32']
 

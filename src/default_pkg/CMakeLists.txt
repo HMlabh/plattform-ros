@@ -14,7 +14,6 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
   message_generation
-#  SerialStream
   serial
 )
 
@@ -137,11 +136,13 @@ include_directories(
 )
 
 ## Declare a C++ library
-# add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/default_pkg.cpp
-# )
+#add_library(${PROJECT_NAME}
+#  src/${PROJECT_NAME}/default_pkg.cpp
+#)
+#add_library(${PROJECT_NAME} ${${PROJECT_NAME}_SRCS})
+add_library(labhUtils labhUtil.cpp)
 
-link_directories(/usr/lib/x86_64-linux-gnu /usr/include/ )
+link_directories(/usr/lib/x86_64-linux-gnu /usr/include/) #${${PROJECT_NAME}_SRCS})
  
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
@@ -168,6 +169,7 @@ link_directories(/usr/lib/x86_64-linux-gnu /usr/include/ )
 #target_link_libraries(${PROJECT_NAME}_node
 #   ${catkin_LIBRARIES}
 #)
+
 #############
 ## Install ##
 #############
@@ -240,3 +242,7 @@ add_dependencies(sensor_ping beginner_tutorials_generate_messages_cpp)
 add_executable(sensor_flash src/sensor_flash.cpp)
 target_link_libraries(sensor_flash ${catkin_LIBRARIES} serial)
 add_dependencies(sensor_flash beginner_tutorials_generate_messages_cpp)
+
+add_executable(mechano_speeds src/mechano_speeds.cpp)
+target_link_libraries(mechano_speeds ${catkin_LIBRARIES} serial labhUtils)
+add_dependencies(mechano_speeds beginner_tutorials_generate_messages_cpp)

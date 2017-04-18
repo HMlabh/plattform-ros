@@ -6,9 +6,9 @@
 /**
  * This tutorial demonstrates simple receipt of messages over the ROS system.
  */
-void chatterCallback(const std_msgs::Int8 msg)
+void chatterCallback(const std_msgs::Int8::ConstPtr& msg)
 {
-	ROS_INFO("The random number is: [%d]", msg);
+	ROS_INFO("The random number is: [%d]", msg->data);
 }
 
 int main(int argc, char **argv)

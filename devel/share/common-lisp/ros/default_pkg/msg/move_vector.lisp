@@ -100,10 +100,10 @@
   "246cc4b029915cb120f7b3f5cc0f4db0")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<move_vector>)))
   "Returns full string definition for message of type '<move_vector>"
-  (cl:format cl:nil "# move_vector.msg~%# move_speed = movement-vector forwards and backwards:~%#     0 = none ; neg. = backwards ; pos. = forwards~%# move_side = movement-vector left and right:~%#     0 = none ; neg. = left ; pos. = right~%# move_rot = movement-vector rotation:~%#     0 = none ; neg. = anti-clockwise ; pos. = clockwise~%float32 move_speed~%float32 move_side~%float32 move_rot~%~%"))
+  (cl:format cl:nil "# move_vector.msg~%# move_speed = movement-vector forwards and backwards:~%#     0 = none ; neg. = backwards ; pos. = forwards~%# move_side = movement-vector left and right:~%#     0 = none ; neg. = left ; pos. = right~%# move_rot = movement-vector rotation:~%#     0 = none ; neg. = counter-clockwise ; pos. = clockwise~%float32 move_speed~%float32 move_side~%float32 move_rot~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'move_vector)))
   "Returns full string definition for message of type 'move_vector"
-  (cl:format cl:nil "# move_vector.msg~%# move_speed = movement-vector forwards and backwards:~%#     0 = none ; neg. = backwards ; pos. = forwards~%# move_side = movement-vector left and right:~%#     0 = none ; neg. = left ; pos. = right~%# move_rot = movement-vector rotation:~%#     0 = none ; neg. = anti-clockwise ; pos. = clockwise~%float32 move_speed~%float32 move_side~%float32 move_rot~%~%"))
+  (cl:format cl:nil "# move_vector.msg~%# move_speed = movement-vector forwards and backwards:~%#     0 = none ; neg. = backwards ; pos. = forwards~%# move_side = movement-vector left and right:~%#     0 = none ; neg. = left ; pos. = right~%# move_rot = movement-vector rotation:~%#     0 = none ; neg. = counter-clockwise ; pos. = clockwise~%float32 move_speed~%float32 move_side~%float32 move_rot~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <move_vector>))
   (cl:+ 0
      4

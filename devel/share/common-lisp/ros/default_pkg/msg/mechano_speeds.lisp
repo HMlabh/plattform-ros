@@ -181,10 +181,10 @@
   "32bb77eb7cf1adff580206872abd102c")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<mechano_speeds>)))
   "Returns full string definition for message of type '<mechano_speeds>"
-  (cl:format cl:nil "# mechano_speeds.msg~%# PWM-value for the 8 dc-Motors~%# 0 = STOP ; -255 to 0 = backwards ; 0 to 255 = forwards~%int16 mech_speed0~%int16 mech_speed1~%int16 mech_speed2~%int16 mech_speed3~%int16 mech_speed4~%int16 mech_speed5~%int16 mech_speed6~%int16 mech_speed7~%~%"))
+  (cl:format cl:nil "# mechano_speeds.msg~%# PWM-value for the 8 dc-Motors~%# 0 = STOP ; -255 to 0 = backwards ; 0 to 255 = forwards~%int16 mech_speed0~%int16 mech_speed1~%int16 mech_speed2~%int16 mech_speed3~%int16 mech_speed4~%int16 mech_speed5~%int16 mech_speed6~%int16 mech_speed7~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'mechano_speeds)))
   "Returns full string definition for message of type 'mechano_speeds"
-  (cl:format cl:nil "# mechano_speeds.msg~%# PWM-value for the 8 dc-Motors~%# 0 = STOP ; -255 to 0 = backwards ; 0 to 255 = forwards~%int16 mech_speed0~%int16 mech_speed1~%int16 mech_speed2~%int16 mech_speed3~%int16 mech_speed4~%int16 mech_speed5~%int16 mech_speed6~%int16 mech_speed7~%~%"))
+  (cl:format cl:nil "# mechano_speeds.msg~%# PWM-value for the 8 dc-Motors~%# 0 = STOP ; -255 to 0 = backwards ; 0 to 255 = forwards~%int16 mech_speed0~%int16 mech_speed1~%int16 mech_speed2~%int16 mech_speed3~%int16 mech_speed4~%int16 mech_speed5~%int16 mech_speed6~%int16 mech_speed7~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <mechano_speeds>))
   (cl:+ 0
      2

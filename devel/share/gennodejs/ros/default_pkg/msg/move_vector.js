@@ -5,71 +5,51 @@
 
 "use strict";
 
-const _serializer = _ros_msg_utils.Serialize;
-const _arraySerializer = _serializer.Array;
-const _deserializer = _ros_msg_utils.Deserialize;
-const _arrayDeserializer = _deserializer.Array;
-const _finder = _ros_msg_utils.Find;
-const _getByteLength = _ros_msg_utils.getByteLength;
+let _serializer = require('../base_serialize.js');
+let _deserializer = require('../base_deserialize.js');
+let _finder = require('../find.js');
 
 //-----------------------------------------------------------
 
 class move_vector {
-  constructor(initObj={}) {
-    if (initObj === null) {
-      // initObj === null is a special case for deserialization where we don't initialize fields
-      this.move_speed = null;
-      this.move_side = null;
-      this.move_rot = null;
-    }
-    else {
-      if (initObj.hasOwnProperty('move_speed')) {
-        this.move_speed = initObj.move_speed
-      }
-      else {
-        this.move_speed = 0.0;
-      }
-      if (initObj.hasOwnProperty('move_side')) {
-        this.move_side = initObj.move_side
-      }
-      else {
-        this.move_side = 0.0;
-      }
-      if (initObj.hasOwnProperty('move_rot')) {
-        this.move_rot = initObj.move_rot
-      }
-      else {
-        this.move_rot = 0.0;
-      }
-    }
+  constructor() {
+    this.move_speed = 0.0;
+    this.move_side = 0.0;
+    this.move_rot = 0.0;
   }
 
-  static serialize(obj, buffer, bufferOffset) {
+  static serialize(obj, bufferInfo) {
     // Serializes a message object of type move_vector
     // Serialize message field [move_speed]
-    bufferOffset = _serializer.float32(obj.move_speed, buffer, bufferOffset);
+    bufferInfo = _serializer.float32(obj.move_speed, bufferInfo);
     // Serialize message field [move_side]
-    bufferOffset = _serializer.float32(obj.move_side, buffer, bufferOffset);
+    bufferInfo = _serializer.float32(obj.move_side, bufferInfo);
     // Serialize message field [move_rot]
-    bufferOffset = _serializer.float32(obj.move_rot, buffer, bufferOffset);
-    return bufferOffset;
+    bufferInfo = _serializer.float32(obj.move_rot, bufferInfo);
+    return bufferInfo;
   }
 
-  static deserialize(buffer, bufferOffset=[0]) {
+  static deserialize(buffer) {
     //deserializes a message object of type move_vector
+    let tmp;
     let len;
-    let data = new move_vector(null);
+    let data = new move_vector();
     // Deserialize message field [move_speed]
-    data.move_speed = _deserializer.float32(buffer, bufferOffset);
+    tmp = _deserializer.float32(buffer);
+    data.move_speed = tmp.data;
+    buffer = tmp.buffer;
     // Deserialize message field [move_side]
-    data.move_side = _deserializer.float32(buffer, bufferOffset);
+    tmp = _deserializer.float32(buffer);
+    data.move_side = tmp.data;
+    buffer = tmp.buffer;
     // Deserialize message field [move_rot]
-    data.move_rot = _deserializer.float32(buffer, bufferOffset);
-    return data;
-  }
-
-  static getMessageSize(object) {
-    return 12;
+    tmp = _deserializer.float32(buffer);
+    data.move_rot = tmp.data;
+    buffer = tmp.buffer;
+    return {
+      data: data,
+      buffer: buffer
+    }
   }
 
   static datatype() {
@@ -91,42 +71,14 @@ class move_vector {
     # move_side = movement-vector left and right:
     #     0 = none ; neg. = left ; pos. = right
     # move_rot = movement-vector rotation:
-    #     0 = none ; neg. = anti-clockwise ; pos. = clockwise
+    #     0 = none ; neg. = counter-clockwise ; pos. = clockwise
     float32 move_speed
     float32 move_side
     float32 move_rot
+    
     `;
   }
 
-  static Resolve(msg) {
-    // deep-construct a valid message object instance of whatever was passed in
-    if (typeof msg !== 'object' || msg === null) {
-      msg = {};
-    }
-    const resolved = new move_vector(null);
-    if (msg.move_speed !== undefined) {
-      resolved.move_speed = msg.move_speed;
-    }
-    else {
-      resolved.move_speed = 0.0
-    }
-
-    if (msg.move_side !== undefined) {
-      resolved.move_side = msg.move_side;
-    }
-    else {
-      resolved.move_side = 0.0
-    }
-
-    if (msg.move_rot !== undefined) {
-      resolved.move_rot = msg.move_rot;
-    }
-    else {
-      resolved.move_rot = 0.0
-    }
-
-    return resolved;
-    }
 };
 
 module.exports = move_vector;

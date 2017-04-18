@@ -20,7 +20,8 @@ int16 mech_speed3
 int16 mech_speed4
 int16 mech_speed5
 int16 mech_speed6
-int16 mech_speed7"""
+int16 mech_speed7
+"""
   __slots__ = ['mech_speed0','mech_speed1','mech_speed2','mech_speed3','mech_speed4','mech_speed5','mech_speed6','mech_speed7']
   _slot_types = ['int16','int16','int16','int16','int16','int16','int16','int16']
 

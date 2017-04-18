@@ -153,7 +153,7 @@ struct Definition< ::default_pkg::move_vector_<ContainerAllocator> >
 # move_side = movement-vector left and right:\n\
 #     0 = none ; neg. = left ; pos. = right\n\
 # move_rot = movement-vector rotation:\n\
-#     0 = none ; neg. = anti-clockwise ; pos. = clockwise\n\
+#     0 = none ; neg. = counter-clockwise ; pos. = clockwise\n\
 float32 move_speed\n\
 float32 move_side\n\
 float32 move_rot\n\
