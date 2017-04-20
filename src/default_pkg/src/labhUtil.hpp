@@ -20,7 +20,12 @@
 class labhUtil
 {
 	public:
+// debug foo
 		void test(void);
+// getter/setter
+		int getIdent();
+
+// usefull stuff
 		void usbIdent(int usbIdent);
 		std::string getUSBloc();
 		int startSerial(void);

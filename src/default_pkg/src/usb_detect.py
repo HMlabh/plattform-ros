@@ -21,6 +21,7 @@ def callUSB(port):
         ser.write("t")                                  # write specified char for call
         time.sleep(1);                                  # sone delay
         ident = ser.readline()                          # read answer
+        serial.close()                                  # close port
         return ident                                    # if sucess: return ident
 
     except:

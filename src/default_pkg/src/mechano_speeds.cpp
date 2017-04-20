@@ -33,7 +33,7 @@ SerialStream MechanoSerial;
 /*-------Function Prototypes-------*/
 void mechanoCallback(const std_msgs::Int16 msg)
 {
-	ROS_INFO("foo");
+	ROS_INFO("callback");
 }
 
 
@@ -46,9 +46,16 @@ int main( int argc, char **argv)
 	
 	labhUtil foo;
 	foo.test();
-	foo.usbIdent(42);
+	foo.usbIdent(mechanoIdent);
+	foo.getIdent();
+	ROS_INFO("_ident = %d", foo.getIdent());
+	
 	std::string mylocation = foo.getUSBloc();
+	ROS_INFO("mylocation is %s", mylocation.c_str());
 
+
+
+	ROS_INFO("enter loop ....");
 
 	/*	creating Publisher mechano_speeds_out
 	 *	param 1: topic

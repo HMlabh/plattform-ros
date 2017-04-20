@@ -9,14 +9,28 @@
  *
  */
 
+// its header
 #include "labhUtil.hpp"
 
+// std stuff
 #include "ros/ros.h"
+#include <unistd.h>
+#include <istream>
+
+// ros msgs - types
 #include "std_msgs/String.h"
 #include "std_msgs/Int8.h"
 #include "std_msgs/Int16.h"
 
+// ros msgs 
 #include "default_pkg/usb_ident.h"
+
+// serial stuff
+#include <serial/serial.h>
+#include <SerialStream.h>
+
+
+using namespace LibSerial;
 
 void labhUtil::test(void)
 {
@@ -54,12 +68,34 @@ std::string labhUtil::getUSBloc()
 			return locs[i];
 		}
 	}
-	ROS_INFO("do not found ident on given ports");
+	ROS_INFO("can not found ident on given ports");
 	return "";
 };
 
+int labhUtil::getIdent()
+{
+	return _ident;
+}
+
+
 int labhUtil::startSerial(void)
 {
-	//WIP....
-	return 0;
+	//	doc @	http://libserial.sourceforge.net/doxygen/class_serial_port.html
+
+	/*	Settings:
+	 *	Baud: 115200 8N1
+	 */
+	_Serial.SetBaudRate(SerialStreamBuf::BAUD_115200);
+	_Serial.SetCharSize(SerialStreamBuf::CHAR_SIZE_8);
+	_Serial.SetNumOfStopBits(1);
+	_Serial.SetFlowControl(SerialStreamBuf::FLOW_CONTROL_HARD);
+
+	// open given Port:
+	_Serial.Open(_port);
+
+	// Check if port is now open:
+	if (!_Serial.IsOpen())
+		return 0;			// port is closed!!!
+
+	return 1;				// port is open!!!
 };
