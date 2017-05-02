@@ -17,6 +17,9 @@
 
 #include <string>
 
+#include <serial/serial.h>
+#include <SerialStream.h>
+
 class labhUtil
 {
 	public:
@@ -29,11 +32,14 @@ class labhUtil
 		void usbIdent(int usbIdent);
 		std::string getUSBloc();
 		int startSerial(void);
-
+		void stopSerial(void);
+		void writeChar(char c);
+// varibles
 	private:
 		int _ident;
 		std::string _port;
 		int _baud;
+		LibSerial::SerialStream _Serial;
 
 };
 

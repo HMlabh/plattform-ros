@@ -32,21 +32,24 @@
 
 using namespace LibSerial;
 
+//---------------------------------------------------------------------
 void labhUtil::test(void)
 {
 	int i = 0;
 	for (i = 0; i < 1000; i++){;}
 }
 
+//---------------------------------------------------------------------
 void labhUtil::usbIdent(int usbIdent)
 {
 	_ident = usbIdent;
 };
 
+//---------------------------------------------------------------------
 std::string labhUtil::getUSBloc()
 {
 	// array w/ idents and w/ location
-	::default_pkg::usb_ident i;
+	default_pkg::usb_ident i;
 	int idents[] = {
 		i.usb_ident0, i.usb_ident1, i.usb_ident2, i.usb_ident3,
 		i.usb_ident4, i.usb_ident5, i.usb_ident6, i.usb_ident7,
@@ -56,7 +59,14 @@ std::string labhUtil::getUSBloc()
 	std::string locs[] = {
 		i.usb_loc0, i.usb_loc1, i.usb_loc2, i.usb_loc3, i.usb_loc4,
 		i.usb_loc5, i.usb_loc6, i.usb_loc7, i.usb_loc8, i.usb_loc9
-	}; 
+	};
+
+	// DEBUG
+	for (int i = 0; i < sizeof(idents) / sizeof(int); i++)
+	{
+		ROS_INFO("usb_ident = %d", idents[i]);
+	}
+
 
 	for (int i = 0; i < sizeof(idents)/sizeof(int); i++)
 	{
@@ -72,12 +82,13 @@ std::string labhUtil::getUSBloc()
 	return "";
 };
 
+//---------------------------------------------------------------------
 int labhUtil::getIdent()
 {
 	return _ident;
 }
 
-
+//---------------------------------------------------------------------
 int labhUtil::startSerial(void)
 {
 	//	doc @	http://libserial.sourceforge.net/doxygen/class_serial_port.html
@@ -99,3 +110,18 @@ int labhUtil::startSerial(void)
 
 	return 1;				// port is open!!!
 };
+
+//---------------------------------------------------------------------
+void labhUtil::stopSerial(void)
+{
+	_Serial.Close();
+}
+
+//---------------------------------------------------------------------
+
+void labhUtil::writeChar(char c)
+{
+	_Serial << c;
+}
+//---------------------------------------------------------------------
+//---------------------------------------------------------------------

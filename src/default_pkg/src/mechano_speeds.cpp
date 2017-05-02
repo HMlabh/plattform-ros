@@ -30,12 +30,6 @@ using namespace LibSerial;
 SerialStream MechanoSerial;
 
 
-/*-------Function Prototypes-------*/
-void mechanoCallback(const std_msgs::Int16 msg)
-{
-	ROS_INFO("callback");
-}
-
 
 /*-------Main----------------------*/
 int main( int argc, char **argv)
@@ -48,26 +42,23 @@ int main( int argc, char **argv)
 	foo.test();
 	foo.usbIdent(mechanoIdent);
 	foo.getIdent();
-	ROS_INFO("_ident = %d", foo.getIdent());
+	ROS_INFO("myIdent = %d", foo.getIdent());
 	
 	std::string mylocation = foo.getUSBloc();
-	ROS_INFO("mylocation is %s", mylocation.c_str());
-
-
-
-	ROS_INFO("enter loop ....");
-
-	/*	creating Publisher mechano_speeds_out
-	 *	param 1: topic
-	 *	param 2: queue - short for min. response time = quick
-	 *	param 3: callback function
-	 */
-	ros::Subscriber subScriber = nodeHandle.subscribe("machano_speeds", 1,
-													   mechanoCallback);
+	ROS_INFO("mylocation is: %s", mylocation.c_str());
 
 	/* enter spin loop:	*/
-	ros::spin();
+	ROS_INFO("enter loop ....");
+	ros::Rate loop_rate(1);		// 10Hz
 
+	while (ros::ok())
+	{
+		ROS_INFO("running....");
+		foo.writeChar('a');
+		ros::spinOnce();
+		loop_rate.sleep();
+	}
 
+	foo.stopSerial();
 	return 0;
 }

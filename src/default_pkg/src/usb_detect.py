@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 #   Search for connected Arduinos and list their Post with its ident-char
 #
 #   send each Arduino an ASCII-Char via Serial, only one time and check its response
@@ -6,6 +8,8 @@
 #   Date:       2017-03-29
 #   Author:     Domi
 #   Version:    1.0
+
+
 
 import rospy
 from default_pkg.msg import usb_ident
@@ -16,12 +20,13 @@ import time
 
 # method to call the given com-port and return its ident, if there is one
 def callUSB(port):
+    #time.sleep(1)
     try:
-        ser = serial.Serial(port, 9600, timeout = 2)    # open port
+        ser=serial.Serial(port, 115200, timeout=2)    # open port
         ser.write("t")                                  # write specified char for call
-        time.sleep(1);                                  # sone delay
+        time.sleep(1)                                   # sone delay
         ident = ser.readline()                          # read answer
-        serial.close()                                  # close port
+        #serial.close()                                  # close port
         return ident                                    # if sucess: return ident
 
     except:
@@ -32,8 +37,8 @@ def callUSB(port):
 #   call each port, check answer and publish message
 
 def talker():
-    # ros inti
-    pub = rospy.Publisher('usb_detect_output', usb_ident, queue_size = 10)
+    # ros init
+    pub = rospy.Publisher('usb_detect', usb_ident, queue_size = 10)
     rospy.init_node('usb_detect_node', anonymous=True)
     r = rospy.Rate(1) # 1Hz
 
@@ -43,9 +48,11 @@ def talker():
     # call each Port    ToDo: iterate through msg.usb_identX and msg.usb_locX
 
     rospy.loginfo("Call USB:")
-
+    
     port = "/dev/ttyACM0"
     call = callUSB(port)
+    rospy.loginfo("call:")
+    rospy.loginfo(int(call))
     msg.usb_ident0 = int(call)
     if msg.usb_ident0 != 0:
         msg.usb_loc0 = port
@@ -58,13 +65,13 @@ def talker():
 
     port = "/dev/ttyACM2"
     call = callUSB(port)
-    msg.usb_ident2 = int(call)
+    msg.usb_ident2 = call
     if msg.usb_ident2 != 0:
         msg.usb_loc2 = port
 
     port = "/dev/ttyACM3"
     call = callUSB(port)
-    msg.usb_ident3 = int(call)
+    msg.usb_ident3 = call
     if msg.usb_ident3 != 0:
         msg.usb_loc3 = port
 
@@ -103,7 +110,7 @@ def talker():
     msg.usb_ident9 = int(call)
     if msg.usb_ident9 != 0:
         msg.usb_loc9 = port
-
+    
     # loop, post msg
     while not rospy.is_shutdown():
         hello_str = "hello world %s" % rospy.get_time()
