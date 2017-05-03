@@ -141,6 +141,7 @@ include_directories(
 #)
 #add_library(${PROJECT_NAME} ${${PROJECT_NAME}_SRCS})
 add_library(labhUtils labhUtil.cpp)
+add_library(labhUtilUsbMsg labhUtil.cpp)
 
 link_directories(/usr/lib/x86_64-linux-gnu /usr/include/) #${${PROJECT_NAME}_SRCS})
  
@@ -244,5 +245,5 @@ target_link_libraries(sensor_flash ${catkin_LIBRARIES} serial)
 add_dependencies(sensor_flash beginner_tutorials_generate_messages_cpp)
 
 add_executable(mechano_speeds src/mechano_speeds.cpp)
-target_link_libraries(mechano_speeds ${catkin_LIBRARIES} serial labhUtils)
+target_link_libraries(mechano_speeds ${catkin_LIBRARIES} serial labhUtils labhUtilUsbMsg)
 add_dependencies(mechano_speeds beginner_tutorials_generate_messages_cpp)
