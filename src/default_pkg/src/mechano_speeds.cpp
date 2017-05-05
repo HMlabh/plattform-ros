@@ -24,7 +24,6 @@
 
 /*-------defines and gloabl variables----------*/
 // Ident from Arduino:
-#define mechanoIdent 22
 
 using namespace LibSerial;
 

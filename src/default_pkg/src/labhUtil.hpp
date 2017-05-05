@@ -8,12 +8,15 @@
  *  Version:    0.22.1
  *
  */
-
-
-
-
 #ifndef labhUtil_hpp
 #define labhUtil_hpp
+
+
+#define mechanoIdent 22
+
+
+
+
 
 #include <string>
 
