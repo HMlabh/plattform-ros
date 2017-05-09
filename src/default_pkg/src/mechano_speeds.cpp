@@ -17,51 +17,7 @@
 #include <string.h>
 #include <unistd.h>
 
-#include <serial/serial.h>
-#include <SerialStream.h>
-
 #include "labhUtil.hpp"
-
-/*-------defines and gloabl variables----------*/
-// Ident from Arduino:
-
-using namespace LibSerial;
-
-SerialStream MechanoSerial;
-
-labhUtilUsbMsg data;
-
-
-void usbIdentCall(const default_pkg::usb_ident::ConstPtr& msg)
-{
-	ROS_INFO("I heard: [%s]", msg->usb_loc0.c_str());
-	data.foo.idents[0] = msg->usb_ident0;
-	ROS_INFO("ident: %d", data.foo.idents[0]);
-
-/*
-	usbMsg.Data.idents[0] = msg->usb_ident0;
-	usbMsg.Data.idents[1] = msg->usb_ident1;
-	usbMsg.Data.idents[2] = msg->usb_ident2;
-	usbMsg.Data.idents[3] = msg->usb_ident3;
-	usbMsg.Data.idents[4] = msg->usb_ident4;
-	usbMsg.Data.idents[5] = msg->usb_ident5;
-	usbMsg.Data.idents[6] = msg->usb_ident6;
-	usbMsg.Data.idents[7] = msg->usb_ident7;
-	usbMsg.Data.idents[8] = msg->usb_ident8;
-	usbMsg.Data.idents[9] = msg->usb_ident9;
-
-	usbMsg.Data.locs[0] = msg->usb_loc0;
-	usbMsg.Data.locs[1] = msg->usb_loc1;
-	usbMsg.Data.locs[2] = msg->usb_loc2;
-	usbMsg.Data.locs[3] = msg->usb_loc3;
-	usbMsg.Data.locs[4] = msg->usb_loc4;
-	usbMsg.Data.locs[5] = msg->usb_loc5;
-	usbMsg.Data.locs[6] = msg->usb_loc6;
-	usbMsg.Data.locs[7] = msg->usb_loc7;
-	usbMsg.Data.locs[8] = msg->usb_loc8;
-	usbMsg.Data.locs[9] = msg->usb_loc9;
-*/
-}
 
 
 /*-------Main----------------------*/
@@ -69,33 +25,65 @@ int main( int argc, char **argv)
 {
 	/*	Node Init	*/
 	ros::init(argc, argv, "mechano_speeds");
+	
+
 	ros::NodeHandle nodeHandle;
 
-	ros::Subscriber sub = nodeHandle.subscribe("usb_detect", 1000, usbIdentCall);
-
+	/* labhUtil-Opbject for serial-handle and co... */
 	labhUtil foo;
+	ROS_INFO("foo.test");
 	foo.test();
-	
-	foo.usbIdent(mechanoIdent);
-	foo.getIdent();
-	ROS_INFO("myIdent = %d", foo.getIdent());
-	
+
+	ROS_INFO("[Debug] mechanoIdent: [%d]", MECHANO_IDENT);
+	foo.usbIdent(MECHANO_IDENT);
+	ROS_INFO("[Debug] getIdent: [%d]", foo.getIdent());
+
+	ROS_INFO("[Debug] getUSBloc...");
 	std::string mylocation = foo.getUSBloc();
-	ROS_INFO("mylocation is: %s", mylocation.c_str());
+	ROS_INFO("[Debug] getUSBloc: [%s]", mylocation.c_str());
 
-	/* enter spin loop:	*/
+
+	ROS_INFO("[DEBUG] openSerial");
+	if (!foo.openSerial())
+	{
+		ROS_INFO("[INFO] serial port is CLOSED!");
+		ROS_INFO("[INFO] shutdown node....");
+		return 0;
+	}
+	ROS_INFO("[INFO] serial port is open!");
+	
+	// enter spin loop:
 	ROS_INFO("enter loop ....");
-	ros::Rate loop_rate(1);		// 10Hz
-
+	ros::Rate loop_rate(20);	// 10Hz
 
 	while (ros::ok())
 	{
-		ROS_INFO("running....");
+		ROS_INFO("\nrunning....");
+		ROS_INFO("send: 't'");
+		foo.writeChar('t');
+
+		ROS_INFO("read: %d\n", foo.readInt());
+
+		foo.writeChar('s');
+		ROS_INFO("readString: %s", foo.readString().c_str());
+
 		foo.writeChar('a');
+		ROS_INFO("\t-> my random number[0-100] = %d", foo.readInt());
+
+		ROS_INFO("readInts() ...");
+		int arr[5];
+		foo.writeChar('y');
+		foo.readInts(sizeof(arr)/sizeof(int), arr);
+		for (int i = 0; i < sizeof(arr)/sizeof(int); i++)
+			ROS_INFO("arr[%d] = %d", i , arr[i]);
+
+		foo.writeChar('d');
+		ROS_INFO("read double: [%lf]", foo.readDouble());
+
 		ros::spinOnce();
 		loop_rate.sleep();
 	}
 
-	foo.stopSerial();
+	foo.closeSerial();
 	return 0;
 }

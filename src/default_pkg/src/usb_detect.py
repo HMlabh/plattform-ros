@@ -10,7 +10,6 @@
 #   Version:    1.0
 
 
-
 import rospy
 from default_pkg.msg import usb_ident
 
@@ -22,15 +21,16 @@ import time
 def callUSB(port):
     #time.sleep(1)
     try:
-        ser=serial.Serial(port, 115200, timeout=2)    # open port
-        ser.write("t")                                  # write specified char for call
-        time.sleep(1)                                   # sone delay
-        ident = ser.readline()                          # read answer
-        #serial.close()                                  # close port
-        return ident                                    # if sucess: return ident
+        ser=serial.Serial(port, 115200, timeout=2)  # open port
+        ser.write("t")                              # write specified char for call
+        time.sleep(1)                               # sone delay
+        ident = ser.readline()                      # read answer
+        ser.close()                              # close port
+        return ident                                # if sucess: return ident
 
     except:
-        return 0                # fail-safe                  
+        return 0                                                      
+
 
 # ROS-Method: see ros-talker
 #   edit:
@@ -48,11 +48,11 @@ def talker():
     # call each Port    ToDo: iterate through msg.usb_identX and msg.usb_locX
 
     rospy.loginfo("Call USB:")
-    
+
     port = "/dev/ttyACM0"
     call = callUSB(port)
-    rospy.loginfo("call:")
-    rospy.loginfo(int(call))
+    #rospy.loginfo("call: ")    #debug
+    #rospy.loginfo(int(call))   #debug
     msg.usb_ident0 = int(call)
     if msg.usb_ident0 != 0:
         msg.usb_loc0 = port
@@ -65,13 +65,13 @@ def talker():
 
     port = "/dev/ttyACM2"
     call = callUSB(port)
-    msg.usb_ident2 = call
+    msg.usb_ident2 = int(call)
     if msg.usb_ident2 != 0:
         msg.usb_loc2 = port
 
     port = "/dev/ttyACM3"
     call = callUSB(port)
-    msg.usb_ident3 = call
+    msg.usb_ident3 = int(call)
     if msg.usb_ident3 != 0:
         msg.usb_loc3 = port
 
@@ -110,10 +110,10 @@ def talker():
     msg.usb_ident9 = int(call)
     if msg.usb_ident9 != 0:
         msg.usb_loc9 = port
-    
+
     # loop, post msg
     while not rospy.is_shutdown():
-        hello_str = "hello world %s" % rospy.get_time()
+        hello_str = "Usb-Ident says hello to every one! %s" % rospy.get_time()
         rospy.loginfo("%s\n%s", hello_str, msg)
         pub.publish(msg)
         time.sleep(1)
